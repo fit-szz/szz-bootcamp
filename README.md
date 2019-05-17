@@ -7,3 +7,9 @@
 1) Zkopíruj latex template do nově vytvořené složky
 1) vypracuj otázku
 1) Zkompiluj PDF přidej do repozitáře a pushni
+
+```
+apt-get install python3 texlive
+```
+
+
