@@ -1,21 +1,16 @@
 # SSZ
 
-1) Zvol si otázku
-1) Pullni repozitář
-1) Dej do složky topics/OKRUH/CISLO\_PREDMET soubor .keep a pushni na server
-1) Pokud složka s otázkou existuje tak je otázka zabraná
-1) Zkopíruj latex template do nově vytvořené složky
-1) Vypracuj otázku
-1) Přidej do repozitáře a pushni
+## Jak přidat otázku
+*nazev-predmetu nahradit za kód předmětu malými písmeny*
 
-Soubory pro otázku - obrázky, zdrojáky, ... se všechny musí
-nacházet ve složce otázky, ať tady není bordel.
-
-
-# Závislosi pro sestavení
+1) Do .md souboru zapsat, kterou otázku zpracováváte.
+2) Zdrojáky hodit do adresáře topics/nazev-otazky. Hlavní tex soubor by se měl jmenovat `nazev-predmetu.tex`.
+3) Do Makefile udělat nový záznamy podle vzoru:
 
 ```
-apt-get install python3 texlive
+nazev-predmetu: build/nazev-predmetu.pdf
+
+build/nazev-predmetu.pdf: /*... zdrojové soubory ...*/ $(default_deps)
+	xelatex -output-directory=build topics/nazev-predmetu/nazev-predmetu.tex
 ```
-
-
+4) do pravidla `all:` v Makefile přidat pravidlo `nazev-predmetu`.
