@@ -1,6 +1,6 @@
 default_deps=szzclass.cls | build
 
-all: bi-proposal bi-proposal2 bi-aag
+all: bi-proposal bi-proposal2 bi-aag bi-wsi-si-14
 
 bi-proposal: build/bi-proposal.pdf
 
@@ -16,6 +16,11 @@ bi-aag: build/bi-aag.pdf
 
 build/bi-aag.pdf: topics/bi-spol-1/bi-aag.tex $(default_deps)
 	xelatex -output-directory=build topics/bi-spol-1/bi-aag.tex
+
+bi-wsi-si-14: build/bi-wsi-si-14.pdf
+
+build/bi-wsi-si-14.pdf: topics/bi-wsi-si-14/bi-wsi-si-14.tex $(default_deps)
+	xelatex -output-directory=build topics/bi-wsi-si-14/bi-wsi-si-14.tex
 
 build:
 	mkdir build
