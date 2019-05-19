@@ -5,7 +5,44 @@
 \begin{document}
 \maketitle
 
+\todo{Reorder to make more sense}
+
 \section{Definice}
+
+Lambda ($\lambda$) kalkul je formální systém používaný v teoretické informatice a matematice pro studium funkcí a rekurze, lambda kalkul je Turing-complete.
+Funkce zapsané v lambda kalkulu lze poté vyhodnotit pomocí substituce. 
+
+\subsection{Syntaxe lambda kalkulu}
+
+U lambda kalkulu se používá prefixový zápis, tedy operátory se píší před operandy, například (+(* 5 3)(* 5 3)).
+Vyhodnocení poté probíhá zleva doprava a to následovně:
+\begin{enumerate}
+    \item (+ 30 (* 5 3))
+    \item (+ 30 30)
+    \item 60
+\end{enumerate}
+
+Zápis funkce s proměnnou se poté zapisuje takto: $(\lambda . + x\ 1)$.
+
+\subsection{Beta redukce}
+
+Vyhodnocování funkcí v lambda kalkulu se dělá pomocí beta ($\beta$) redukce.
+Beta redukce provedená na příkladu zápisu funkce:
+\begin{enumerate}
+    \item $(\lambda . + x\ 1)$
+    \item $(\lambda . + x\ 1)2$
+          2 za závorkou je argumentem fuknce.
+    \item $(+ 2 1)$
+    \item 3
+\end{enumerate}
+
+Další platné zápisy: $(\lambda . + x\ x) 2 => (+\ 2\ 2)$.
+
+\subsection{Volné a vázáné proměnné}
+
+V lambda kalkulu rozlišuje dva typy proměnných a to vázané a volné. Vázané proměnné jsou takové proměnné, které jsou zároveň argumentem
+dané funkce. Lambda kalkul má lokální rozsah platnostnosti (scope).
+Například pro fuknci $(\lambda x . + x\ y)$ je vázanou proměnnou x a y je v tomto případě volná proměnná.
 
 
 
