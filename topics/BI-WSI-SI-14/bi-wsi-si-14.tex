@@ -44,6 +44,14 @@ V lambda kalkulu rozlišuje dva typy proměnných a to vázané a volné. Vázan
 dané funkce. Lambda kalkul má lokální rozsah platnostnosti (scope).
 Například pro fuknci $(\lambda x . + x\ y)$ je vázanou proměnnou x a y je v tomto případě volná proměnná.
 
+\subsection{Alfa redukce}
 
+Alfa $(\alpha)$ redukce odstraňuje přetížení identifikátorů pomocí přejmenování argumetu a jeho vázaných proměnných.
+Ukázka na $(\lambda x . (\lambda x . +\ (-\ x\ 1))\ x\ 3)\ 9$.
+\begin{enumerate}
+    \item $(\lambda y . +\ (-\ y\ 1)\ 9\ 3)$
+    \item $(+\ (-\ 9 1)\ 3)$
+    \item $(+\ 8\ 3)$
+\end{enumerate}
 
 \end{document}
