@@ -13,7 +13,7 @@ BI-WSI-SI-10 | BI-OOP | Čisté objektové paradigma — kvalita návrhu OO   sy
 BI-WSI-SI-11 | BI-OSY | Principy souborových systémů (FAT, NTFS, UFS, ZFS),   jejich implementace a vlastnosti. |   Ne
 BI-WSI-SI-12 | BI-PA2 | Šablony funkcí a tříd v C++, knihovna STL, iterátor,   komparátor. |   Ne
 BI-WSI-SI-13 | BI-PPA | Rozdělení paměti při implementaci programovacích   jazyků: statické části, zásobník, halda. Aktivační záznamy, mechanismus   implementace volání funkcí. |   Ne
-BI-WSI-SI-14 | BI-PPA | Lambda kalkul: definice pojmů, operací, reprezentace   čísel. |   Ne
+BI-WSI-SI-14 | BI-PPA | Lambda kalkul: definice pojmů, operací, reprezentace   čísel. |   Ano
 BI-WSI-SI-15 | BI-PPA | Funkcionální programování, funkce vyšších řádů, Lisp:   atomy, seznamy, funkce, cons buňky, rekurze, mapovací funkcionály. |   Ne
 BI-WSI-SI-16 | BI-PPA | Logické programování, Prolog: fakta, pravidla,   dotazy, způsob vyhodnocení dotazů, unifikace, operátor řezu. |   Ne
 BI-WSI-SI-17 | BI-PSI | Adresace IPv4, rozdělení adresního prostoru. Rozdíly   mezi IPv4 a IPv6. |   Ne
