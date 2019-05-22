@@ -11,8 +11,8 @@ BI-SPOL-8 | BI-BEZ | Infrastruktura veřejného klíče, distribuce klíčů,   
 BI-SPOL-9 | BI-DBS | Relační databáze, dotazování v relační algebře,   základní koncepce jazyka SQL (SELECT, DDL, DML, DCL, TCL) ,   vyjádření integritních omezení v DDL. |   Ne
 BI-SPOL-10 | BI-DBS | Transakce a jejich vlastnosti - ACID. |   Ne
 BI-SPOL-11 | BI-DBS | 3 úrovně pohledu na data (konceptuální,   implementační, fyzická). Struktury pro ukládání dat v relačních databázích s   ohledem na rychlý přístup k nim (speciální způsoby uložení, indexy apod.) |  Ne
-BI-SPOL-12 | BI-LIN | Soustavy lineárních rovnic: Frobeniova věta a   související pojmy, vlastnosti a popis množiny řešení, Gaussova eliminační   metoda. |    Ne
-BI-SPOL-13 | BI-LIN | Matice: součin matic, regulární matice, inverzní   matice a její výpočet, vlastní čísla matice a jejich výpočet, diagonalizace   matice. |   Ne
+BI-SPOL-12 | BI-LIN | Soustavy lineárních rovnic: Frobeniova věta a   související pojmy, vlastnosti a popis množiny řešení, Gaussova eliminační   metoda. |    Asi
+BI-SPOL-13 | BI-LIN | Matice: součin matic, regulární matice, inverzní   matice a její výpočet, vlastní čísla matice a jejich výpočet, diagonalizace   matice. |   Asi
 BI-SPOL-14 | BI-MLO | Výroková logika: syntax a sémantika výrokových   formulí, pravdivostní ohodnocení, logický důsledek, ekvivalence a jejich   zjišťování. Universální systém logických spojek, disjunktivní a konjunktivní   normální tvary, úplné a minimální tvary. |   Ano
 BI-SPOL-15 | BI-MLO | Predikátová logika: jazyk, interpretace, pravdivost   formulí, logický důsledek a ekvivalence. Formalizace matematických tvrzení a   jejich negace. Teorie a jejich modely (např. uspořádání). |   Ne
 BI-SPOL-16 | BI-OSY | Procesy a vlákna, jejich implementace. Synchronizační   nástroje. Klasické synchronizační úlohy. Plánování vláken. Přidělování   prostředků, Coffmanovy podmínky, způsoby řešení uváznutí. |   Ne
