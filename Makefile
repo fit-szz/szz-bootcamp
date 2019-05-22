@@ -17,6 +17,11 @@ bi-spol-1: build/bi-spol-1.pdf
 build/bi-spol-1.pdf: topics/bi-spol-1/bi-spol-1.tex $(default_deps)
 	xelatex -output-directory=build topics/bi-spol-1/bi-spol-1.tex
 
+bi-spol-1: build/bi-spol-1.pdf
+
+build/bi-spol-1.pdf: topics/bi-spol-4/bi-spol-4.tex $(default_deps)
+	xelatex -output-directory=build topics/bi-spol-4/bi-spol-4.tex
+
 bi-wsi-si-14: build/bi-wsi-si-14.pdf
 
 build/bi-wsi-si-14.pdf: topics/bi-wsi-si-14/bi-wsi-si-14.tex $(default_deps)
