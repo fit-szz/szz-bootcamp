@@ -14,6 +14,7 @@ all: $(patsubst topics/%,build/%.pdf,$(wildcard topics/bi-*))
 # to recompile (the solution is to not use subdirectories).
 build/%.pdf: topics/%/* $(default_deps)
 	xelatex -shell-escape -output-directory=build topics/$*/$*.tex
+	xelatex -shell-escape -output-directory=build topics/$*/$*.tex
 
 build:
 	mkdir build
