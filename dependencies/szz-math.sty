@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{../../../szz-math}[2019/05/01 SZZ Math package]
+\ProvidesPackage{../szz-math}[2019/05/01 SZZ Math package]
 
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
@@ -39,3 +39,11 @@
 \newtheorem{definition}[lemma]{Definice}
 \newtheorem{observation}[lemma]{Pozorování}
 \newtheorem{proposition}[lemma]{Tvrzení}
+
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother

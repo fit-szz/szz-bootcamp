@@ -1,0 +1,33 @@
+\documentclass{../szzclass}
+\usepackage[czech]{babel}
+\usepackage{../dependencies/szz-code}
+
+% \subject{DBS}
+% \code{BI-SPOL-9}
+% \topic{Relační databáze, dotazování v relační algebře, základní koncepce jazyka SQL (SELECT, DDL, DML, DCL, TCL) , vyjádření integritních omezení v DDL.}
+
+\begin{document}
+\section{Relační databáze}
+\section{Dotazování v relační algebře}
+\begin{itemize}
+  \item Relační algebra je pouze dotazovací formalismus. (Pokrývá jenom \mintinline{sql}{SELECT} v SQL.)
+  \item 
+\end{itemize}
+\section{Základní koncepce jazyka SQL (\mintinline{sql}{SELECT}, DDL, DML, DCL, TCL)}
+\begin{description}
+  \item[DDL] Definiční jazyk -- např. manipulace s tabulkama, integritní omezení
+  \item[DML] Manipulační jazyk -- např. \mintinline{sql}{SELECT}, \mintinline{sql}{INSERT}, \mintinline{sql}{UPDATE} apod.
+  \item[DCL] Jazyk na přístupy
+  \item[TCL] Jazyk pro řízení transakcí
+\end{description}
+
+\begin{minted}{sql}
+SELECT sloupce
+FROM tabulky
+[WHERE podmínky]
+[ORDER BY řazení]
+\end{minted}
+
+\section{Vyjádření integritních omezení v DDL}
+
+\end{document}
