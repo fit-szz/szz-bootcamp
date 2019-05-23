@@ -4,7 +4,7 @@ BI-SPOL-1 | BI-AAG | Přehled Chomského hierarchie formálních jazyků a   gra
 BI-SPOL-2 | BI-AAG | Regulární jazyky: Deterministické a nedeterministické   konečné automaty. Determinizace konečného automatu. Minimalizace   deterministického konečného automatu. Operace s konečnými automaty. Regulární   gramatiky, regulární výrazy, regulární rovnice. |   Ne
 BI-SPOL-3 | BI-AAG | Bezkontextové jazyky: Bezkontextové gramatiky,   zásobníkové automaty a jejich varianty. Modely syntaktické analýzy   bezkontextových jazyků. |   Ne
 BI-SPOL-4 | BI-AG1 | Základní pojmy teorie grafů. Grafové algoritmy:   procházení grafu do šířky a do hloubky, určení souvislých komponent,   topologické uspořádání, vzdálenosti v grafech, konstrukce minimální kostry a   nejkratších cest v ohodnoceném grafu. |   Ano
-BI-SPOL-5 | BI-AG1 | Binární haldy, binomiální haldy. Vyhledávací stromy a   jejich vyvažování. Tabulky s rozptylováním (hešováním). |   Ne
+BI-SPOL-5 | BI-AG1 | Binární haldy, binomiální haldy. Vyhledávací stromy a   jejich vyvažování. Tabulky s rozptylováním (hešováním). |   Ano
 BI-SPOL-6 | BI-BEZ | Asymetrické kryptosystémy (šifra RSA, Diffie-Hellman,   RSA digitální podpis), hešovací funkce (SHA-2, HMAC). |  Ne
 BI-SPOL-7 | BI-BEZ | Symetrické šifry blokové a proudové (AES, 3DES, RC4)   základní parametry, operační módy blokových šifer (ECB, CBC, CFB, OFB, CTR,   MAC), jejich základní popis a slabiny. |  Ne
 BI-SPOL-8 | BI-BEZ | Infrastruktura veřejného klíče, distribuce klíčů,   digitální podpis. Certifikáty, certifikační autority. Kryptograficky bezpečné   generátory náhodných čísel. |  Ne
