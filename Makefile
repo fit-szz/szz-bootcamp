@@ -1,43 +1,19 @@
-default_deps=szzclass.cls | build
+default_deps=dependencies/* szzclass.cls | build
 
-all: bi-proposal bi-proposal2 bi-spol-1 bi-spol-4 bi-spol-12 bi-spol-13 bi-wsi-si-14 bi-wsi-si-27
+# The wildcard function call expands the argument the same way as the shell
+# does. The patsubst function replaces `topics/bi-something` with
+# `build/bi-something.pdf`.
+all: $(patsubst topics/%,build/%.pdf,$(wildcard topics/bi-*))
 
-bi-proposal: build/bi-proposal.pdf
-
-build/bi-proposal.pdf: topics/bi-proposal/bi-proposal.tex topics/bi-proposal/to_include.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-proposal/bi-proposal.tex
-
-bi-proposal2: build/bi-proposal2.pdf
-
-build/bi-proposal2.pdf: topics/bi-proposal2/bi-proposal2.tex topics/bi-proposal2/to_include.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-proposal2/bi-proposal2.tex
-
-bi-spol-1: build/bi-spol-1.pdf
-
-build/bi-spol-1.pdf: topics/bi-spol-1/bi-spol-1.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-spol-1/bi-spol-1.tex
-
-bi-spol-4: build/bi-spol-4.pdf
-
-build/bi-spol-4.pdf: topics/bi-spol-4/bi-spol-4.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-spol-4/bi-spol-4.tex
-
-bi-spol-13: build/bi-spol-13.pdf
-build/bi-spol-13.pdf: topics/bi-spol-13/bi-spol-13.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-spol-13/bi-spol-13.tex
-
-bi-spol-12: build/bi-spol-12.pdf
-build/bi-spol-12.pdf: topics/bi-spol-12/bi-spol-12.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-spol-12/bi-spol-12.tex
-
-bi-wsi-si-14: build/bi-wsi-si-14.pdf
-build/bi-wsi-si-14.pdf: topics/bi-wsi-si-14/bi-wsi-si-14.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-wsi-si-14/bi-wsi-si-14.tex
-
-bi-wsi-si-27: build/bi-wsi-si-27.pdf
-build/bi-wsi-si-27.pdf: topics/bi-wsi-si-27/bi-wsi-si-27.tex $(default_deps)
-	xelatex -output-directory=build topics/bi-wsi-si-27/bi-wsi-si-27.tex
-
+# This is an implicit rule for all the subjects:
+# - `%` in the prerequisites matches with as many characters as needed (the
+# subject name)
+# - `$*` in the recipe expands to what was matched with %
+# Unfortunately, the `topics/%/*` wildcard isn't recursive, so if you change
+# something in a subdirectory of a subject (an image for example), you'll have
+# to recompile (the solution is to not use subdirectories).
+build/%.pdf: topics/%/* $(default_deps)
+	xelatex -shell-escape -output-directory=build topics/$*/$*.tex
 
 build:
 	mkdir build
