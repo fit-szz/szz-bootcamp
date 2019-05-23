@@ -1,6 +1,6 @@
 default_deps=szzclass.cls | build
 
-all: bi-proposal bi-proposal2 bi-spol-1 bi-wsi-si-14
+all: bi-proposal bi-proposal2 bi-spol-1 bi-spol-12 bi-spol-13 bi-wsi-si-14 bi-wsi-si-27
 
 bi-proposal: build/bi-proposal.pdf
 
@@ -22,10 +22,22 @@ bi-spol-1: build/bi-spol-1.pdf
 build/bi-spol-1.pdf: topics/bi-spol-4/bi-spol-4.tex $(default_deps)
 	xelatex -output-directory=build topics/bi-spol-4/bi-spol-4.tex
 
-bi-wsi-si-14: build/bi-wsi-si-14.pdf
+bi-spol-13: build/bi-spol-13.pdf
+build/bi-spol-13.pdf: topics/bi-spol-13/bi-spol-13.tex $(default_deps)
+	xelatex -output-directory=build topics/bi-spol-13/bi-spol-13.tex
 
+bi-spol-12: build/bi-spol-12.pdf
+build/bi-spol-12.pdf: topics/bi-spol-12/bi-spol-12.tex $(default_deps)
+	xelatex -output-directory=build topics/bi-spol-12/bi-spol-12.tex
+
+bi-wsi-si-14: build/bi-wsi-si-14.pdf
 build/bi-wsi-si-14.pdf: topics/bi-wsi-si-14/bi-wsi-si-14.tex $(default_deps)
 	xelatex -output-directory=build topics/bi-wsi-si-14/bi-wsi-si-14.tex
+
+bi-wsi-si-27: build/bi-wsi-si-27.pdf
+build/bi-wsi-si-27.pdf: topics/bi-wsi-si-27/bi-wsi-si-27.tex $(default_deps)
+	xelatex -output-directory=build topics/bi-wsi-si-27/bi-wsi-si-27.tex
+
 
 build:
 	mkdir build

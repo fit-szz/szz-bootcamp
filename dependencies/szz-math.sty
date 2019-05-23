@@ -1,0 +1,41 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{../../../szz-math}[2019/05/01 SZZ Math package]
+
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amsfonts}
+\RequirePackage{mathtools}
+
+% čára přes písmenko nahoře - \overline{x}
+% "svorka" dole - \underbrace{1 + 2}_{= 3}
+% IP nad rovnítkem - \IP{=}
+% krok (třeba indukční nebo závěr) - \step{Indukční krok}
+
+% Zarovnanej příklad
+% \begin{align*}
+% x = & 1+(2+3) + 0\cdot 12 & \\
+%  \IP{=} & 1+(2+3) = & \describe{sečteme $(2+3)$} \\
+%  = & 1+5 \\
+%  = & 6
+% \end{align*}
+
+
+\newcommand{\describe}[1]{\text{\textit{(#1)}}}
+% ekvivalentní
+\newcommand{\equi}{\Leftrightarrow}
+% krok v indukci
+\newcommand{\step}[1]{\textit{\textbf{#1}:}}
+% Indukční předpoklad (místo rovnítka)
+\newcommand*\IP[1]{\stackrel{\mathmakebox[\widthof{=}]{\mathrm{IP}}}{#1}}
+% zkrakta pro bigO
+\newcommand{\bigO}{\mathcal{O}}
+% zkrakta pro bigP
+\newcommand{\bigP}{\mathcal{P}}
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}[lemma]{Věta}
+\newtheorem{corollary}[lemma]{Důsledek}
+\newtheorem{definition}[lemma]{Definice}
+\newtheorem{observation}[lemma]{Pozorování}
+\newtheorem{proposition}[lemma]{Tvrzení}

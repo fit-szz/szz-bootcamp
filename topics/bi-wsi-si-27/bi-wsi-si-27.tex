@@ -1,0 +1,73 @@
+% TODO: Dodělat
+\documentclass{../szzclass}
+\usepackage{hyperref}
+\usepackage{../dependencies/szz-code}
+
+% \subject{TJV}
+% \code{BI-WSI-SI-27}
+% \question{Architektura podnikových aplikací. Popis jednotlivých vrstev JEE aplikací: klientská vrstva, webová vrstva, vrstva obchodní logiky, EIS vrstva.}
+
+\begin{document}
+\section{Architektura podnikových aplikací}
+Java Enterprise Edition (JEE) definuje 4 vrstvy architektury. Každá využívá zdroje vrstvy, která je hierarchicky pod ní a poskytuje rozhraní vrstvě nad ní.
+
+Tato architektura se občas nazývá 3vrstvá - business a aplikační (webová) vrstva totiž většinou běží na jednom stroji a spojuje se do jedné.
+
+\subsection{Klientská vrstva}
+Nemusí být nutně v Javě. Může to být třeba webová aplikace. Komunikuje se střední vrstvou (odesílá ji a přijímá od ní data). Běžná forma komunikace je přes HTTPS protokol s využitím například RESTu. Držet se může i session.
+
+Klientská aplikace může komunikovat s webem nebo přímo s EJB komponentami v business vrstvě.
+
+\subsection{Webová vrstva}
+Webová vrstva je tvořena servlety, JSP a JSF soubory a případně také JavaBeans komponentami. Tyto komponenty zpracovávají klientské požadavky a generují odpověď, která je následně zaslána do webového prohlížeče klienta. 
+
+Při zpracovávání odpovědi může webová vrstva komunikovat s vrstvou obchodní logiky (business vrstvou) a získávat od ní určité informace. 
+
+Servlet dědí od třídy HttpServlet a má například metody:
+\mintinline{java}{HttpServlet#doGet(HttpServletRequest, HttpServletResponse)}
+\mintinline{java}{HttpServlet#doPost(HttpServletRequest, HttpServletResponse)}
+
+Umí tak reagovat na GET, POST, PUT, DELETE, PATCH, … požadavky, které mohou přijít. Do HttpServletResponse vypisuje odpověď třeba v HTML kódu.
+
+Java Server Pages alias JSP jsou textové soubory s příponou .jsp, umístěné ve webové aplikaci, které jsou při prvním požadavku na zobrazení automaticky převedeny servletovým kontejnerem na servlet (.java) a přeloženy do Java třídy (.class). Servlety vzniklé z JSP stránek jsou tedy mapovány na URL původního textového souboru.
+
+\begin{minted}[breaklines]{jsp}
+<body>
+ <%  //kód uvnitř metody service()
+     if(request.getMethod().equals("GET")) {
+ %>
+  <form method="post">
+      Zadejte číslo: <input name="cislo" value="">
+      <input type="submit" >
+  </form>
+  <%
+      } else if (request.getMethod().equals("POST")) {
+          String cislo = request.getParameter("cislo");
+          String plusjedna = prictiJedna(cislo);
+  %>
+      Výsledek <%out.println(cislo);%> + 1 je <%=plusjedna%> 
+  <%
+      }
+  %>
+</body>
+\end{minted}
+
+JSF potom taky slouží k jednoduššímu generování webovek.
+
+\subsection{Obchodní (business) vrstva}
+Celá logika aplikace. EJB komponenty přijímají požadavky z webové nebo klientské vrstvy, zpracovávají je a následně vygenerují odpověď. Obsahuje například mapování entit DB na objekty (@Entity). Počítá nějaké šílené věci, dělá validace dat, \dots O EJB více v další otázce.
+
+\subsection{EIS vrstva}
+Enterprise Information system (= podnikový informační systém)
+
+Tato vrstva představuje veškeré externí systémy, jejichž funkcionalitu či data enterprise aplikace využívá. Může se jednat například o ERP systém, databázový systém atp. Komunikaci s EIS zpravidla zajišťuje business vrstva.
+
+\section{Zdroje}
+Celý převzato z \url{https://docs.google.com/document/d/1OU75LDsImR4cEsQoyfGNyibG5ECJhGRKCfJqrUlpl1Q/edit#}
+\begin{itemize}
+  \item JSP - MUNI - \url{https://kore.fi.muni.cz/wiki/index.php/Java_Server_Pages }
+  \item 4vrstvá architektura - VŠE - \url{https://java.vse.cz/jsf/chunks/ch02s03.html}
+  \item BI-TJV 4. Přednáška - \url{https://docs.google.com/presentation/d/12jr7jnWbx_S4sIwLd0v9HmUyX1uuAP3-z6HOdIDp7WA/edit#}
+\end{itemize}
+
+\end{document}
