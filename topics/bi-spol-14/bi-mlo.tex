@@ -1,0 +1,139 @@
+\documentclass{../../szzclass}
+\begin{document}
+\title{BI-SPOL-14}
+\section{Výroková logika: syntax a sémantika výrokových formulí}
+\subsection{Prvotní výrok a formule}
+\textbf{Prvotní výrok} je jednoduchá oznamovací věta, u které má smysl se ptát, zda je či není pravdivá.
+Prvotní výrok se označuje velkým tiskacím písmenem A, B\dots, kterým se říká \textbf{prvotní formule}.
+\subsection{Negace}
+($\neg$) - negace formule je pravdivá, právě když je formule nepravdivá.
+\subsection{Konjunkce}
+($\wedge$) - konjunkce dvou formulí je pravdivá tehdy, když jsou obě formule pravdivé.
+\subsection{Disjunkce}
+($\vee$) - disjunkce dvou formulí je pravdivá, právě když alespoň jedna z nich je pravdivá.
+\subsection{Implikace}
+($\Rightarrow$)
+\begin{itemize}
+	\item implikace je nepravdivá tehdy, když předpoklad je pravdivý a závěr nepravdivý
+	\item implikace je pravdivá tehdy, když neplatí předpoklad nebo platí závěr
+\end{itemize}
+\subsection{Formule výrokové logiky}
+\subsubsection{Jazyk výrokové logiky}
+\begin{itemize}
+	\item symboly pro prvotní formule A, B, \dots
+	\item logické spojky $\neg, \wedge, \vee, \Rightarrow, \Leftarrow$
+	\item závorky ()
+\end{itemize}
+\subsubsection{Formule výrokové logiky}
+Je definovaná:
+\begin{itemize}
+	\item prvotní formule je výroková formule
+	\item jsou-li A a B výrokové formule, pak jsou i $ \neg A, (A \wedge B), (A \vee B), (A \Rightarrow B)$ výrokové formule
+	\item formule je řetězec symbolů sestavený podle podle předchozích 2 pravidel v koečně mnoha krocích
+\end{itemize}
+\subsection{Ekvivalence}
+($\Leftrightarrow$) - ekvivalence dvou formulí je pravdivá právě tehdy, když obě mají stejnou pravdivostní hodnotu
+\section{Pravdivostní ohodnocení}
+\textbf{Pravdivostní ohodnocení} množiny prvotních výroků je funkce \textit{v} z množiny prvotních formulí do množiny \{0,1\}.
+\\
+\textit{v}: $\{A_1,...,A_n\}\rightarrow \{0,1\}$
+\\
+Je-li \textit{v}(A) = 1, řekne se, že A je \textbf{pravdivý při ohodnocení} \textit{v}.\\
+Je-li \textit{v}(A) = 0, řekne se, že A je \textbf{nepravdivý při ohodnocení} \textit{v}.
+\section{Logický důsledek}
+Formule B je logickým důsledkem formule A, právě když pro každé ohodnocení v, pro které v(a) = 1,
+je i v(B) = 1.
+\\
+Píše se A $\models$ B.
+\subsection{Vztah logického důsledku a logické ekvivalence}
+Pro každé dvě formule výrokové logiky A, B platí:
+\begin{itemize}
+	\item $A \models B \wedge B \models A$ právě, když $A \Leftrightarrow B$ je tautologie
+	\item $A \models B$ právě, když $A \Rightarrow B$ je tautologie
+	\item $A \models B$ právě, když $A \wedge \neg B$ je kontradikce
+\end{itemize}
+\section{Ekvivalence a jejich zjišťování}
+Formule A a B jsou \textbf{logicky ekvivaletní} právě tehdy, když pro každé ohodnocení v je v(A) = v(B). Píšeme $A \models B \wedge B \models A$
+
+\subsection{Zjišťování}
+\begin{itemize}
+	\item pomocí porovnání pravdivosti výroků
+	\item úpravou formulí, převedením na sebe
+\end{itemize}
+% TODO: ADD
+\section{Universální systém logických spojek}
+Množina logických spojek tvoří universální systém, právě když ke každé formuli existuje logicky ekvivaletní formule, která obsahuje pouze
+tyto spojky. Například:
+\begin{itemize}
+	\item \{$\neg, \vee$\}
+	\item \{$\neg, \wedge $\}
+	\item \{$\neg, \Rightarrow$\}
+	\item NAND \{$\uparrow$\} = $\neg(A \wedge B)$
+	\item NOR \{$\downarrow$\} = $\neg(A \vee B)$
+\end{itemize}
+\section{Disjunktivní a konjunktivní normální tvary}
+\subsection{DNT - disjunktivní normální tvar}
+\begin{itemize}
+	\item \textbf{literál} je provotní formule nebo negace prvotní formule
+	\item \textbf{implikant} je literál nebo konjunkce několika literálů
+	\item formule je v \textbf{DNT}, jestliže je implikant nebo disjunkce několika implikantů 
+\end{itemize}
+
+ukázka:
+\begin{itemize}
+	\item A, $\neg B$ - literál
+	\item $A \wedge B$, $A \wedge \neg B$, $\neg B$ - implikant
+	\item A, $(A \wedge \neg B) \vee (A \wedge C)$, $A \vee \neg B$, $A \wedge \neg B$ - DNT
+\end{itemize}
+\subsection{KNT - konjunktivní normální tvar}
+\begin{itemize}
+	\item \textbf{literál} je provotní formule nebo negace prvotní formule
+	\item \textbf{klausule} je literál nebo disjunkce několika literálů
+	\item formule je v \textbf{KNT}, jestliže je klausulí nebo konjunkce několika klausulí 
+\end{itemize}
+
+ukázka:
+\begin{itemize}
+	\item A, $\neg$B - literál
+	\item A$\vee$B, A$\vee$$\neg$B, $\neg$B - klausule
+	\item A, $(A \vee \neg B) \wedge (A \vee C)$, $A \vee\neg B$, $A \wedge \neg B$ - KNT
+\end{itemize}
+
+\subsection{POZOR}
+Některé vybrané KNT jsou i DNT (a obráceně)! Například:
+\begin{itemize}
+	\item A
+	\item A$\wedge$B
+	\item A$\vee$B
+\end{itemize}
+\subsection{Existence DNT a KNT}
+Ke každé formuli existuje formule logicky ekvivalentní, která je v DNT, a formule logicky ekvivaletní, která je v KNT.
+(Důkaz na slidu 11 přednáška 3 - BI-MLO)
+\section{Úplné a minimální tvary}
+\begin{itemize}
+	\item \textbf{Minterm} formule A je implikant, který obssahuje všechny prvotní formule vyskytující se v A
+	\item \textbf{Maxtern} formule A je klausule, která obsahuje všechny prvotní formule, vyskytující se v A
+	\item formule je v \textbf{úplném disjunktivním normálním tvaru}, jestliže je disjukcí mintermů.
+	\item formule je v \textbf{úplném konjunktivním normálním tvaru}, jestliže je konjunkcí maxtermů.
+\end{itemize}
+\subsection{Existence úplného DNT a KNT}
+Ke každé formuli existuje formule logicky ekvivaletní, která je v úplném DNT, a formule logicky ekvivaletní, která je v úplném DNT.
+
+Úplný KNT i DNT libovolné formule je dán jednoznačně až na pořadí (literálů, mintermů, maxtermů). Pokud má formule \textit{n} prvotních
+formulí, pak součet mintermů a maxtermů je $2^n$.
+\subsection{Ekvivalence ÚDNT a ÚKNT}
+Následující tvrzení jsou ekvivaletní:
+\begin{itemize}
+	\item $A \models B \wedge B \models A$
+	\item ÚDNT obsahují stejné mintermy
+	\item ÚKNT obsahují stejné maxtermy
+\end{itemize}
+\subsection{Logický důsledek a ÚDNT/ÚKNT}
+Vezmou se dvě formule A a B, které obsahují stejné prvotní formule. $A_d, A_k, B_d, B_d$ jsou jejich ÚDNT a ÚKNT.
+Následující tvrzení jsou ekvivaletní
+\begin{itemize}
+	\item $A \models B$
+	\item Všechny mintermy $A_d$ jsou obsaženy v $B_d$
+	\item Všechny maxterny $B_k$ jsou obsaženy v $A_k$ 
+\end{itemize}
+\end{document}
