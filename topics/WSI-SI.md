@@ -18,7 +18,7 @@ BI-WSI-SI-15 | BI-PPA | Funkcionální programování, funkce vyšších řádů
 BI-WSI-SI-16 | BI-PPA | Logické programování, Prolog: fakta, pravidla,   dotazy, způsob vyhodnocení dotazů, unifikace, operátor řezu. |   Ne
 BI-WSI-SI-17 | BI-PSI | Adresace IPv4, rozdělení adresního prostoru. Rozdíly   mezi IPv4 a IPv6. |   Ne
 BI-WSI-SI-18 | BI-SI1.2 | Analýza a správa požadavků (cíle, kategorizace, UML   diagram případů užití, scénáře případů užití, UML diagram aktivit). |   Ne
-BI-WSI-SI-19 | BI-SI1.2 | Vzory používané během návrhu: třívrstvá architektura,   Model View Controller, GoF vzory (Abstraktní továrna, Stav, Adaptér). |   Ne
+BI-WSI-SI-19 | BI-SI1.2 | Vzory používané během návrhu: třívrstvá architektura,   Model View Controller, GoF vzory (Abstraktní továrna, Stav, Adaptér). |   Ano
 BI-WSI-SI-20 | BI-SI1.2 | Přiřazení zodpovědností třídám během návrhu, GRASP   vzory (Nízká provázanost, Vysoká soudržnost), popis spolupráce objektů (UML   sekvenční diagram, UML diagram tříd - využití během návrhu). |   Ne
 BI-WSI-SI-21 | BI-SI1.2 | Klasické a agilní metodiky vývoje software (základní   principy, vhodnost použití, řešené problémy). Základní popis metodik Unified   Process (UP), Extrémní programování (XP) a SCRUM. |   Ne
 BI-WSI-SI-22 | BI-SI2.3 | Zajištění kvality software: Způsoby zjišťování   kvality, typologie testů, atributy testů, black vs. white box, akceptační,   kvalifikační, regresní testy, automatizace testů. |   Ne
