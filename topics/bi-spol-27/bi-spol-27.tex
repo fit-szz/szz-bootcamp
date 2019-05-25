@@ -10,9 +10,15 @@
 \begin{document}
 \section{Kombinační a sekvenční logické obvody (Mealy, Moore)}
 \subsection{Kombinační}
-Výstup je dán kombinací vstupů, nezáleží na stavu. Matematický model -- logická funkce.
+Výstup je dán kombinací vstupů, nezáleží na stavu. \\
+Matematický model -- logická funkce.
 \subsection{Sekvenční}
-Výstup závisí na posloupnosti vstupů, realizuje se zpětnými vazbami. Matematický model -- konečný automat.
+Výstup závisí na posloupnosti vstupů, realizuje se zpětnými vazbami. \\
+Matematický model -- konečný automat.
+\begin{description}
+\item[asynchronní] bez hodinového vstupu
+\item[synchronní] s hodinovým vstupem
+\end{description}
 
 \subsection{Moore}
 Reaguje na vstup až při přechodu do dalšího stavu. Výstup je v uzlech.
@@ -27,9 +33,19 @@ Kombinační obvody lze popsat:
   \item Mapa
   \item Krychle
   \item Tabulka
-  \item Popis stavů a přechodových funkcí (např.: $(X,Y,S,S_0,\delta,\lambda)$)
   \item Graf přechodů
+  \item Popis stavů a přechodových funkcí (např.: $(X,Y,S,S_0,\delta,\lambda)$)
 \end{itemize}
+
+\begin{tabular}{l l}
+$X$ & \dots množina vstupních symbolů \\
+$Y$ & \dots množina výstupních symbolů \\
+$S$ & \dots množina stavů \\
+$S_0$ & \dots počáteční stav \\
+$\delta(s\in S)$ & \dots výstupní funkce u Moorea\\
+$\delta(s\in S,x\in X)$ & \dots výstupní funkce u Mealyho\\
+$\lambda(s\in S,x\in X)$ & \dots přechodová funkce
+\end{tabular}
 
 \subsection{Na úrovni hradel - diagram}
 (N)AND, (N)OR, (N)XOR, NOT
