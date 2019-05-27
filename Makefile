@@ -1,4 +1,5 @@
 default_deps=dependencies/* szzclass.cls | build
+TOPPIC=$(filter-out $@,$(MAKECMDGOALS))
 
 # The wildcard function call expands the argument the same way as the shell
 # does. The patsubst function replaces `topics/bi-something` with
@@ -21,3 +22,8 @@ build:
 
 clean:
 	rm -rf build
+
+new:
+	mkdir topics/${TOPPIC}
+	touch topics/${TOPPIC}/${TOPPIC}.tex
+	mkdir topics/${TOPPIC}/images
