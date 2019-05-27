@@ -29,7 +29,7 @@ BI-SPOL-26 | BI-PST | Základy statistické indukce, náhodný výběr, bodové 
 BI-SPOL-27 | BI-SAP | Kombinační a sekvenční logické obvody (Mealy, Moore),   popis a možnosti implementace na úrovni hradel. Minimalizace vyjádření   logické funkce (s využitím map). |   Ano
 BI-SPOL-28 | BI-SAP | Architektura číslicového počítače, instrukční cyklus   počítače, základní třídy souborů instrukcí (ISA). Paměťový subsystém   počítače, paměťová hierarchie, cache. |   Ne
 BI-SPOL-29 | BI-SAP | Kódy pro zobrazení čísel se znaménkem a realizace   aritmetických operací (paralelní sčítačka/odčítačka, realizace aritmetických   posuvů, dekodér, multiplexor, čítač). Reprezentace čísel v pohyblivé řádové   čárce. |   Ne
-BI-SPOL-30 | BI-SI1.2 | Nástroje pro podporu tvorby softwarových produktů:   Sledování chyb a správa úkolů (používané nástroje, typický životní cyklus   úkolu/chyby), správa a sdílení zdrojových kódů (principy řešení spolupráce,   hlavní přínosy, používané nástroje). |   Ne
+BI-SPOL-30 | BI-SI1.2 | Nástroje pro podporu tvorby softwarových produktů:   Sledování chyb a správa úkolů (používané nástroje, typický životní cyklus   úkolu/chyby), správa a sdílení zdrojových kódů (principy řešení spolupráce,   hlavní přínosy, používané nástroje). |   Ano
 BI-SPOL-31 | BI-SI1.2 | Analytický doménový model tříd a popis životního   cyklu identifikovaných tříd (cíle, UML diagram tříd, UML stavový diagram). |   Ne
 BI-SPOL-32 | BI-ZDM | Metody řešení rekurentních rovnic, sestavování a   řešení rekurentních rovnic při analýze časové složitosti algoritmů. |   Ano
 BI-SPOL-33 | BI-ZDM | Modulární aritmetika, základy teorie čísel, Malá   Fermatova věta, diofantické rovnice, lineární kongruence, Čínská věta o   zbytcích. |   Ano
