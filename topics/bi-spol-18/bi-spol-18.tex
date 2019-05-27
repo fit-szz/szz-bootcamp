@@ -1,0 +1,68 @@
+\documentclass{szzclass}
+\usepackage[czech]{babel}
+\usepackage[margin=3cm]{geometry}
+
+% \subject{PA1}
+% \code{BI-SPOL-18}
+% \topic{Datové typy v programovacích jazycích. Staticky a dynamicky alokované proměnné, spojové seznamy. Modulární programování, procedury a funkce, vstupní a výstupní parametry. Překladač, linker, debugger.}
+
+\begin{document}
+\section{Datové typy v programovacích jazycích.}
+\begin{description}
+  \item[Číselné datové typy] - signed/unsigned; různé velikosti; little/big endian
+  \begin{itemize}
+    \item char
+    \item integer
+    \item float
+    \item double
+  \end{itemize}
+  \item[String] - pole charů
+  \item[Boolean]
+  \item[Class, struct] 
+  \item[NULL, void] 
+  \item[enum, typedef]
+  \item[array]
+  \item[Ukazatele, reference]
+\end{description}
+
+\section{Staticky a dynamicky alokované proměnné.}
+\begin{description}
+  \item[staticky] - definované při kompilaci, alokované na zásobníku
+  \item[dynamicky] - alokované při běhu, programátor se musí o alokovanou paměť starat (v případě C, malloc, free).
+\end{description}
+
+\subsection{Spojové seznamy}
+Dynamicky alokovaná struktura. Každý prvek má nějakou hodnotu a ukazatele na další prvky. Cyklický, jednosměrný, obousměrný.
+
+\section{Modulární programování}
+Jednotlivé části se dají vyměňovat. Oddělení zodpovědnosti, zlepšení udržovatelnosti.
+\subsection{Procedury a funkce, vstupní a výstupní parametry.}
+Procedury jsou vesměs funkce bez návratové hodnoty. Vstupní parametry mají svůj typ, název a mohou mít defaultní hodnotu. Hodnoty parametrů se při volání funkce kopírují.
+
+\section{Překladač}
+\begin{itemize}
+\item kompilátor
+\item slouží k překladu vyššího jazyka do jazyka nižšího
+\item nejčastěji překládá zdrojový kód do strojového kódu
+\item vzniká strojový kód s neřešenými referencemi mezi moduly – objektový soubor
+\item Skladá se ze dvou častí:
+  \begin{itemize}
+    \item Front-end  – parsuje zdrojový kód do vnítřní reprezentace kompilátoru. Tato část závisí na programovácím jazyce.
+    \item Back-end – překladá vnítřní reprezentace do strojového kódu. Tato část zavísí na cílové architektuře (Intel, AVR, atd.).
+  \end{itemize}
+\end{itemize}
+\subsection{Linker}
+\begin{itemize}
+\item řeší reference mezi objektovými soubory a knihovnami
+\item slouži k propojení zkompilovaných modulů
+\item => slouží k sestavení samostatně přeložených modulů a knihoven do funkčního celku
+\item jeho výstupem je spustitelný soubor
+\end{itemize}
+\subsection{Debugger.}
+\begin{itemize}
+  \item nástroj pro ladění kódu a hledání chyb v programu
+  \item používá se pro usnadnění pochopení, jak program funguje
+\end{itemize}
+
+\url{http://www.fit.vutbr.cz/~martinek/clang/gcc.html.}
+\end{document}
