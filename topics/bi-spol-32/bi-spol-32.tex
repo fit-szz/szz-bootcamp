@@ -2,6 +2,7 @@
 
 \usepackage{amsmath}
 \usepackage{graphics}
+\usepackage[export]{adjustbox}[2011/08/13]
 % \usepackage{wrapfig}
 
 % spacing
@@ -77,13 +78,74 @@ $\alpha \pm i\beta = r[\text{cos}(\Phi) \pm i\text{sin}(\Phi)] \implies (\alpha 
     \item Odhadneme (uhádneme) tvar řešení (=indukční hypotéza).
     \item Pomocí matematické indukce nalezneme konstanty a ověříme
     správnosti odhadnutého řešení
+    \item Využívá se k odhadu horní a dolní meze
 \end{itemize}
 
 
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/ind1.PNG}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/ind2.PNG}
+\end{figure}
+
+\newpage
 \subsection{Iterační metoda}
+
+\begin{itemize}
+    \item Expandujeme rovnici dle iterací a získáme rozvoj na konečnou řadu a zkusíme najt aritmetickou či geometrickou posloupnost
+    \item Využívá se k odhadu horní a dolní meze
+\end{itemize}
+
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/it1.PNG}
+\end{figure}
+
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/it2.PNG}
+\end{figure}
+
 
 \subsection{Mistrovská metoda}
 
+Nech $a \geq 1 a b > 1$ jsou konstanty, $f(n)$ funkce jedné proměnné.
+Uvažujme rekurentní rovnici: (zanedbáváme ceil a floor)
+\begin{center}
+    $t(n) = at(n/b) + f(n)$ 
+\end{center}
 
+Pak $t(n)$ má následující řešení:
+\begin{itemize}
+    \item Pokud $f(n) = O(n^{\text{log}_b a - \epsilon} )$ pro nějakou konstantu $\epsilon > 0$, pak $t(n) = \Theta (n^{\text{log}_b a})$.
+    \item Pokud $f(n) = \Theta (n^{\text{log}_b a})$, pak $t(n) = \Theta (n^{\text{log}_b a} \text{log} n)$.
+    \item Pokud $f(n) = \Omega (n^{\text{log}_b a + \epsilon} )$ pro nějakou konstantu $\epsilon > 0$ a pokud
+    $af(n/b)~\leq~cf(n)$ pro nějakou konstantu $c < 1$ a všechna $n \geq n_0$, pak $t(n) = \Theta (f(n))$.
+    \item Pokud je rozdíl mezi funkcemi menší než polynomiální, nelze tuto metodu použít!
+\end{itemize}
+
+
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/mt1.PNG}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/mt2.PNG}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/slozitost.png}
+\end{figure}
+
+% \newpage
+% \section{Kuchař}
+
+\begin{figure}[h]
+    \includegraphics[width=1.5\textwidth, center]{topics/bi-spol-32/images/kuchar.PNG}
+\end{figure}
+    
 
 \end{document}

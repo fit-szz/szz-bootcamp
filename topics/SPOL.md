@@ -17,7 +17,7 @@ BI-SPOL-14 | BI-MLO | Výroková logika: syntax a sémantika výrokových   form
 BI-SPOL-15 | BI-MLO | Predikátová logika: jazyk, interpretace, pravdivost   formulí, logický důsledek a ekvivalence. Formalizace matematických tvrzení a   jejich negace. Teorie a jejich modely (např. uspořádání). |   Ne
 BI-SPOL-16 | BI-OSY | Procesy a vlákna, jejich implementace. Synchronizační   nástroje. Klasické synchronizační úlohy. Plánování vláken. Přidělování   prostředků, Coffmanovy podmínky, způsoby řešení uváznutí. |   Ne
 BI-SPOL-17 | BI-OSY | Principy překladu logických adres na fyzické u   virtuální stránkované paměti s/bez segmentace. Algoritmy pro nahrazování   stránek u virtuální stránkované paměti. |   Ne
-BI-SPOL-18 | BI-PA1 | Datové typy v programovacích jazycích. Staticky a   dynamicky alokované proměnné, spojové seznamy. Modulární programování,   procedury a funkce, vstupní a výstupní parametry. Překladač, linker,   debugger. |   Ne
+BI-SPOL-18 | BI-PA1 | Datové typy v programovacích jazycích. Staticky a   dynamicky alokované proměnné, spojové seznamy. Modulární programování,   procedury a funkce, vstupní a výstupní parametry. Překladač, linker,   debugger. |   Ano
 BI-SPOL-19 | BI-PA1 + BI-AG1 | Časová a paměťová složitost algoritmů. Algoritmy   vyhledávání (sekvenční, půlením intervalu), slučování a řazení (BubbleSort,   SelectSort, InsertSort, MergeSort, QuickSort). Dolní mez složitosti řazení v   porovnávacím modelu. Řazení v lineárním čase. |   Ne
 BI-SPOL-20 | BI-PA1 + BI-AG1 | Rekurzivní rozklad problému na podproblémy metodou   Rozděl-a-panuj. Rekurze vs iterace. Dynamické programování. |   Ne
 BI-SPOL-21 | BI-PA2 | Objektově orientovaného programování v C++,   zapouzdření, dědičnost, atributy a metody, statické atributy a metody,   virtuální metody, polymorfismus, abstraktní třídy, výjimky, šablony,   přetěžování operátorů, mělká a hluboká kopie. |   Ne
@@ -29,10 +29,10 @@ BI-SPOL-26 | BI-PST | Základy statistické indukce, náhodný výběr, bodové 
 BI-SPOL-27 | BI-SAP | Kombinační a sekvenční logické obvody (Mealy, Moore),   popis a možnosti implementace na úrovni hradel. Minimalizace vyjádření   logické funkce (s využitím map). |   Ano
 BI-SPOL-28 | BI-SAP | Architektura číslicového počítače, instrukční cyklus   počítače, základní třídy souborů instrukcí (ISA). Paměťový subsystém   počítače, paměťová hierarchie, cache. |   Ne
 BI-SPOL-29 | BI-SAP | Kódy pro zobrazení čísel se znaménkem a realizace   aritmetických operací (paralelní sčítačka/odčítačka, realizace aritmetických   posuvů, dekodér, multiplexor, čítač). Reprezentace čísel v pohyblivé řádové   čárce. |   Ne
-BI-SPOL-30 | BI-SI1.2 | Nástroje pro podporu tvorby softwarových produktů:   Sledování chyb a správa úkolů (používané nástroje, typický životní cyklus   úkolu/chyby), správa a sdílení zdrojových kódů (principy řešení spolupráce,   hlavní přínosy, používané nástroje). |   Ne
+BI-SPOL-30 | BI-SI1.2 | Nástroje pro podporu tvorby softwarových produktů:   Sledování chyb a správa úkolů (používané nástroje, typický životní cyklus   úkolu/chyby), správa a sdílení zdrojových kódů (principy řešení spolupráce,   hlavní přínosy, používané nástroje). |   Ano
 BI-SPOL-31 | BI-SI1.2 | Analytický doménový model tříd a popis životního   cyklu identifikovaných tříd (cíle, UML diagram tříd, UML stavový diagram). |   Ne
 BI-SPOL-32 | BI-ZDM | Metody řešení rekurentních rovnic, sestavování a   řešení rekurentních rovnic při analýze časové složitosti algoritmů. |   Ano
-BI-SPOL-33 | BI-ZDM | Modulární aritmetika, základy teorie čísel, Malá   Fermatova věta, diofantické rovnice, lineární kongruence, Čínská věta o   zbytcích. |   Ne
+BI-SPOL-33 | BI-ZDM | Modulární aritmetika, základy teorie čísel, Malá   Fermatova věta, diofantické rovnice, lineární kongruence, Čínská věta o   zbytcích. |   Ano
 BI-SPOL-34 | BI-ZMA | Limita a derivace funkce (definice a vlastnosti,   geometrický význam), využití při vyšetřování průběhu funkce. |   Ne
 BI-SPOL-35 | BI-ZMA | Základy integrálního počtu (primitivní funkce,   neurčitý integrál, Riemannův integrál (definice, vlastnosti a geometrický   význam)). |   Ne
 BI-SPOL-36 | BI-ZMA | Číselné řady (konvergence číselné řady, kritéria   konvergence, odhadování rychlosti růstu řad pomocí určitého integrálu). |  Ne
