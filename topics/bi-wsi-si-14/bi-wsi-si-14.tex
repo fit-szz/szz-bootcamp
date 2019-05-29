@@ -87,21 +87,21 @@ Normálním tvarem poté pokládáme takový tvar lambda výrazu, na kterém ji�
 
 Churchova čísla je způsob jak reprezentovat přirozená čísla v $\lambda$-kalkulu. Každé číslo je reprezentováno jako funkce s dvěma parametry, první parametr se  $n$-krát opakuje, druhý je jakousi "zarážkou".
 
-\begin{enumerate}
-    \item 0 = (λs.(λz.z))
-    \item 1 = (λs.(λz. (s z)))
-    \item 2 = (λs.(λz. (s (s z))))
-    \item 3 = (λs.(λz. (s (s (s z)))))
-\end{enumerate}
+\begin{itemize}
+    \item $0 = (\lambda s.(\lambda z.z))$
+    \item $1 = (\lambda s.(\lambda z. (s z)))$
+    \item $2 = (\lambda s.(\lambda z. (s (s z))))$
+    \item $3 = (\lambda s.(\lambda z. (s (s (s z)))))$
+\end{itemize}
 
 Případně ve zkráceném zápisu: $\lambda sz.z = 0 | \lambda sz. s(z) = 1$
 
 Vybrané operace s čísly pak zavádíme následovně:
-\begin{enumerate}
-    \item + x 1 = succ = (λx. λs. λz. s (x s z))
-    \item - x 1 = pred = (λx. λs. λz. x (λf. λg.g (f s)) (λg.z) (λm.m))
-    \item + x y = add = (λx. λy. λs. λz. x s (y s z))
-    \item * x y = mult = (λx. λy. λz. x (y z)) nebo * x y = (λx. λy. λs. λz. x (y s) z)
-\end{enumerate}
+\begin{itemize}
+    \item $+~x~1 =~$succ$~= (\lambda x. \lambda s. \lambda z. s (x s z))$
+    \item $-~x~1 =~$pred$~= (\lambda x. \lambda s. \lambda z. x (\lambda f. \lambda g.g (f s)) (\lambda g.z) (\lambda m.m))$
+    \item $+~x~y =~$add$~= (\lambda x. \lambda y. \lambda s. \lambda z. x s (y s z))$
+    \item $*~x~y =~$mult$~= (\lambda x. \lambda y. \lambda z. x (y z)) nebo * x y = (\lambda x. \lambda y. \lambda s. \lambda z. x (y s) z)$
+\end{itemize}
 
 \end{document}
