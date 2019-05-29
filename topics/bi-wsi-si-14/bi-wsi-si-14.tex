@@ -1,6 +1,11 @@
 \documentclass{szzclass}
 
 \title{Lambda kalkul: definice pojmů, operací, reprezentace čísel.}
+\author{
+    Tomáš Starý
+    \and
+    Daniel Hampl
+}
 
 \begin{document}
 \maketitle
@@ -23,27 +28,29 @@ Vyhodnocení poté probíhá zleva doprava a to následovně:
     \item 60
 \end{enumerate}
 
-Zápis funkce s proměnnou se poté zapisuje takto: $(\lambda . + x\ 1)$.
+Zápis funkce s proměnnou se poté zapisuje takto: $(\lambda x. + x\ 1)$.
 
 \subsection{Beta redukce}
 
 Vyhodnocování funkcí v lambda kalkulu se dělá pomocí beta ($\beta$) redukce.
 Beta redukce provedená na příkladu zápisu funkce:
 \begin{enumerate}
-    \item $(\lambda . + x\ 1)$
-    \item $(\lambda . + x\ 1)2$
+    \item $(\lambda x. + x\ 1)$
+    \item $(\lambda x. + x\ 1)2$
           2 za závorkou je argumentem fuknce.
     \item $(+ 2 1)$
     \item 3
 \end{enumerate}
 
-Další platné zápisy: $(\lambda . + x\ x) 2 => (+\ 2\ 2)$.
+Další platné zápisy: $(\lambda x. + x\ x) 2 => (+\ 2\ 2)$.
 
 \subsection{Volné a vázáné proměnné}
 
 V lambda kalkulu rozlišuje dva typy proměnných a to vázané a volné. Vázané proměnné jsou takové proměnné, které jsou zároveň argumentem
 dané funkce. Lambda kalkul má lokální rozsah platnostnosti (scope).
 Například pro fuknci $(\lambda x . + x\ y)$ je vázanou proměnnou x a y je v tomto případě volná proměnná.
+
+\newpage
 
 \subsection{Alfa redukce}
 
@@ -54,6 +61,16 @@ Ukázka na $(\lambda x . (\lambda x . +\ (-\ x\ 1))\ x\ 3)\ 9$.
     \item $(+\ (-\ 9 1)\ 3)$
     \item $(+\ 8\ 3)$
 \end{enumerate}
+
+
+\subsection{Eta redukce}
+Eta $(\eta)$ redukce (optimalizace): $(\lambda x. fx) = f$ pokud se x nevyskytuje nikde volně v $f$.
+
+\begin{enumerate}
+    \item $(\lambda x.(\lambda y.yy)x)$
+    \item $(\lambda y. yy)$ (po $\eta$ redukci)
+\end{enumerate}
+
 
 \subsection{Pořadí vyhodnocování}
 
@@ -68,6 +85,23 @@ Normálním tvarem poté pokládáme takový tvar lambda výrazu, na kterém ji�
 
 \subsection{Zápis čísel v lambda kalkulu}
 
-I číselné hodnoty se zapisují jako lambda funkce. $\lambda sz.z = 0 | \lambda sz. s(z) = 1$
+Churchova čísla je způsob jak reprezentovat přirozená čísla v $\lambda$-kalkulu. Každé číslo je reprezentováno jako funkce s dvěma parametry, první parametr se  $n$-krát opakuje, druhý je jakousi "zarážkou".
+
+\begin{enumerate}
+    \item 0 = (λs.(λz.z))
+    \item 1 = (λs.(λz. (s z)))
+    \item 2 = (λs.(λz. (s (s z))))
+    \item 3 = (λs.(λz. (s (s (s z)))))
+\end{enumerate}
+
+Případně ve zkráceném zápisu: $\lambda sz.z = 0 | \lambda sz. s(z) = 1$
+
+Vybrané operace s čísly pak zavádíme následovně:
+\begin{enumerate}
+    \item + x 1 = succ = (λx. λs. λz. s (x s z))
+    \item - x 1 = pred = (λx. λs. λz. x (λf. λg.g (f s)) (λg.z) (λm.m))
+    \item + x y = add = (λx. λy. λs. λz. x s (y s z))
+    \item * x y = mult = (λx. λy. λz. x (y z)) nebo * x y = (λx. λy. λs. λz. x (y s) z)
+\end{enumerate}
 
 \end{document}
