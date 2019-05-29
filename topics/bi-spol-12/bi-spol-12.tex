@@ -1,5 +1,6 @@
 \documentclass{szzclass}
 \usepackage{dependencies/szz-math}
+\usepackage{bbm}
 \usepackage[czech]{babel}
 \usepackage[margin=3cm]{geometry}
 
@@ -10,7 +11,7 @@
 \begin{document}
 \section{Frobeniova věta}
 \begin{definition}
-Nechť $\mathbb{A}\in T^{n,n}$. \textbf{Hodností matice} $\mathbb{A}$ nazýváme dimenzi lineárního obalu řádků matice $\mathbb{A}$ (jako vektorů z $T^{n,n}$) a značíme ji $h(\mathbb{A})$:
+Nechť $\mathbb{A}\in T^{m,n}$. \textbf{Hodností matice} $\mathbb{A}$ nazýváme dimenzi lineárního obalu řádků matice $\mathbb{A}$ (jako vektorů z $T^{n,n}$) a značíme ji $h(\mathbb{A})$:
 \begin{equation}
   h(\mathbb{A})=dim\langle \mathbb{A}_{1:},\dots,\mathbb{A}_{m:},\rangle.
 \end{equation}
@@ -19,25 +20,25 @@ Nechť $\mathbb{A}\in T^{n,n}$. \textbf{Hodností matice} $\mathbb{A}$ nazývám
 \begin{theorem}[Frobeniova věta]
 Nechť $\mathbb{A}\in T^{m,n}$.
 \begin{enumerate}
-\item Soustava $m$ lineárních rovnich o $n$ neznámých $\mathbb{A} \mathbb{X}=\mathbb{B}$ je řešitelná právě tehdy, když
+\item Soustava $m$ lineárních rovnich o $n$ neznámých $\mathbb{A} \mathbbm{x}=\mathbbm{b}$ je řešitelná právě tehdy, když
 $$
-h(\mathbb{A})=h(\mathbb{A} | \mathbb{B})
+h(\mathbb{A})=h(\mathbb{A} | \mathbbm{b})
 $$
-\item Je-li $h(\mathbb{A})=h$, pak množina řešení $\mathbb{A} \mathbb{X}=\theta$ je podprostor dimenze $n-h$, tedy existuje LN soubor vektorů $(z_1,\dots,z_{n-h})$ v $T^{n,1}$, takový, že
+\item Je-li $h(\mathbb{A})=h$, pak množina řešení $\mathbb{A} \mathbbm{x}=\theta$ je podprostor dimenze $n-h$, tedy existuje LN soubor vektorů $(z_1,\dots,z_{n-h})$ v $T^{n,1}$, takový, že
 $$ S_0=\begin{cases}
        \{\theta\}, & \text{pokud $n=h$,} \\
        \langle z_1,\dots,z_{n-h}\rangle, & \text{pokud $h<n$.}
        \end{cases}
 $$
-Je-li navíc $h(\mathbb{A}|\mathbb{B})=h$, potom platí:
+Je-li navíc $h(\mathbb{A}|\mathbbm{b})=h$, potom platí:
 $$
 S=\widetilde{x} + S_0,
-$$ kde $\widetilde{x}$ je \textbf{partikulární řešení} $\mathbb{A} \widetilde{\mathbb{X}}=\mathbb{B}$.
+$$ kde $\widetilde{x}$ je \textbf{partikulární řešení} $\mathbb{A} \widetilde{\mathbbm{x}}=\mathbbm{b}$.
 \end{enumerate}
 \end{theorem}
 
 \section{Vlastnosti a popis množiny řešení}
-Soustava lineárních rovnic (zapsaných v HST matice $(\mathbb{A}\mathbb{X}|\mathbb{B})$) může mít:
+Soustava lineárních rovnic (zapsaných v HST matice $(\mathbb{A}\mathbbm{x}|\mathbbm{b})$) může mít:
 \begin{itemize}
 \item Žádné řešení -- poslední sloupec je hlavní
 \item Jedno řešení -- všechny sloupce, kromě posledního jsou hlavní
@@ -47,7 +48,7 @@ Pro popis množiny řešení se nalezne obal LN souboru možných řešení. \em
 
 \section{Soustavy lineárních rovnic}
 \begin{itemize}
-\item Přepíšu soustavu do matice $(\mathbb{A}|\mathbb{B})$.
+\item Přepíšu soustavu do matice $(\mathbb{A}|\mathbbm{b})$.
 \item Převedu do HST pomocí GEM.
 \item Poslední sloupec hlavní $\rightarrow$ nemá řešení.
 \item Jinak:
@@ -56,7 +57,7 @@ Pro popis množiny řešení se nalezne obal LN souboru možných řešení. \em
   \item Pro partikulární řešení zvolim volné proměnné libovolně a dopočítám vázané proměnné.
   \item Pro $S_0$ zvolim libovolnou bázi (třeba standardní).
   \item Pro každý bazický vektor dopočítám z homogenní rovnice vázané proměnné a dostanu bázi $S_0$.
-  \item Řešením je $S=\widetilde{\mathbb{X}}+S_0$, kde $S_0$ je lineární obal báze.
+  \item Řešením je $S=\widetilde{\mathbbm{x}}+S_0$, kde $S_0$ je lineární obal báze.
   \end{itemize}
 \end{itemize}
 
