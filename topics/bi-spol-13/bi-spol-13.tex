@@ -1,0 +1,67 @@
+\documentclass{szzclass}
+\usepackage{dependencies/szz-math}
+\usepackage[czech]{babel}
+\usepackage[margin=3cm]{geometry}
+
+\subject{LIN}
+\code{BI-SPOL-13}
+\topic{Matice: součin matic, regulární matice, inverzní matice a její výpočet, vlastní čísla matice a jejich výpočet, diagonalizace matice.}
+
+\begin{document}
+\section{Součin matic}
+Nechť $m,n,p\in \mathbb{N}$, $\mathbb{A}\in T^{m,n}$ a $\mathbb{B}\in T^{n,p}$. Součinem těchto matic je matice $\mathbb{D}=\mathbb{A}\mathbb{B}$, pro jejíž prvky platí:
+$$
+\delta_{ij}=\sum_{k=1}^{n}{a_{ik} b_{kj}}
+$$
+
+\section{Regulární a inverzní matice}
+\begin{definition}[Regulární a inverzní matice]
+Nechť $\mathbb{A}\in T^{n,n}$. Pokud existuje $\mathbb{A}\in T^{n,n}$ tak, že 
+$$
+\mathbb{A}\mathbb{B}=\mathbb{B}\mathbb{A}=\mathbb{E}
+$$
+Potom nazveme matici $\mathbb{A}$ \textbf{regulární} a matici $\mathbb{B}$ \textbf{inverzní}. Inverzní matici značíme $\mathbb{B}=\mathbb{A}^{-1}$.
+\end{definition}
+
+\begin{theorem}
+Buď $\mathbb{A}\in T^{n,n}$. Následující tvrzení jsou ekvivalentní:
+\begin{itemize}
+\item $\mathbb{A}$ je regulární.
+\item Soubor řádků matice $\mathbb{A}$ je LN.
+\item $h(\mathbb{A}) = n$.
+\item $\mathbb{A} \sim \mathbb{E}$.
+\end{itemize}
+\end{theorem}
+
+\subsection{Výpočet inverzní matice}
+\textit{\uv{Inverzní matici regulární matice $\mathbb{A}\in T^{n,n}$ jednoduše spočítám tak, že si část za čárou doplnim o jednotkovou matici $\mathbb{E}$. Pak na to pustim GEM, abych z levý strany dostal $\mathbb{E}$. Na pravý straně mi vyjde $\mathbb{A}^{-1}$.}}
+\begin{equation}
+\begin{pmatrix}[c]
+\mathbb{A}
+\end{pmatrix} \rightarrow
+\begin{pmatrix}[c|c]
+\mathbb{A} & \mathbb{E}
+\end{pmatrix} \sim
+\begin{pmatrix}[c|c]
+\mathbb{E} & \mathbb{A}^{-1}
+\end{pmatrix}
+\end{equation}
+
+Tohle funguje, protože kroky GEMu se dají \uv{reprezentovat} maticí:
+\begin{equation}
+\begin{pmatrix}[c|c]
+\mathbb{A} & \mathbb{E}
+\end{pmatrix} \sim
+\begin{pmatrix}[c|c]
+\mathbb{P}\mathbb{A} & \mathbb{P}\mathbb{E}
+\end{pmatrix} =
+\begin{pmatrix}[c|c]
+\mathbb{P}\mathbb{A} & \mathbb{P}
+\end{pmatrix}
+\end{equation}
+
+\section{Vlastní čísla}
+\subsection{Výpočet vlastních čísel}
+\section{Diagonalizace matice}
+
+\end{document}
