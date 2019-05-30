@@ -1,0 +1,316 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\subject{PSI}
+\code{BI-SPOL-24}
+\topic{Protokolová rodina TCP/IP (IPv4, IPv6, TCP, UDP, aplikační
+protokoly). Řízení datového toku. Princip a využití NAT. Systém DNS.}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+
+
+% \hypertarget{spol-24-psi}{%
+% \section{SPOL-24-PSI}\label{spol-24-psi}}
+
+% \emph{Protokolová rodina TCP/IP (IPv4, IPv6, TCP, UDP, aplikační
+% protokoly). Řízení datového toku. Princip a využití NAT. Systém DNS.}
+
+\hypertarget{protokolovuxe1-rodina-tcpip}{%
+\section{Protokolová rodina
+TCP/IP}\label{protokolovuxe1-rodina-tcpip}}
+
+\hypertarget{ipv4}{%
+\subsection{IPv4}\label{ipv4}}
+
+\begin{itemize}
+\tightlist
+\item
+  32bit adresy
+\item
+  privátní rozsahy adres (neroutují se do internetu):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    10.0.0.0/8
+  \item
+    172.16.0.0/12
+  \item
+    192.168.0.0/16
+  \end{itemize}
+\item
+  MTU (Maximum Transmission Unit) - maximální délka rámce
+
+  \begin{itemize}
+  \tightlist
+  \item
+    definováno linkovou vrstvou
+  \item
+    typicky 1500 bytů (vyšší redukuje overhead, nižší transportní
+    zpoždění)
+  \item
+    každý router může fragmentovat paket - sestavení až v cílovém
+    zařízení
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ipv6}{%
+\subsection{IPv6}\label{ipv6}}
+
+\begin{itemize}
+\tightlist
+\item
+  128bit adresy
+\item
+  Hop limit - obdoba TTL u IPv4
+\item
+  minimální MTU je 1280 bytů
+\item
+  pokud je paket moc dlouhý, tak ho router zahodí a odešle ICMP zprávu s
+  informací o MTU
+\item
+  typy adres:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    unicast (individuální)
+  \item
+    multicast (skupinové)
+  \item
+    anycast (výběrové)
+  \end{itemize}
+\item
+  adresní prostor:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ::1/128 loopback
+  \item
+    fc00::/7 individuální lokální adresy (obdoba privátních u IPv4)
+  \item
+    fe80::/10 lokální linkové adresy
+  \item
+    ff00::/8 skupinové adresy (multicast)
+  \item
+    2001:db8::/32 dokumentační příklady
+  \end{itemize}
+\item
+  síťová rozhraní mají více adres
+\end{itemize}
+
+\hypertarget{tcp-transmission-control-protocol}{%
+\subsection{TCP (Transmission Control
+Protocol)}\label{tcp-transmission-control-protocol}}
+
+\begin{itemize}
+\tightlist
+\item
+  služba v transportní vrstvě (ISO/OSI)
+\item
+  spojově orientovaná, duplexní, v jedné relaci lze přenášet neomezeně
+  dat
+\item
+  zabezpečení
+
+  \begin{itemize}
+  \tightlist
+  \item
+    kontrolní součty
+  \item
+    detekce duplicitních paketů
+  \item
+    správné seřazení
+  \item
+    opakované odeslání a timeout
+  \end{itemize}
+\item
+  zahájení spojení - třícestný handshake (SYN, SYN+ACK, ACK)
+\item
+  ukončení spojení - (FIN, ACK, FIN, ACK)
+\item
+  nevhodné pro real-time aplikace (streaming, \ldots), vestavné systémy
+  (příliš komplexní), \ldots{}
+\end{itemize}
+
+\hypertarget{udp-user-datagram-protocol}{%
+\subsection{UDP (User Datagram
+Protocol)}\label{udp-user-datagram-protocol}}
+
+\begin{itemize}
+\tightlist
+\item
+  služba v transportní vrstvě (ISO/OSI)
+\item
+  nespojová, nezabezpečená
+\item
+  výhodné kde vadí režie TCP - malé bloky dat, nevadí ztráta, real-time
+  aplikace
+\end{itemize}
+
+\hypertarget{aplikaux10dnuxed-protokoly-sluux17eby}{%
+\subsection{Aplikační protokoly
+(služby)}\label{aplikaux10dnuxed-protokoly-sluux17eby}}
+
+\begin{itemize}
+\tightlist
+\item
+  využívají služeb transportní vrstvy (TCP/IP model), nebo prezentační
+  vrstvy (ISO/OSI)
+\item
+  server nabízí službu, klient se připojí a službu využívá (alternativa
+  P2P, kde se strany nerozlišují)
+\end{itemize}
+
+\hypertarget{dns}{%
+\paragraph{DNS}\label{dns}}
+
+\begin{itemize}
+\tightlist
+\item
+  rozebírán v další části otázky
+\end{itemize}
+
+\hypertarget{ftp}{%
+\paragraph{FTP}\label{ftp}}
+
+\begin{itemize}
+\tightlist
+\item
+  příkazový kanál port 21/TCP
+\item
+  datový kanál dynamicky přidělený port (také TCP) - aktivní/pasivní
+\end{itemize}
+
+\hypertarget{telnet}{%
+\paragraph{Telnet}\label{telnet}}
+
+\begin{itemize}
+\tightlist
+\item
+  interaktivní příkazový terminál
+\item
+  port 23/TCP
+\item
+  nepodporuje šifrování (NEBEZPEČNÉ!)
+\end{itemize}
+
+\hypertarget{ssh}{%
+\paragraph{SSH}\label{ssh}}
+
+\begin{itemize}
+\tightlist
+\item
+  port 22/TCP
+\item
+  náhrada Telnetu s šifrováním
+\end{itemize}
+
+\hypertarget{mail}{%
+\subsection{Mail}\label{mail}}
+
+\begin{itemize}
+\tightlist
+\item
+  skupina protokolů: SMTP, IMAP4, POP3
+\end{itemize}
+
+\hypertarget{https}{%
+\paragraph{HTTP(S)}\label{https}}
+
+\begin{itemize}
+\tightlist
+\item
+  80(443)/TCP
+\end{itemize}
+
+\hypertarget{dhcp---dynamic-host-configuration-protocol}{%
+\paragraph{DHCP - Dynamic Host Configuration
+Protocol}\label{dhcp---dynamic-host-configuration-protocol}}
+
+\begin{itemize}
+\tightlist
+\item
+  umožní klientovy získat konfiguraci (adresu, GW, \ldots)
+\end{itemize}
+
+\hypertarget{ux159uxedzenuxed-datovuxe9ho-toku}{%
+\section{Řízení datového
+toku}\label{ux159uxedzenuxed-datovuxe9ho-toku}}
+
+\begin{verbatim}
+???? QoS??? TODO
+\end{verbatim}
+
+\hypertarget{princip-a-vyuux17eituxed-nat-network-adress-translation}{%
+\section{Princip a využití NAT (Network Adress
+Translation)}\label{princip-a-vyuux17eituxed-nat-network-adress-translation}}
+
+\begin{itemize}
+\tightlist
+\item
+  překlad síťových adres
+\item
+  umožňuje připojit více počítačů na jednu veřejnou IP (obchází problém
+  s nedostatkem IPv4 adres)
+\item
+  přepisuje port, adresu nebo jinou hodnotu v paketu
+\item
+  druhy:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Source - změna zdrojového portu nebo adresy
+  \item
+    Destination - změna cílového portu nebo adresy
+  \item
+    Maškaráda
+  \item
+    1:1
+  \end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+TODO
+\end{verbatim}
+
+\#\#~Systém DNS - ``Domain Name System'' - primárně určen pro překlad:
+jméno \textless-\textgreater{} adresa - několik typů záznamů: -
+\textbf{A} - 32bit IP adresa - \textbf{AAAA} - 128bit IP adresa -
+\textbf{MX} - preference a jméno mail serveru - \textbf{TXT} - textový
+řetězec - komponenty DNS: - jmenný prostor a zdrojové záznamy - stromová
+struktura - jmenné servery - vytváří jmennou databázi, odpovídají na
+dotazy - resolvery - komunikace - port 53 UDP (do 512B) i TCP (může i
+\textgreater{} 512B) - pokud server nezná odpověď: - rekurzivní chování
+- sám najde odpověď a odpoví - nerekurzivní chování - odpoví adresu DNS
+serveru kde se má klient ptát - klient může požadovat rekurzivní
+chování, server ale může odmítnout
+
+\hypertarget{typy-serverux16f}{%
+\subsection{Typy serverů}\label{typy-serverux16f}}
+
+\begin{itemize}
+\tightlist
+\item
+  primární - udržují data o zóně, je autoritativní
+\item
+  sekundární - kopírují data z primárního serveru, je autoritativní
+\item
+  caching only - není autoritativní pro žádnou zónu
+\item
+  root - udržuje záznamy root domény
+\item
+  forwarding - předává rekurzivní dotaz (odlehčení linky), může sám
+  resolvovat
+\end{itemize}
+
+
+
+\end{document}
