@@ -1,9 +1,7 @@
 \documentclass{szzclass}
 \usepackage{dependencies/szz-math}
 \usepackage[czech]{babel}
-% \usepackage{bbm}
-
-\newcommand{\mathbbm}[1]{\boldsymbol#1}
+\usepackage{bbm}
 
 % Augmented pmatrix - https://latex.org/forum/viewtopic.php?f=19&t=22393
 \makeatletter
@@ -13,12 +11,13 @@
    \array{#1}}
 \makeatother
 
+\DeclareMathAlphabet{\mathbbm}{U}{bbm}{m}{n}
+
 \subject{LIN}
 \code{BI-SPOL-12}
 \topic{Soustavy lineárních rovnic: Frobeniova věta a související pojmy, vlastnosti a popis množiny řešení, Gaussova eliminační metoda.}
 
 \begin{document}
-
 \section{Frobeniova věta}
 \begin{definition}
 Nechť $\mathbb{A}\in T^{m,n}$. \textbf{Hodností matice} $\mathbb{A}$ nazýváme dimenzi lineárního obalu souboru řádků matice $\mathbb{A}$ (jako vektorů z $T^{1,n}$) a značíme ji $h(\mathbb{A})$:
