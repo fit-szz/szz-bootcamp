@@ -27,14 +27,14 @@ BI-SPOL-24 | BI-PSI | Protokolová rodina TCP/IP (IPv4, IPv6, TCP, UDP, aplikač
 BI-SPOL-25 | BI-PST | Pravidla pro výpočty pravděpodobností, Bayesův vzorec. Náhodné veličiny, příklady rozdělení, distribuční funkce, hustota, momenty. Nezávislost náhodných jevů a veličin. Centrální limitní věta, zákony velkých čísel. |  Ne
 BI-SPOL-26 | BI-PST | Základy statistické indukce, náhodný výběr, bodové odhady pro střední hodnotu a rozptyl, intervalové odhady pro střední hodnotu, testování statistických hypotéz o střední hodnotě. |   Ne
 BI-SPOL-27 | BI-SAP | Kombinační a sekvenční logické obvody (Mealy, Moore), popis a možnosti implementace na úrovni hradel. Minimalizace vyjádření logické funkce (s využitím map). |   Ano
-BI-SPOL-28 | BI-SAP | Architektura číslicového počítače, instrukční cyklus počítače, základní třídy souborů instrukcí (ISA). Paměťový subsystém počítače, paměťová hierarchie, cache. |   Ne
+BI-SPOL-28 | BI-SAP | Architektura číslicového počítače, instrukční cyklus počítače, základní třídy souborů instrukcí (ISA). Paměťový subsystém počítače, paměťová hierarchie, cache. |   Ano
 BI-SPOL-29 | BI-SAP | Kódy pro zobrazení čísel se znaménkem a realizace aritmetických operací (paralelní sčítačka/odčítačka, realizace aritmetických posuvů, dekodér, multiplexor, čítač). Reprezentace čísel v pohyblivé řádové čárce. |   Ne
 BI-SPOL-30 | BI-SI1.2 | Nástroje pro podporu tvorby softwarových produktů: Sledování chyb a správa úkolů (používané nástroje, typický životní cyklus úkolu/chyby), správa a sdílení zdrojových kódů (principy řešení spolupráce, hlavní přínosy, používané nástroje). |   Ano
 BI-SPOL-31 | BI-SI1.2 | Analytický doménový model tříd a popis životního cyklu identifikovaných tříd (cíle, UML diagram tříd, UML stavový diagram). |   Ne
 BI-SPOL-32 | BI-ZDM | Metody řešení rekurentních rovnic, sestavování a řešení rekurentních rovnic při analýze časové složitosti algoritmů. |   Ano
 BI-SPOL-33 | BI-ZDM | Modulární aritmetika, základy teorie čísel, Malá Fermatova věta, diofantické rovnice, lineární kongruence, Čínská věta o zbytcích. |   Ano
-BI-SPOL-34 | BI-ZMA | Limita a derivace funkce (definice a vlastnosti, geometrický význam), využití při vyšetřování průběhu funkce. |   Ne
-BI-SPOL-35 | BI-ZMA | Základy integrálního počtu (primitivní funkce, neurčitý integrál, Riemannův integrál (definice, vlastnosti a geometrický význam)). |   Ne
-BI-SPOL-36 | BI-ZMA | Číselné řady (konvergence číselné řady, kritéria konvergence, odhadování rychlosti růstu řad pomocí určitého integrálu). |  Ne
+BI-SPOL-34 | BI-ZMA | Limita a derivace funkce (definice a vlastnosti, geometrický význam), využití při vyšetřování průběhu funkce. |   Ano
+BI-SPOL-35 | BI-ZMA | Základy integrálního počtu (primitivní funkce, neurčitý integrál, Riemannův integrál (definice, vlastnosti a geometrický význam)). |   Ano
+BI-SPOL-36 | BI-ZMA | Číselné řady (konvergence číselné řady, kritéria konvergence, odhadování rychlosti růstu řad pomocí určitého integrálu). | Ano
 
 
