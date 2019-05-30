@@ -20,3 +20,4 @@
   }
 }
 
+\renewcommand*\contentsname{Obsah}
