@@ -7,8 +7,8 @@ BI-WSI-SI-4 | BI-DBS | Pokročilé principy dotazování v SQL: agregace, vněj
 BI-WSI-SI-5 | BI-KOM | Konceptuální modelování, jeho význam, základní pojmy a způsoby modelování reálného světa. |   Ne
 BI-WSI-SI-6 | BI-KOM | OntoUML a jeho konstrukty, transformace do objektového modelu. |   Ne
 BI-WSI-SI-7 | BI-KOM | Klíčové pojmy inženýrství podniků a metoda DEMO |   Ne
-BI-WSI-SI-8 | BI-OOP | Čisté objektové paradigma — klíčové pojmy, abstrakce, chování. |   Ne
-BI-WSI-SI-9 | BI-OOP | Čisté objektové paradigma — principy návrhu OO systémů. |   Ne
+BI-WSI-SI-8 | BI-OOP | Čisté objektové paradigma — klíčové pojmy, abstrakce, chování. |   Ano
+BI-WSI-SI-9 | BI-OOP | Čisté objektové paradigma — principy návrhu OO systémů. |   Ano
 BI-WSI-SI-10 | BI-OOP | Čisté objektové paradigma — kvalita návrhu OO systémů. |   Ne
 BI-WSI-SI-11 | BI-OSY | Principy souborových systémů (FAT, NTFS, UFS, ZFS), jejich implementace a vlastnosti. |   Ne
 BI-WSI-SI-12 | BI-PA2 | Šablony funkcí a tříd v C++, knihovna STL, iterátor, komparátor. |   Ne
