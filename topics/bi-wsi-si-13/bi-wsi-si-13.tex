@@ -1,0 +1,123 @@
+\PassOptionsToPackage{table}{xcolor}
+\documentclass{szzclass}
+
+\subject{PPA}
+\code{BI-WSI-SI-13}
+\topic{Rozdělení paměti při implementaci programovacích jazyků: statické části, zásobník, halda. Aktivační záznamy, mechanismus implementace volání funkcí.}
+
+\begin{document}
+
+\section{Rozdělení paměti při implementaci programovacích jazyků}
+Běh programu běží v souvislém logickém adresovém prostoru, který je poskytován operačním systémem. Operační systém mapuje logické adresy na fyzické adresy (které nemusí tvořit souvislý celek).
+
+\begin{center}
+\def\arraystretch{2}
+\begin{tabular}{|c|} \hline
+Kód programu \\ \hline
+Statické objekty \\ \hline
+Halda (Heap) \\ \hline
+Volná paměť \\ \hline
+Zásobník (Stack) \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Statické objekty}
+\begin{itemize}
+\item Globální konstanty, globální proměnné, data generované překladačem,...
+\item Výhody
+  \begin{itemize}
+  \item Nepotřebuje správu paměti při běhu programu
+  \item Rychlý přístup (překládá se přímo adresou v paměti)
+  \item Není nebezpečí out-of-memory
+  \end{itemize}
+\item Nevýhody
+  \begin{itemize}
+  \item Velikost a počty musí být známy předem
+  \end{itemize}
+\end{itemize}
+
+\subsection{Objekty na zásobníku}
+\begin{itemize}
+\item Každé volání funkce má svůj aktivační záznam (activation record). Podobně každý vnitřní blok.
+\item LIFO přístup podporuje volací a návratový mechanismus volání funkcí a procedur.
+\item Přirozená podpora volání funkcí a návratu z funkcí. Podpora rekurze.
+\item Objekty jsou vloženy na zásobník při vstupu do funkce a jsou ze zásobníku odebrány při návratu.
+\item Volání funkce je implementováno volací sekvencí, návrat je implementován návratovou sekvencí.
+\end{itemize}
+
+\subsection{Halda}
+\begin{itemize}
+\item Obsahuje dynamické objekty/proměnné vytvořené během běhu programu, např. pomocí příkazů malloc a free (C) nebo new a delete (C++).
+\item V některých programovacích jazycích je halda udržována pomocí garbage collection.
+\end{itemize}
+
+\subsection{Aktivační záznam pro procedury a funkce}
+\begin{itemize}
+\item Hodnotou
+  \begin{itemize}
+  \item Skutečná hodnota je vypočítána a následně zkopírována.
+  \item Vstupní parametr, chová se jako lokální proměnná.
+  \end{itemize}
+\item Odkazem
+  \begin{itemize}
+  \item Volající určuje adresu v paměti.
+  \item Vstupní/výstupní proměnné.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Aktivační záznam}
+\begin{itemize}
+\item S každým voláním funkce se na zásobníku vytvoří aktivační záznam.
+\item Jazyky bez vnořených procedur, např. C
+\item Lokální statické proměnné jsou uloženy v lokálním aktivačním záznamu na zásobníku.
+\item Jazyky s vnořenými procedurami, např. Pascal, také Lisp a funkcionální jazyky obecně, kde funkce typicky vytváří jinou funkci
+\item Musí být dále přidán link mezi aktivačními záznamy procedur (funkcí).
+\end{itemize}
+
+\subsection{Mechanismus implementace volání funkcí}
+\begin{center}
+\def\arraystretch{2}
+\begin{tabular}{|c|} \hline
+Skutečné parametry \\ \hline
+Návratové hodnoty \\ \hline
+\rowcolor{lightgray} Řídící link (link na starý aktivační záznam) \\ \hline
+Přístupový link (link na aktivační záznam vyšší procedury) \\ \hline
+\rowcolor{lightgray} Uložené údaje počítače (registry, atd\dots) \\ \hline
+Lokální proměnné \\ \hline
+Pomocné dočasné proměnné \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Stack pointer SP - Odkaz na vrchol zasobníku
+\item Frame Pointer FP - Odkaz na začátek aktualního záznamu
+\end{itemize}
+
+\end{document}
+
+% Z přednáškových prezentací:
+% Imperativní (procedurální) programy jsou popisem akcí, které mění stav (který je dán obsahem paměti).
+% - Základní je přiřazovací příkaz, používají se typicky vedlejší efekty (side effects), iterační cykly.
+% - Fortran, Algol, Cobol, Pascal, Modula-2, Ada, C. (OOP rozšíření: C++, C#, ...)
+% - Dominující paradigma, které je přirozené pro von Neumannovu architekturu počítače.
+% - Odpovídající základní model výpočtu Turingův stroj (viz AAG)
+% - Typické fičury:
+%    - Klíčová operace: přířazovací příkaz
+%    - Vedlejší efekty
+%    - Podmíněné skoky, cykly, podmínky
+%    - Datové typy, deklarace proměnných, bloky
+
+% Objektově orientované (OO) programování nemusí být vždy imperativní, ale většina OO jazyků je imperativních
+% - Spojení dat a algoritmů ve formě tříd, dědičnost, polymorfismus, ...
+% - Smalltalk, C++, Modula-3, Java, C#
+% - OO funkcionální jazyk: CLOS (Common Lisp Object System) 
+
+% Funkcionální programování je zaměřeno na funkce a jejich vyhodnocování.
+% - Nemá přiřazovací příkaz, nemá vedlejší efekty, typické používání rekurze.
+% - Má funkce vyšších řádů: parametrem i výsledkem funkce může být funkce. Má typicky uzávěry (closures).
+% - LISP, Haskell, R, Clojure, Python
+% - Odpovídající základní model výpočtu lambda kalkulus (viz PPA).
+
+% Logické programování je založeno na predikátové logice
+% - Vhodné zejména ve specifických aplikačních oblastech: databázové aplikace, automatické dokazování, umělá inteligence, ...
+% - Prolog
