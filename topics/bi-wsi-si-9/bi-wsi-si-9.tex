@@ -24,7 +24,7 @@
 \begin{itemize}
       \item uchovávat informace a poskytovat služby pracující s těmito informacemi
       \item \textbf{high cohesion} -- vysoká soudružnost operací a dat uvnitř třídy
-      \item \textbf{low coupling} -- nízká provázanost mezi třídami 
+      \item \textbf{low coupling} -- nízká provázanost mezi třídami
       (\textit{Každá třída by měla provádět právě jednu činnost})
       \item \textbf{high-level-of-abstraction} -- vysoká míra abstrakce.
       Na všechno mít speciální rozhraní a vždy používat rozhraní místo implementace.
@@ -34,14 +34,14 @@
 \section{Symptomy degradujícího návrhu SW}
 
 \begin{itemize}
-      \item \textbf{Rigidity} -- SW není znadné jednodušše měnit nebo rozšiřovat,
-      nezle přidávat ani jednoduché funkcionality.
-      \item \textbf{Fragility} -- Změna jedné části SW ovlivní (rozbije) jinou 
+      \item \textbf{Rigidity} -- SW není snadné jednoduše měnit nebo rozšiřovat,
+      nelze přidávat ani jednoduché funkcionality.
+      \item \textbf{Fragility} -- Změna jedné části SW ovlivní (rozbije) jinou
       část SW (třeba i konceptuálně odlišnou).
       \item \textbf{Immobility} -- Není možné znovu použít SW pro jiné projekty
       nebo alespoň pro části jiných projektů.
       \item \textbf{High design viscosity} -- Udržování správného návrhu je implementačně náročnější
-      než to na prasáka nahackovat, což vede k degradaci návrhu.
+      než to udělat proti pravidlům daného návrhu, což vede k degradaci návrhu.
       \item \textbf{High environment viscosity} -- Prostředí pro vývoj SW je pomalé a neefektivní.
       Například dlouhý \textit{compile-time}.
 \end{itemize}
@@ -51,31 +51,30 @@
 
 Dodržování následujících principů vede ke snížení provázanosti mezi třídami.
 V přednáškách bylo zmíněných pět principů pro návrh tříd.
-Všechny principy OO návrhu lze najít na \textbf{http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod}.
+Všechny principy OO návrhu lze najít na\linebreak \textbf{http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod}.
 
 \begin{itemize}
       \item \textbf{SRP -- single responsibility principle}
-      
       \textit{A class should have one, and only one, reason to change.}
 
       Každá třída, modul nebo metoda má mít pouze jednu povinnost, jeden účel.
       Tato povinnost by měla být kompletně zapouzdřena touto třídou, modulem, metodou.
-      
+
       \item \textbf{OCP -- open-closed principle}
-      
+
       \textit{You should be able to extend a classes behavior, without modifying it.}
 
       SW entity by měly být snadno rozšiřitelné, ale nesmí být možnost měnit jejich chování.
-      
+
       \item \textbf{LSP -- Liskov Substitution Principle}
-      
+
       \textit{Derived classes must be substitutable for their base classes.}
 
       Odvozené třídy musejí být použitelné přes rozhraní jejich nadřazené třídy.
       Uživatel zvenku nezmí poznat rozdíl mezi \textit{derived class} a \textit{base class}.
-      
-      \item \textbf{ISP -- Interface Segregation Principle}	
-      
+
+      \item \textbf{ISP -- Interface Segregation Principle}
+
       \textit{Make fine grained interfaces that are client specific.}
 
       Více detailních rozhraní je lepší než jedno obsáhlé rozhraní (\textit{general purpose}).
@@ -88,7 +87,7 @@ Všechny principy OO návrhu lze najít na \textbf{http://www.butunclebob.com/Ar
       \end{figure}
 
       \item \textbf{DIP -- Dependency Inversion Principle}
-      
+
       \textit{Depend on abstractions, not on concretions.}
 
       Abstrakce by neměla záviset na detailech. Detaily by měly záviset na abstrakci.
@@ -104,10 +103,11 @@ Všechny principy OO návrhu lze najít na \textbf{http://www.butunclebob.com/Ar
 \section{Závěr k principům OO návrhu}
 
 \begin{itemize}
-      \item Všechno je to o zasílání zpráv objektům, jejiž typ (polymorphism) nebo implementace nás nezajímá.
+      \item Všechno je to o zasílání zpráv objektům, jejiž typ (polymorfismus) nebo implementace nás nezajímá.
       \item Nevíme, které konkrétní chování zprávou vyvoláme a je nám to jedno.
       \item Provázanost mezi třídami je špatná a vede k \textit{rigid}, \textit{fragile}, \textit{non-reusable} SW.
       \item Zamezení vysoké provázanosti lze dosáhnout pomocí dodržování SRP, OCP, LSP, ISP a DIP.
 \end{itemize}
+\todo{Toto mi přijde takové moc jednoduše napsané, bylo by možná lepší to popsat trochu formálněji}
 
 \end{document}
