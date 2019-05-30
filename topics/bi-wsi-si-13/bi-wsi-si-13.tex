@@ -51,7 +51,20 @@ Zásobník (Stack) \\ \hline
 \item V některých programovacích jazycích je halda udržována pomocí garbage collection.
 \end{itemize}
 
-\subsection{Aktivační záznam pro procedury a funkce}
+\subsection{Aktivační záznam}
+\begin{itemize}
+\item S každým voláním funkce se na zásobníku vytvoří aktivační záznam.
+\item Jazyky bez vnořených procedur, např. C
+  \begin{itemize}
+    \item Lokální statické proměnné jsou uloženy v lokálním aktivačním záznamu na zásobníku.
+  \end{itemize}
+\item Jazyky s vnořenými procedurami, např. Pascal, také Lisp a funkcionální jazyky obecně, kde funkce typicky vytváří jinou funkci
+  \begin{itemize}
+    \item Link mezi aktivačními záznamy procedur (funkcí).
+  \end{itemize}
+\end{itemize}
+
+\subsection{Základní typy předávání parametrů funkcí}
 \begin{itemize}
 \item Hodnotou
   \begin{itemize}
@@ -63,15 +76,6 @@ Zásobník (Stack) \\ \hline
   \item Volající určuje adresu v paměti.
   \item Vstupní/výstupní proměnné.
   \end{itemize}
-\end{itemize}
-
-\subsection{Aktivační záznam}
-\begin{itemize}
-\item S každým voláním funkce se na zásobníku vytvoří aktivační záznam.
-\item Jazyky bez vnořených procedur, např. C
-\item Lokální statické proměnné jsou uloženy v lokálním aktivačním záznamu na zásobníku.
-\item Jazyky s vnořenými procedurami, např. Pascal, také Lisp a funkcionální jazyky obecně, kde funkce typicky vytváří jinou funkci
-\item Musí být dále přidán link mezi aktivačními záznamy procedur (funkcí).
 \end{itemize}
 
 \subsection{Mechanismus implementace volání funkcí}
