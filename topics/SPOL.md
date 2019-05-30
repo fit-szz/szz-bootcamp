@@ -22,8 +22,8 @@ BI-SPOL-19 | BI-PA1 + BI-AG1 | Časová a paměťová složitost algoritmů. Alg
 BI-SPOL-20 | BI-PA1 + BI-AG1 | Rekurzivní rozklad problému na podproblémy metodou Rozděl-a-panuj. Rekurze vs iterace. Dynamické programování. |   Ne
 BI-SPOL-21 | BI-PA2 | Objektově orientovaného programování v C++, zapouzdření, dědičnost, atributy a metody, statické atributy a metody, virtuální metody, polymorfismus, abstraktní třídy, výjimky, šablony, přetěžování operátorů, mělká a hluboká kopie. |   Ne
 BI-SPOL-22 | BI-PA2 | Abstraktní datový typ, jeho specifikace a implementace. Zásobník, fronta, pole, seznam, tabulka, množina. Implementace pomocí pole, spojových struktur a stromů. |   Ne
-BI-SPOL-23 | BI-PSI | ISO/OSI a TCP/IP model. Protokoly linkové vrstvy.Potvrzovací metody. Přepínání a směrování. Principy fungování propojovacích síťových prvků. |   Ne
-BI-SPOL-24 | BI-PSI | Protokolová rodina TCP/IP (IPv4, IPv6, TCP, UDP, aplikační protokoly). Řízení datového toku. Princip a využití NAT. Systém DNS. |   Ne
+BI-SPOL-23 | BI-PSI | ISO/OSI a TCP/IP model. Protokoly linkové vrstvy.Potvrzovací metody. Přepínání a směrování. Principy fungování propojovacích síťových prvků. |   Ano
+BI-SPOL-24 | BI-PSI | Protokolová rodina TCP/IP (IPv4, IPv6, TCP, UDP, aplikační protokoly). Řízení datového toku. Princip a využití NAT. Systém DNS. |   Ano
 BI-SPOL-25 | BI-PST | Pravidla pro výpočty pravděpodobností, Bayesův vzorec. Náhodné veličiny, příklady rozdělení, distribuční funkce, hustota, momenty. Nezávislost náhodných jevů a veličin. Centrální limitní věta, zákony velkých čísel. |  Ne
 BI-SPOL-26 | BI-PST | Základy statistické indukce, náhodný výběr, bodové odhady pro střední hodnotu a rozptyl, intervalové odhady pro střední hodnotu, testování statistických hypotéz o střední hodnotě. |   Ne
 BI-SPOL-27 | BI-SAP | Kombinační a sekvenční logické obvody (Mealy, Moore), popis a možnosti implementace na úrovni hradel. Minimalizace vyjádření logické funkce (s využitím map). |   Ano
