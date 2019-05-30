@@ -1,7 +1,17 @@
 \documentclass{szzclass}
 \usepackage{dependencies/szz-math}
 \usepackage[czech]{babel}
-\usepackage[margin=3cm]{geometry}
+\usepackage{bbm}
+
+% Augmented pmatrix - https://latex.org/forum/viewtopic.php?f=19&t=22393
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+   \hskip -\arraycolsep
+   \let\@ifnextchar\new@ifnextchar
+   \array{#1}}
+\makeatother
+
+\DeclareMathAlphabet{\mathbbm}{U}{bbm}{m}{n}
 
 \subject{LIN}
 \code{BI-SPOL-12}
@@ -10,34 +20,34 @@
 \begin{document}
 \section{Frobeniova věta}
 \begin{definition}
-Nechť $\mathbb{A}\in T^{n,n}$. \textbf{Hodností matice} $\mathbb{A}$ nazýváme dimenzi lineárního obalu řádků matice $\mathbb{A}$ (jako vektorů z $T^{n,n}$) a značíme ji $h(\mathbb{A})$:
+Nechť $\mathbb{A}\in T^{m,n}$. \textbf{Hodností matice} $\mathbb{A}$ nazýváme dimenzi lineárního obalu souboru řádků matice $\mathbb{A}$ (jako vektorů z $T^{1,n}$) a značíme ji $h(\mathbb{A})$:
 \begin{equation}
-  h(\mathbb{A})=dim\langle \mathbb{A}_{1:},\dots,\mathbb{A}_{m:},\rangle.
+  h(\mathbb{A})=dim\langle \mathbb{A}_{1:},\dots,\mathbb{A}_{m:}\rangle.
 \end{equation}
 \end{definition}
 
 \begin{theorem}[Frobeniova věta]
 Nechť $\mathbb{A}\in T^{m,n}$.
 \begin{enumerate}
-\item Soustava $m$ lineárních rovnich o $n$ neznámých $\mathbb{A} \mathbb{X}=\mathbb{B}$ je řešitelná právě tehdy, když
+\item Soustava $m$ lineárních rovnich o $n$ neznámých $\mathbb{A} \mathbbm{x}=\mathbbm{b}$ je řešitelná, tj. $S\neq\theta$, právě tehdy, když
 $$
-h(\mathbb{A})=h(\mathbb{A} | \mathbb{B})
+h(\mathbb{A})=h(\mathbb{A} | \mathbbm{b}).
 $$
-\item Je-li $h(\mathbb{A})=h$, pak množina řešení $\mathbb{A} \mathbb{X}=\theta$ je podprostor dimenze $n-h$, tedy existuje LN soubor vektorů $(z_1,\dots,z_{n-h})$ v $T^{n,1}$, takový, že
+\item Je-li $h(\mathbb{A})=h$, pak množina řešení $\mathbb{A} \mathbbm{x}=\theta$ je podprostor dimenze $n-h$, tedy existuje LN soubor vektorů $(\mathbbm{z}_1,\dots,\mathbbm{z}_{n-h})$ v $T^{n,1}$ takový, že
 $$ S_0=\begin{cases}
        \{\theta\}, & \text{pokud $n=h$,} \\
-       \langle z_1,\dots,z_{n-h}\rangle, & \text{pokud $h<n$.}
+       \langle \mathbbm{z}_1,\dots,\mathbbm{z}_{n-h}\rangle, & \text{pokud $h<n$.}
        \end{cases}
 $$
-Je-li navíc $h(\mathbb{A}|\mathbb{B})=h$, potom platí:
+Je-li navíc $h(\mathbb{A}|\mathbbm{b})=h$, potom platí:
 $$
-S=\widetilde{x} + S_0,
-$$ kde $\widetilde{x}$ je \textbf{partikulární řešení} $\mathbb{A} \widetilde{\mathbb{X}}=\mathbb{B}$.
+S=\widetilde{\mathbbm{x}} + S_0,
+$$ kde $\widetilde{\mathbbm{x}}$ je \textbf{partikulární řešení} $\mathbb{A} \widetilde{\mathbbm{x}}=\mathbbm{b}$.
 \end{enumerate}
 \end{theorem}
 
 \section{Vlastnosti a popis množiny řešení}
-Soustava lineárních rovnic (zapsaných v HST matice $(\mathbb{A}\mathbb{X}|\mathbb{B})$) může mít:
+Soustava lineárních rovnic (zapsaných v HST matice $\begin{pmatrix}[c|c]\mathbb{A}\mathbbm{x}&\mathbbm{b}\end{pmatrix}$) může mít:
 \begin{itemize}
 \item Žádné řešení -- poslední sloupec je hlavní
 \item Jedno řešení -- všechny sloupce, kromě posledního jsou hlavní
@@ -46,8 +56,47 @@ Pro popis množiny řešení se nalezne obal LN souboru možných řešení. \em
 \end{itemize}
 
 \section{Soustavy lineárních rovnic}
+\begin{definition}
+Nechť $n,m\in\mathbb{N}$ a pro všechna $i\in\{1,\dots, m\}$ a
+$j\in\{1, \dots, n\}$ platí, že $a_{ij} \in\mathbb{R}$ a $b_i \in\mathbb{R}$. Systém rovnic
+
+% https://en.wikipedia.org/wiki/System_of_linear_equations
+\begin{alignat}{7}
+a_{11} x_1 &&\; + \;&& a_{12} x_2 &&\; + \cdots + \;&& a_{1n} x_n &&\; = \;&&& b_1 \\ \notag
+a_{21} x_1 &&\; + \;&& a_{22} x_2 &&\; + \cdots + \;&& a_{2n} x_n &&\; = \;&&& b_2 \\ \notag
+\vdots\;\;\; &&     && \vdots\;\;\; &&  \ddots\;\;\;&& \vdots\;\;\; &&     &&& \,\vdots \\ \notag
+a_{m1} x_1 &&\; + \;&& a_{m2} x_2 &&\; + \cdots + \;&& a_{mn} x_n &&\; = \;&&& b_m \\ \notag
+\end{alignat}
+
+nazýváme \textbf{soustavou} $m$ \textbf{lineárních rovnic o} $n$ \textbf{neznámých} $x_1,\dots, x_n \in\mathbb{R}$.\\
+Číslu $aij$ říkáme $j$\textbf{tý koeficient} $i$\textbf{té rovnice}.
+
+Množinu všech uspořádaných $n$tic $(x_1, x_2,\dots, x_n) \in\mathbb{R}^n$, pro které po dosazení do (2) je splněno všech $m$ rovnic, nazýváme \textbf{množinou řešení soustavy} a značíme ji $S$.
+Platí-li $b_1 = b_2 = \dots = b_m = 0$, říkáme, že soustava (2) je \textbf{homogenní}.
+Není-li soustava homogenní, je \textbf{nehomogenní}.
+\end{definition}
+
+\subsection{Horní stupňovitý tvar}
+\begin{definition}
+O matici $\mathbb{D}\in R^{m,n}$ řekneme, že je v \textbf{horním stupňovitém tvaru}, jestliže všechny řádky jsou nulové, nebo existuje $k\in\hat{m}$ tak, že řádky $1$ až $k$ matice $\mathbb{D}$ jsou nenulové a řádky $k + 1$ až $m$ jsou nulové a jestliže platí následující:
+
+Označme pro každé $i\in\hat{k}$ index nejlevějšího nenulového prvku v $i$tém řádku jako
+$j_i$, tj.
+
+$$
+j_i=\min{\{\ell\in\hat{n}|\mathbb{D}\neq 0\}}.
+$$
+Potom platí $1 \leq j_1 < j_2 < \cdots < j_k$.
+
+Je-li matice v horním stupňovitém tvaru, potom sloupcům s indexy $j_1, j_2, \dots , j_k$
+říkáme \textbf{hlavní sloupce}, ostatním říkáme \textbf{vedlejší sloupce}.
+
+O soustavě $\mathbb{A}\mathbbm{x} = \mathbbm{b}$ řekneme, že je v horním stupňovitém tvaru, pokud matice této soustavy $(\mathbb{A}|\mathbbm{b})$ je v horním stupňovitém tvaru.
+\end{definition}
+
+\subsection{Postup pro řešení SLR}
 \begin{itemize}
-\item Přepíšu soustavu do matice $(\mathbb{A}|\mathbb{B})$.
+\item Převedu SLR do matice $(\mathbb{A}|\mathbbm{b})$.
 \item Převedu do HST pomocí GEM.
 \item Poslední sloupec hlavní $\rightarrow$ nemá řešení.
 \item Jinak:
@@ -56,7 +105,7 @@ Pro popis množiny řešení se nalezne obal LN souboru možných řešení. \em
   \item Pro partikulární řešení zvolim volné proměnné libovolně a dopočítám vázané proměnné.
   \item Pro $S_0$ zvolim libovolnou bázi (třeba standardní).
   \item Pro každý bazický vektor dopočítám z homogenní rovnice vázané proměnné a dostanu bázi $S_0$.
-  \item Řešením je $S=\widetilde{\mathbb{X}}+S_0$, kde $S_0$ je lineární obal báze.
+  \item Řešením je $S=\widetilde{\mathbbm{x}}+S_0$, kde $S_0$ je lineární obal báze.
   \end{itemize}
 \end{itemize}
 

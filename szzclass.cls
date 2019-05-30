@@ -3,6 +3,7 @@
 \LoadClass{article}
 \RequirePackage{todonotes}
 \RequirePackage[parfill]{parskip}
+\RequirePackage[margin=2.8cm]{geometry}
 
 
 % Hlavička
