@@ -27,3 +27,7 @@ new:
 	mkdir topics/${TOPPIC}
 	touch topics/${TOPPIC}/${TOPPIC}.tex
 	mkdir topics/${TOPPIC}/images
+
+
+example: example/math.tex
+	xelatex -shell-escape -output-directory=build example/math.tex
