@@ -50,8 +50,10 @@
 \section{Principy OO návrhu}
 
 Dodržování následujících principů vede ke snížení provázanosti mezi třídami.
-V přednáškách bylo zmíněných pět principů pro návrh tříd.
-Všechny principy OO návrhu lze najít na\linebreak \textbf{http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod}.
+V přednáškách bylo zmíněných pět principů zaměřených na návrh tříd.
+Ostatní principy se týkají rozdělení tříd do balíčků.
+Všechny principy OO návrhu lze najít na
+\linebreak \textbf{http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod}.
 
 \begin{itemize}
       \item \textbf{SRP -- single responsibility principle}
@@ -66,14 +68,14 @@ Všechny principy OO návrhu lze najít na\linebreak \textbf{http://www.butuncle
 
       SW entity by měly být snadno rozšiřitelné, ale nesmí být možnost měnit jejich chování.
 
-      \item \textbf{LSP -- Liskov Substitution Principle}
+      \item \textbf{LSP -- Liskov substitution principle}
 
       \textit{Derived classes must be substitutable for their base classes.}
 
       Odvozené třídy musejí být použitelné přes rozhraní jejich nadřazené třídy.
       Uživatel zvenku nezmí poznat rozdíl mezi \textit{derived class} a \textit{base class}.
 
-      \item \textbf{ISP -- Interface Segregation Principle}
+      \item \textbf{ISP -- interface segregation principle}
 
       \textit{Make fine grained interfaces that are client specific.}
 
@@ -86,7 +88,7 @@ Všechny principy OO návrhu lze najít na\linebreak \textbf{http://www.butuncle
             \caption{ISP example}
       \end{figure}
 
-      \item \textbf{DIP -- Dependency Inversion Principle}
+      \item \textbf{DIP -- dependency inversion principle}
 
       \textit{Depend on abstractions, not on concretions.}
 
@@ -102,12 +104,16 @@ Všechny principy OO návrhu lze najít na\linebreak \textbf{http://www.butuncle
 
 \section{Závěr k principům OO návrhu}
 
-\begin{itemize}
-      \item Všechno je to o zasílání zpráv objektům, jejiž typ (polymorfismus) nebo implementace nás nezajímá.
-      \item Nevíme, které konkrétní chování zprávou vyvoláme a je nám to jedno.
-      \item Provázanost mezi třídami je špatná a vede k \textit{rigid}, \textit{fragile}, \textit{non-reusable} SW.
-      \item Zamezení vysoké provázanosti lze dosáhnout pomocí dodržování SRP, OCP, LSP, ISP a DIP.
-\end{itemize}
-\todo{Toto mi přijde takové moc jednoduše napsané, bylo by možná lepší to popsat trochu formálněji}
+Malé shrnutí z přednášky o principech OO návrhu:
 
+\begin{itemize}
+      % v podstatě slovo od slova přeloženo z velice špatných slidů přednášek BI-OOP
+      % konkrétně přednáška 2 slide 64
+      \item \textit{podstata je v zasílání zpráv objektům, což vytváří očekávání na polymorfismu},
+      \item \textit{volající objekt neví, které konkrétní chování zprávou vyvolá, a ani ho to nezajímá,
+      komunikuje s rozhraním volaných objektů, nikoliv s jejich implementací},
+      \item provázanost mezi třídami je špatná a vede k \textit{rigid}, \textit{fragile}, \textit{non-reusable} SW,
+      \item zamezení vysoké provázanosti lze dosáhnout pomocí dodržování SRP, OCP, LSP, ISP a DIP.
+\end{itemize}
+%\todo{Toto mi přijde takové moc jednoduše napsané, bylo by možná lepší to popsat trochu formálněji}
 \end{document}
