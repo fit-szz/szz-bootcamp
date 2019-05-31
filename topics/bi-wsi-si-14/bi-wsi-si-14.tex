@@ -1,4 +1,6 @@
 \documentclass{szzclass}
+\usepackage{dependencies/szz-math}
+\usepackage{dependencies/szz-code}
 
 \title{Lambda kalkul: definice pojmů, operací, reprezentace čísel.}
 \author{
@@ -20,12 +22,13 @@ Funkce zapsané v lambda kalkulu lze poté vyhodnotit pomocí substituce.
 
 \subsection{Syntaxe lambda kalkulu}
 
-U lambda kalkulu se používá prefixový zápis, tedy operátory se píší před operandy, například (+(* 5 3)(* 5 3)).
+U lambda kalkulu se používá prefixový zápis, tedy operátory se píší před operandy, například \mintinline{lisp}{(+ (* 5 3)(* 5 3))}.
 Vyhodnocení poté probíhá zleva doprava a to následovně:
 \begin{enumerate}
-    \item (+ 30 (* 5 3))
-    \item (+ 30 30)
-    \item 60
+    \item \mintinline{lisp}{(+ (* 5 3) (* 5 3))}
+    \item \mintinline{lisp}{(+ 15 (* 5 3))}
+    \item \mintinline{lisp}{(+ 15 15)}
+    \item \mintinline{lisp}{30}
 \end{enumerate}
 
 Zápis funkce s proměnnou se poté zapisuje takto: $(\lambda x. + x\ 1)$.
@@ -37,28 +40,27 @@ Beta redukce provedená na příkladu zápisu funkce:
 \begin{enumerate}
     \item $(\lambda x. + x\ 1)$
     \item $(\lambda x. + x\ 1)2$
-          2 za závorkou je argumentem fuknce.
-    \item $(+ 2 1)$
+          2 za závorkou je argumentem funkce.
+    \item $(+\ 2\ 1)$
     \item 3
 \end{enumerate}
 
-Další platné zápisy: $(\lambda x. + x\ x) 2 => (+\ 2\ 2)$.
+
+Další platné zápisy: $(\lambda x. + x\ x)\ 2 \Rightarrow (+\ 2\ 2)$.
 
 \subsection{Volné a vázáné proměnné}
 
-V lambda kalkulu rozlišuje dva typy proměnných a to vázané a volné. Vázané proměnné jsou takové proměnné, které jsou zároveň argumentem
-dané funkce. Lambda kalkul má lokální rozsah platnostnosti (scope).
-Například pro fuknci $(\lambda x . + x\ y)$ je vázanou proměnnou x a y je v tomto případě volná proměnná.
+V lambda kalkulu rozlišuje dva typy proměnných a to vázané a volné. Vázané proměnné jsou takové proměnné, které jsou zároveň argumentem dané funkce. Lambda kalkul má lokální rozsah platnosti (scope). Například pro funkci $(\lambda x . + x\ y)$ je vázanou proměnnou $x$ a $y$ je v tomto případě volná proměnná.
 
 \newpage
 
 \subsection{Alfa redukce}
 
-Alfa $(\alpha)$ redukce odstraňuje přetížení identifikátorů pomocí přejmenování argumetu a jeho vázaných proměnných.
+Alfa $(\alpha)$ redukce odstraňuje přetížení identifikátorů pomocí přejmenování argumentu a jeho vázaných proměnných.
 Ukázka na $(\lambda x . (\lambda x . +\ (-\ x\ 1))\ x\ 3)\ 9$.
 \begin{enumerate}
     \item $(\lambda y . +\ (-\ y\ 1)\ 9\ 3)$
-    \item $(+\ (-\ 9 1)\ 3)$
+    \item $(+\ (-\ 9\ 1)\ 3)$
     \item $(+\ 8\ 3)$
 \end{enumerate}
 
@@ -104,4 +106,26 @@ Vybrané operace s čísly pak zavádíme následovně:
     \item $*~x~y =~$mult$~= (\lambda x. \lambda y. \lambda z. x (y z)) nebo * x y = (\lambda x. \lambda y. \lambda s. \lambda z. x (y s) z)$
 \end{itemize}
 
+\clearpage
+\subsection{Kombinátor}
+Výraz bez volných proměnných se nazývá kombinátor.
+
+Příklady:
+\begin{description}
+\item[Rekurze] - $Y:~\lambda f.(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))$
+\item[Indentita] - $I:~\lambda x.x$
+\item[Aplikace] - $APP:~\lambda f.\lambda x.(f~x)$
+\item[Cyklus] - $L:~(\lambda x.(x~x)~\lambda x.(x~x))$
+\end{description}
+
+\subsection{Rekurze}
+Rekurze se dá vytvořit pomocí Y-kombinátoru. Ukázka použití na faktoriálu:
+\begin{itemize}
+\item Y-kombinátor - $Y=\lambda f.(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))$
+\item Fibonacciho posloupnost $F_0=(\lambda f.\lambda x.(=~n~0)~1~(f~(-~n~1)))$
+\item $F = Y F_0 = (\lambda f.(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))) (\lambda f.\lambda x.(=~n~0)~1~(f~(-~n~1)))$
+\item $F~5 = 120$
+\end{itemize}
+
 \end{document}
+
