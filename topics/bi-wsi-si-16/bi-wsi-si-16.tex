@@ -1,0 +1,122 @@
+\documentclass{szzclass}
+\usepackage{dependencies/szz-code}
+
+\subject{PPA}
+\code{BI-WSI-SI-16}
+\topic{Logické programování, Prolog: fakta, pravidla, dotazy, způsob vyhodnocení dotazů, unifikace, operátor řezu.}
+
+\begin{document}
+\section{Logické programování}
+
+\begin{itemize}
+\item Založeno na predikátové logice
+\item Vhodné zejména ve specifických aplikačních oblastech: databázové aplikace, automatické dokazování, umělá inteligence, \dots
+\item Prolog
+\item Deklarativní zápis programů, nezajímá se o složitost výpočtu
+\end{itemize}
+
+\section{Prolog}
+Program Prologu se skládá z Hornových klauzulí. Skládají se z těla a hlavičky a mohou to být:
+\begin{description}
+\item[Fakta] - s hlavou bez těla, vždy pravdivý
+\item[Pravidla] - s hlavou a tělem, pokud jsou splněny podmínky v těle, je pravdivý
+\item[Dotazy] - bez těla
+\end{description}
+
+\begin{minted}{prolog}
+hlavicka(jablko, jahoda). % fakt
+hlavicka(Promenna,X) :- telo(X). % pravidlo
+?- hlavicka(X,konstanta). % dotaz
+\end{minted}
+
+\begin{itemize}
+\item Term
+  \begin{itemize}
+  \item Struktury - funktor a seznam argumentů \mintinline{prolog}{parent(josef,jan)}
+  \item Jednoduché objekty
+    \begin{itemize}
+    \item Konstanty
+      \begin{itemize}
+      \item Atomy - začínají malým písmenem \mintinline{prolog}{jana}
+      \item Čísla - \mintinline{prolog}{12 -34.5}
+      \end{itemize}
+    \item Proměnné - Začínají velkým písmenem \mintinline{prolog}{X, Name, _}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection{Seznamy}
+\begin{itemize}
+\item \mintinline{prolog}{[] % prázdný seznam}
+\item \mintinline{prolog}{[1]}
+\item \mintinline{prolog}{[1,2,3]}
+\item \mintinline{prolog}{[[1,2], 3]}
+\item \mintinline{prolog}{[a | [b,c]] % oddělení hlavy od těla}
+\end{itemize}
+
+\subsection{Způsob vyhodnocení dotazů}
+\begin{itemize}
+\item Na program v Prologu lze nahlížet jako na databázi faktů a pravidel.
+\item Vyhodnocuje se na principu procházení stavového prostoru, pravidla procházena DFS a tělo zleva doprava.
+\item Řešení se hledá metodou backtrackingu.
+\end{itemize}
+
+\subsection{Unifikace}
+Jsou tři různé operátory podobné rovnosti:
+\begin{samepage}
+\begin{itemize}
+\item \textbf{\mintinline{prolog}{X is Y}} - Y se provede a unifikuje výsledek s X:
+  \begin{itemize}
+  \item \mintinline{prolog}{3 is 1+2} projde
+  \item \mintinline{prolog}{1+2 is 3} selže.
+  \end{itemize}
+\item \textbf{\mintinline{prolog}{X = Y}} - unifikuje X a Y, bez provádění:
+  \begin{itemize}
+    \item \mintinline{prolog}{3 = 1+2} selže
+    \item \mintinline{prolog}{1+2 = 3} selže.
+  \end{itemize}
+\item \textbf{\mintinline{prolog}{X =:= Y}} - obojí provede a porovná:
+  \begin{itemize}
+    \item \mintinline{prolog}{3 =:= 1+2} projde
+    \item \mintinline{prolog}{1+2 =:= 3} projde.
+  \end{itemize}
+\end{itemize}
+\end{samepage}
+
+Dva termy se unifikují, když:
+\begin{itemize}
+\item X, Y jsou proměnné. X a Y se unifikuji a výsledek je kladný.
+\item X, Y je-li jedna proměnná a druhá term. Substituuje term za proměnnou.
+\item X, Y jsou stejné termy.
+\item X, Y jsou struktury, tvořené stejným funktorem, počtem parametrů a jejich parametry si odpovídají.
+\end{itemize}
+
+\subsection{Operátor řezu}
+\begin{itemize}
+\item Řez fixuje přijaté „částečné řešení“ – omezuje splnění podcílů vlevo od řezu na jedinou možnost.
+\item Překročení řezu zamezí využití ostatních pravidel.
+\item Řez neovlivňuje zpětný chod vpravo do svého výskytu.
+\end{itemize}
+
+\begin{minted}{prolog}
+% přidání prvku X na jeho začátek ovšem jen v tom případě, že X v L již není
+% pridej(+X,+L,-NL) seznam NL vznikne ze seznamu L
+pridej(X,L,L) :- prvek(X,L), % je-li X již prvkem L, nepřidám ho
+  ! . % a zakáži návrat
+pridej(X,L,[X|L]). % X není prvkem L (jinak bych se sem nedostal), mohu ho tedy přidat
+\end{minted}
+
+\subsection{Operátor fail}
+\emph{"Jana má ráda muže, ale ne plešaté."}
+
+Bez operátoru řezu to nejde. S ním a se standardním predikátem fail, který, je-li volán, okamžitě selže, ji sestavíme poměrně snadno:
+
+\begin{minted}{prolog}
+marada(jana,X) :- plesaty(X), % je-li X plešaté uspěje,
+  !, % zakáže návrat
+  fail. % a selže.
+marada(jana,X) :- % k této klauzuli se výpočet dostane, pokud X není plešaté,
+  muz(X). % je-li to muz, má ho Jana ráda
+\end{minted}
+
+\end{document}
