@@ -90,7 +90,7 @@ Kroky:
 Dělí se na dva principy
 \begin{itemize}
     \item zamknutí - úprava - odemknutí (lock - modify - unlock) $\rightarrow$ pouze centralizované systémy
-    \item kopie - úprava - sloužení (copy - modify - merge) $\rightarrow$ centralizované i distribuované systémy
+    \item kopie - úprava - sloučení (copy - modify - merge) $\rightarrow$ centralizované i distribuované systémy
 \end{itemize}
 \subsubsection{zamknutí - úprava - odemknutí}
 \begin{itemize}
@@ -102,10 +102,10 @@ Dělí se na dva principy
     \item vynucuje serializovaný přístup i při nekonfliktních úpravách
     \item využítí pro soubory, které nelze po částech sloučit (grafika, modely...)
 \end{itemize}
-\subsubsection{kopie - úprava - sloužení}
+\subsubsection{kopie - úprava - sloučení}
 \begin{itemize}
     \item častěji využívaný způsob spolupráce
     \item odstaňuje problémy zamykacího režimu
-    \item v případě konfliktních změn je nutné provést ruřně sloučení
+    \item v případě konfliktních změn je nutné provést ruční sloučení
 \end{itemize}
 \end{document}
