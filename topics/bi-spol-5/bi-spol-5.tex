@@ -44,6 +44,7 @@ splňuje tyto dvě vlastnosti:
 
 \subsection{Vložení prvku do haldy}
 \begin{itemize}
+    \item $O($log$~n)$
     \item Tvar haldy dovoluje přidat okamžitě nový prvek na konec nejspodnější hladiny.
     \item Pokud by již byla plná, založíme novou hladinu.
     \item Pokud je haldové uspořádání mezi novým listem $l$ a jeho otcem $o$ v pořádku, můžeme skončit. Pokud ne, prohodíme $k(l)$ a $k(o)$.
@@ -52,6 +53,7 @@ splňuje tyto dvě vlastnosti:
 
 \subsection{Odstranění minima}
 \begin{itemize}
+    \item $O($log$~n)$
     \item Odstranění kořene r stromu haldy by porušilo vlastnost Tvar haldy.
     \item Prohoď klíče vrcholů $root$ a $last$, odstraň vrchol $last$ a potom přesuň klíč z $root$ na správné místo tak, aby opět platilo haldové uspořádání. BubbleDown
 \end{itemize}
@@ -110,7 +112,19 @@ nastavený $k$-tý nejnižší bit na 1.
 
 $n$-prvková binomiální halda sestává z $O($log $n)$ binomiálních stromů.
 
-\textbf{Merge} hald probíhá stejně, jako sčítání dvou binárních čísel.
+
+\textbf{Složitost}
+\begin{itemize}
+    \item Vložení $O($log $n)$
+    \item Nalezení minima $O(1)$
+    \item Extrakce minima $O($log $n)$
+    \item Merge $O($log $n)$
+    \item Build $O(n)$
+    \item Delete $O($log $n)$
+\end{itemize}
+
+
+\textbf{Merge} hald probíhá stejně, jako sčítání dvou binárních číísel.
 
 
 \newpage
@@ -134,6 +148,8 @@ vrchol $v$ musí platit:
 
 Binární vyhledávací strom nazveme dokonale vyvážený, pokud pro každý jeho vrchol v platí $|L(v)|~-~|R(v)|~\leq~1$.
 
+\textbf{Složitost} základních operací na BVS je průměrně $O($log $n)$, ale může dosáhnout až $O(n)$.
+
 \subsection{AVL}
 
 Binární vyhledávací strom nazveme AVL stromem, pokud pro každý
@@ -147,6 +163,8 @@ V korektním AVL stromu může nabývat jen těchto hodnot:
     \item δ(v) = −1 (levý podstrom hlubší) – značíme \textcircled{$-$},
     \item δ(v) = 0 (oba podstromy stejně hluboké) – značíme \textcircled{$\cdot$}.
 \end{itemize}
+
+\textbf{Složitost} základních operací na AVL je $O($log $n)$.
 
 % \begin{figure}[h]
 % \centering
@@ -184,7 +202,9 @@ Prvky jsou ukládány do pole či spojového seznamu odpovídající příslušn
 \end{figure}
 
 \subsection{Otevřená adresace}
-Prvky jsou ukládány na další ásledující místo v poli získané za pomoci dvojité hašovací funkce. V přpadě mazání prvku se zamění za značku smazaného prvku, který značí možnou existenci dalších prvků s ekvivalentním hašem.
+Prvky jsou ukládány na další ásledující místo v poli získané za pomoci dvojité hašovací funkce. V přpadě mazání prvku se zamění za značku smazaného prvku, který značí možnou existenci dalších prvků s ekvivalentním hašem. 
+Následně, pokud narazíme na značku smazaného prvku při vkládání, tak se prvek vloží na míísto značky. V případě, že na tuto znařku narazíme při vyhledávání, tak pokračujeme na další iteraci algoritmu, jako kdyby zde byl platný prvek.
+
 
 \textbf{Dvojité hešování}:\newline Prohledávací posloupnost je dána funkcí
 $h(k, i) = (f(k) + i \cdot g(k)) \text{mod } m$, kde $f : U \rightarrow \{0, . . . , m - 1\}$ a
@@ -197,7 +217,5 @@ posloupnost navštíví každou přihrádku právě jednou.
 \centering
 \includegraphics[width=0.8\textwidth]{topics/bi-spol-5/images/hashOpenInsert.png}
 \end{figure}
-
-
 
 \end{document}
