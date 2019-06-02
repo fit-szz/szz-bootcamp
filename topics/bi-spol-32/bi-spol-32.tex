@@ -163,32 +163,55 @@ Uvažujme rekurentní rovnici: (zanedbáváme ceil a floor)
 \end{center}
 
 Pak $t(n)$ má následující řešení:
-\begin{itemize}
+\begin{enumerate}
     \item Pokud $f(n) = O(n^{\text{log}_b a - \epsilon} )$ pro nějakou konstantu $\epsilon > 0$, pak $t(n) = \Theta (n^{\text{log}_b a})$.
     \item Pokud $f(n) = \Theta (n^{\text{log}_b a})$, pak $t(n) = \Theta (n^{\text{log}_b a} \text{log} n)$.
     \item Pokud $f(n) = \Omega (n^{\text{log}_b a + \epsilon} )$ pro nějakou konstantu $\epsilon > 0$ a pokud
     $af(n/b)~\leq~cf(n)$ pro nějakou konstantu $c < 1$ a všechna $n \geq n_0$, pak $t(n) = \Theta (f(n))$.
     \item Pokud je rozdíl mezi funkcemi menší než polynomiální, nelze tuto metodu použít!
-\end{itemize}
+\end{enumerate}
+
+\textbf{Příklad 1}
+
+Rovnice $t(n) = 6t(n/4) + n$.\newline
+$a = 6, b = 4$\newline
+$n^{\log_4 6}~\dot{=}~n^{1,3} = \Omega(n) \implies f(n) = O(n^{log_4 6-0,1}) \implies$ případ (1).\newline
+Čili $t(n) = \Theta(n^{\log_4 6})$.
 
 
 
-\begin{figure}
-    \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt1.PNG}
-\end{figure}
+\textbf{Příklad 2}
 
-\begin{figure}
-    \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt2.PNG}
-\end{figure}
+Rovnice (MergeSort) $t(n) = 2t(n/2) + n$\newline
+$a = 2, b = 2$\newline
+$n^{\log_2 2} = n = \Theta(n) \implies$ případ (2).\newline
+Čili $t(n) = \Theta(n \log n)$.
 
-\begin{figure}
+\textbf{Příklad 3}
+
+Rovnice $t(n) = 3t(n/4) + n^2$\newline
+$a = 3, b = 4$\newline
+$n^{log_4 3}~\dot{=}~n^{0,7} = o(n^2)$ a platí, že $3 \cdot (\dfrac{n}{4})^2 \leq cn^2$ pro
+nějakou $c < 1 \implies$ případ (3).\newline
+Čili $t(n) = Θ(n^2)$
+
+
+% \begin{figure}
+%     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt1.PNG}
+% \end{figure}
+
+% \begin{figure}
+%     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt2.PNG}
+% \end{figure}
+
+\begin{figure}[h]
     \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/slozitost.png}
 \end{figure}
 
 % \newpage
 % \section{Kuchař}
 
-\begin{figure}
+\begin{figure}[h]
     \includegraphics[width=1\textwidth, center]{topics/bi-spol-32/images/kuchar.PNG}
 \end{figure}
     
