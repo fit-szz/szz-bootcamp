@@ -5,6 +5,10 @@
 
 \begin{document}
 
+\maketitle
+\tableofcontents
+\newpage
+
 \section{Komponenty informační bezpečnosti}
 
 Komponenty lze rozdělit takto:
@@ -24,6 +28,73 @@ Kvůli zpracovaní a přenosu informací je potřeba řešit bezpečnost IT a IC
           prostředím a ochranu počítačů projených do počítačové sítě.
 \end{enumerate}
 
-Hranice mezi tímto dělením ovšem není jednoznačná, nebo
+Hranice mezi tímto dělením ovšem není jednoznačná, například počítačové viry míří na počítačové systémy, ale
+mohou narušit celou počítačovou síť.
+
+\section{Informační bezpečnost}
+
+Definice: Souhrn prostředků a postupů na zabezpečení důvěrnosti, integrity a dostupnosti informací.
+
+Tyto prostředky mají za učel definovat postupy pro ochranu uživatelských dat, také řízení uživatelského
+přistupu, tak aby pouze ověření uživatelé měli přístup k datům a to pouze k datům, kte kterým mají mít přístup.
+
+\begin{itemize}
+    \item Důvěrnost (confidentiality)
+          Vlastnost, která zaručuje ochranu dat před neautorizovaným přístupem.
+    \item Integrita (integrity)
+          Zaručuje ucelenost a nepoškozenost informace.
+    \item Dostupnost (availability)
+          Dostupnost zaručuje přístup k informacím pro autorizované subjekty.
+\end{itemize}
+
+U informačního systému (IS) je potřeba myslet vždy na systém jako na celek a celá jeho
+bezpečnost je stejně dobrá jako jeho nejslabší článek.
+
+\subsection{Užitková hodnota (asset)}
+
+Každý informační systém se skládá z užitkovž hodnot, což je vše co představuje určitou hodnotu pro organizaci, firmu nebo kterýkoliv ekonomický subjekt.
+
+Tyto hodnoty dělíme do tří kategorií:
+\begin{enumerate}
+    \item Hmotné užitkové hodnoty (physical assets):
+          Jedná se hlavně o technické prostředky jako například počítače a další hardware, ale také budovy.
+    \item Nehmotné užitkové hodnoty (nonphysical assets):
+          Software, informace (data) a možnost poskytování informací a služeb.
+    \item Lidské zdroje (human resources):
+          Personál s přítupem k informacím či správci IS.
+\end{enumerate}
+
+Užitkové hodnoty jsou vystavené různým hrozbám (threats), které představují potenciální narušení bezpečnosti IS a možnému úniku dat, jejich ztráty
+či poškození.
+
+Hrozby můžeme taky rozdělit na dva typy a to úmyslná, která jsou prováděna za účelem získání dat nebo jejich poškození. Poté je zde neúmyslná hrozba,
+která pramení z možnosti že uživatel udělá chybu, například nesprávným zacházením s IS. Hrozby také mohou být přírodního charakteru.
+U charakteristiky hrozeb musíme nahlížet na:
+\begin{itemize}
+    \item zdroj
+    \item motivaci
+    \item možnou početnost výskytů
+    \item jejich pravděpodobnost
+    \item a následné dopady
+\end{itemize}
+
+Hrozby z hlediska IS:
+\begin{itemize}
+    \item Softwarová hrozba
+          Jedná se hlavně o počítačové malware, které se zaměřují na napedení komunikace mezi jednotlivými částmi IS. Do systému
+          se mohou dostat skrze paměťová média nebo přes síť, do které je daná komponenta připojená.
+    \item Hrozba neautorizovaným subjektem (útočníkem)
+          Potencionální možnost pro neověřeného uživatele dostat se do našeho systému za použití jiných nástrojů než již zmíněného malwaru.
+\end{itemize}
+
+Hrozby je tedy třeba ohodnit a na základě nich definovat jednotlivé zranitelnosti (vulnerability), které ukazují na slabá místa v IS a na
+základě, kterých můžeme určit jejich dopady a také možná opatření jak jim předejít. Zranitelnost můžeme stejně jako hrozbu ohodnotit
+(například: nízká, střední a vysoká). Samotná zranitelnost nezpůsobuje žádné škody pouze vytváří pro ně vytváří podmínky.
+
+Při neočekávané či nežádoucí situaci mluvíme o incidentu infomační bezpečnosti. V návaznosti na incidenty můžeme mluvit o jejich dopadu (impact).
+Dopad může být but přímý (ztráta data či integrity IS) nebo nepřímý (finanční ztráty, ztráta konkurence schopnosti). Posouzení dopadu je pak založeno
+na poměru mezi cenou za ztrátu či narušené bezpečnosti a nástrojům, které zajistí, aby se situace neopakovala.
+
+
 
 \end{document}
