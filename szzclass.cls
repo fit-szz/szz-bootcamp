@@ -12,11 +12,7 @@
 \newcommand{\topic}[1]{\def\thetopic{#1}}
 
 \AtBeginDocument{
-  \@ifundefined{thesubject}{
-    \maketitle
-    \tableofcontents
-    \newpage
-  }{
+  \@ifundefined{thesubject}{}{
   \begin{center}
   \Large \textbf{\thesubject~--~\thecode}\\
   \Large \thetopic
