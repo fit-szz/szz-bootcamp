@@ -11,6 +11,7 @@
 \usepackage{titlesec}
 % \titlespacing*{\section}{0pt}{1ex}{0.5ex}
 \titlespacing*{\subsection}{0pt}{1ex}{0ex}
+\usepackage{dependencies/szz-math}
 
 \title{Metody řešení rekurentních rovnic, sestavování a   řešení rekurentních rovnic při analýze časové složitosti algoritmů.}
 \author{Daniel Hampl}
@@ -20,8 +21,8 @@
 \begin{document}
 \maketitle
 
-\tableofcontents
-\newpage
+% \tableofcontents
+% \newpage
 
 \section{Rekurentní rovnice}
 
@@ -74,6 +75,9 @@ $a_{n+k} + c_{k−1}a_{n+k−1} + · · · + c_1a_{n+1} + c_0a_n = b_n$
 \subsection{Moivre-ova věta}
 $\alpha \pm i\beta = r[\text{cos}(\Phi) \pm i\text{sin}(\Phi)] \implies (\alpha \pm i\beta)^n = r^n[\text{cos}(n\Phi) \pm i\text{sin}(n\Phi)]$
 
+
+\newpage
+
 \section{Řešení}
 
 \subsection{Substituční metoda}
@@ -85,16 +89,37 @@ $\alpha \pm i\beta = r[\text{cos}(\Phi) \pm i\text{sin}(\Phi)] \implies (\alpha 
     \item Využívá se k odhadu horní a dolní meze
 \end{itemize}
 
+Uvažujme rovnici $t(n) = 2t(\lfloor n/2 \rfloor) + n$.
+Jako horní odhad řešení zkusme
+$t(n) \leq cn~\text{log}~n$, kde $c > 0$ je vhodně zvolená konstanta.
+Indukcí dokážme správnost odhadu, tedy že pro řešení rovnice platí
+$t(n) =\nolinebreak O(n~\text{log}~n)$.
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/ind1.PNG}
-\end{figure}
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/ind2.PNG}
-\end{figure}
+Indukční krok
+(ověření, že $t(n) \leq cn~\text{log}~n$ vyhovuje rekurenci $t(n) = 2t(\lfloor n/2 \rfloor) + n$)
+Pøedpokládejme, že platí pro $\lfloor n/2 \rfloor$ a dosaďme
+$t(\lfloor n/2 \rfloor) \leq c \lfloor n/2 \rfloor~\text{log}~ \lfloor n/2 \rfloor$ do počáteční rovnice. Dostaneme
 
-\newpage
+
+
+\begin{align*}
+t(n) &\leq 2(c \lfloor n/2 \rfloor \log{\lfloor n/2 \rfloor}) + n\\
+     &= cn \log{(n/2)} + n\\
+     &= cn \log{ n} - cn \log{} 2 + n\\
+     &= cn \log{ n} - cn + n = cn \log{ n} - (c - 1)\cdot n\\
+     &\leq cn\log{n}\text{, pokud }c \geq 1
+\end{align*}
+
+% \begin{figure}[h]
+%     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/ind1.PNG}
+% \end{figure}
+
+% \begin{figure}[h]
+%     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/ind2.PNG}
+% \end{figure}
+
+% \newpage
 \subsection{Iterační metoda}
 
 \begin{itemize}
@@ -102,15 +127,31 @@ $\alpha \pm i\beta = r[\text{cos}(\Phi) \pm i\text{sin}(\Phi)] \implies (\alpha 
     \item Využívá se k odhadu horní a dolní meze
 \end{itemize}
 
+Uvažujme rovnici
+$t(n) = 3t(\lfloor n/4\rfloor) + n$
+Protože platí $\lfloor \lfloor n/4\rfloor /4\rfloor = \lfloor n/4^2 \rfloor$
+atd., postupnou iterací dostaneme
+\begin{align*}
+t(n) &= n + 3t(\lfloor n/4 \rfloor)\\
+     &= n + 3 \lfloor n/4\rfloor + 3^2t(\lfloor n/4^2 \rfloor)\\
+     &= n + 3 \lfloor n/4 \rfloor + 3^2\lfloor n/4^2 \rfloor + 3^3t(\lfloor n/4^3 \rfloor)\\
+     &= . . .\\
+     &= n + 3 \lfloor n/4\rfloor + 3^2 \lfloor n/4^2 \rfloor + 3^3 \lfloor n/4^3 \rfloor) + · · · + 3^{\log_4 n} \Theta(1).
+\end{align*}
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/it1.PNG}
-\end{figure}
+Po zanedbání zaokrouhlovacích chyb a doplněním na nekonečnou
+konvergentní geometrickou řadu dostaneme
+$t(n) \leq n \sum\limits_{i=0}^{\infty}(\dfrac{3}{4})^i= 4n$.
 
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/it2.PNG}
-\end{figure}
+% \begin{figure}[h]
+%     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/it1.PNG}
+% \end{figure}
+
+
+% \begin{figure}[h]
+%     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/it2.PNG}
+% \end{figure}
 
 
 \subsection{Mistrovská metoda}
@@ -132,22 +173,22 @@ Pak $t(n)$ má následující řešení:
 
 
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/mt1.PNG}
+\begin{figure}
+    \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt1.PNG}
 \end{figure}
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/mt2.PNG}
+\begin{figure}
+    \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt2.PNG}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
     \includegraphics[width=\textwidth, center]{topics/bi-spol-32/images/slozitost.png}
 \end{figure}
 
 % \newpage
 % \section{Kuchař}
 
-\begin{figure}[h]
+\begin{figure}
     \includegraphics[width=1\textwidth, center]{topics/bi-spol-32/images/kuchar.PNG}
 \end{figure}
     
