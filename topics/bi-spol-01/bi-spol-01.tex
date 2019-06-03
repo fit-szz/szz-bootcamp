@@ -75,7 +75,8 @@ uspořádaná \textbf{sedmice: R = (Q, $\Sigma$, G, $\delta$, $q_0$, B, F)}.
 \item F $\leq$ Q je množina koncových stavů
 \end{itemize}
 Na začátku vypočtu se nachází TS v počátečním symbolu $q_0$, páska je vyplněna BLANK znaky, na "prvních" buňkách pásky je zapsán vstup a čtecí hlava ukazuje na první buňku vstupu.
-
+\newline
+Konfigurace obecně je prvek $<q,s,n>$, kde \textit{q} je aktuální stav, \textit{s} je nejmenší souvislá část pásky obsahující všechny neprázdné symboly a \textit{n} je pozice čtecí hlavy.
 \subsection{Deterministický Turingův stroj}
 Má následující přechodovou funkci $\delta$:
 
@@ -98,7 +99,8 @@ Má následující přechodovou funkci $\delta$:
 $\delta$ je zobrazení z (Q bez F) x G do množiny všech podmnožin množiny Q x G x \{-1, 0, 1\}
 \newline
 \newline
-Na rozdíl od NTS si může vybrat jak pokračovat dál.
+Na rozdíl od DTS může mít v daném stavu několik přechodů pro daný symbol.
+NTS si tedy může vybrat, jakým způsovem bude ve výpočtu pokračovat.
 
 \subsection{Porovnání síly výkonu TS}
 NTS je stejně výkonný jako DTS.
@@ -132,7 +134,7 @@ DTS \textbf{nepřijme} řetězec pokud:
 \item má více pásek a více čtecích hlava
 \item jednopáskové a více páskové TS jsou stejně výkonné
 \end{itemize}
-\subsection{Kodávní TS}
+\subsection{Kódovanání TS}
 \begin{itemize}
 \item zakódování přechodové funkce TS do řetězce nad jeho abecedou
 \item nekonečná paměť TS lze zakódovat do konečného řetězce
@@ -158,7 +160,7 @@ Tedy pro $\forall$w$\notin$L se TS \textbf{zastaví}.
 \section{Třídy problémů P, NP, NP-těžký, NP-úplný}
 \subsection{Rozhodovací problém}
 Rozhodovací problém je takový problém, na který je odpovězeno Ano nebo Ne. Rozlišují se instance Ano-instance a Ne-instance
-pro použití TS se instance namapují na \{1,0\}*. Všechny Ano-instance tvoří jazyk $L_a)$. TS řeší rozhodovací problém, pokud rozhodne $L_a$.
+pro použití TS se instance namapují na \{1,0\}*. Všechny Ano-instance tvoří jazyk $L_a$. TS řeší rozhodovací problém, pokud rozhodne $L_a$.
 \subsection{Optimalizační problém}
 Optimalizační problém je problém, který hledá v nějakém ohledu optimální řešení. Pro lepší názornost se používá rozhodovací verze problému.
 Optimalizační a rozhodovací verze jsou výpočetně stejně náročné.

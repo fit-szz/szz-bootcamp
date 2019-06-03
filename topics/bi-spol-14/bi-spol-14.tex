@@ -37,7 +37,7 @@ Je definovaná:
 \begin{itemize}
 	\item prvotní formule je výroková formule
 	\item jsou-li A a B výrokové formule, pak jsou i $ \neg A, (A \wedge B), (A \vee B), (A \Rightarrow B)$ výrokové formule
-	\item formule je řetězec symbolů sestavený podle podle předchozích 2 pravidel v koečně mnoha krocích
+	\item formule je řetězec symbolů sestavený podle předchozích 2 pravidel v konečně mnoha krocích
 \end{itemize}
 \subsection{Ekvivalence}
 ($\Leftrightarrow$) - ekvivalence dvou formulí je pravdivá právě tehdy, když obě mají stejnou pravdivostní hodnotu
@@ -49,7 +49,7 @@ Je definovaná:
 Je-li \textit{v}(A) = 1, řekne se, že A je \textbf{pravdivý při ohodnocení} \textit{v}.\\
 Je-li \textit{v}(A) = 0, řekne se, že A je \textbf{nepravdivý při ohodnocení} \textit{v}.
 \section{Logický důsledek}
-Formule B je logickým důsledkem formule A, právě když pro každé ohodnocení v, pro které v(a) = 1,
+Formule B je logickým důsledkem formule A, právě když pro každé ohodnocení v, pro které v(A) = 1,
 je i v(B) = 1.
 \\
 Píše se A $\models$ B.
@@ -82,7 +82,7 @@ tyto spojky. Například:
 \section{Disjunktivní a konjunktivní normální tvary}
 \subsection{DNT - disjunktivní normální tvar}
 \begin{itemize}
-	\item \textbf{literál} je provotní formule nebo negace prvotní formule
+	\item \textbf{literál} je prvotní formule nebo negace prvotní formule
 	\item \textbf{implikant} je literál nebo konjunkce několika literálů
 	\item formule je v \textbf{DNT}, jestliže je implikant nebo disjunkce několika implikantů 
 \end{itemize}
@@ -95,7 +95,7 @@ ukázka:
 \end{itemize}
 \subsection{KNT - konjunktivní normální tvar}
 \begin{itemize}
-	\item \textbf{literál} je provotní formule nebo negace prvotní formule
+	\item \textbf{literál} je prvotní formule nebo negace prvotní formule
 	\item \textbf{klausule} je literál nebo disjunkce několika literálů
 	\item formule je v \textbf{KNT}, jestliže je klausulí nebo konjunkce několika klausulí 
 \end{itemize}
@@ -142,6 +142,6 @@ Následující tvrzení jsou ekvivaletní
 \begin{itemize}
 	\item $A \models B$
 	\item Všechny mintermy $A_d$ jsou obsaženy v $B_d$
-	\item Všechny maxterny $B_k$ jsou obsaženy v $A_k$ 
+	\item Všechny maxterny $B_k$ jsou obsaženy v $A_k$
 \end{itemize}
 \end{document}

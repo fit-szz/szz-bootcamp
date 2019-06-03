@@ -73,7 +73,7 @@ array[$l_1 \dots h_1$]
 Prvky uloženy v kontinuálním paměťovém bloku, velikost bloku: ($(h_1 - l_1 + 1) * sizeof(T)$). Funkce zajišťující přístup k prvku (mapovací funkce map(i))
 je ofset prvku od počátečního bloku.
 \newline
-Jednodimenzionální pole má jednoduchou mapovací funkci: $map(i) = (i - l_1)$. Protože pole v C/C+++, Javě, C\#... má vždy $ l_1 = 0 $, tak je mapovací
+Jednodimenzionální pole má jednoduchou mapovací funkci: $map(i) = (i - l_1)$. Protože pole v C/C++, Javě, C\#... má vždy $ l_1 = 0 $, tak je mapovací
 funkce ještě jednodušší = $map(i) = i$
 \subsubsection{Implementace - multidimenzionální pole}
 array[$l_1 \dots h_1,l_2 \dots h_2,\dots,l_n \dots h_n$]
@@ -105,7 +105,7 @@ Kontejner, který obsahuje prvky typu T, bez duplikátů. Základní interface:
 \end{itemize}
 \subsubsection{Implementace}
 \begin{itemize}
-    \item indikátorvý (charakteristický) vektory
+    \item indikátorový (charakteristický) vektor
     \item pole (neseřazené)
     \item pole (seřazené)
     \item spojový seznam (jednosměrný, neseřazený)
@@ -143,7 +143,7 @@ Jiné operace:
     \item sjednocení - vytvoření nové množiny, procházení prvků první množiny a vkládání jejích prvků (O(n)). Pak procházení druhé množiny + kontrola existence (O(n*m)) = O(n*m)
     \item porovnání - porovnává se obsah polí (kvadratický algoritmus): O(n*m)
 \end{itemize}
-\subsubsection{Implementace - neseřazené pole}
+\subsubsection{Implementace - seřazené pole}
 Seřazené prvky jsou umístěny v poli, které je dynamicky alokované a jeho velikost se mění. Třída musí mít přehled o velikosti pole
 a o počtu prvků v množině.
 \begin{itemize}
