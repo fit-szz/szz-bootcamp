@@ -116,7 +116,7 @@ $n$-prvková binomiální halda sestává z $O($log $n)$ binomiálních stromů.
 \textbf{Složitost}
 \begin{itemize}
     \item Vložení $O($log $n)$
-    \item Nalezení minima $O(1)$
+    \item Nalezení minima při udržení pointeru na minimum: $O(1)$, jinak $O($log $n)$
     \item Extrakce minima $O($log $n)$
     \item Merge $O($log $n)$
     \item Build $O(n)$
@@ -153,7 +153,7 @@ Binární vyhledávací strom nazveme dokonale vyvážený, pokud pro každý je
 \subsection{AVL}
 
 Binární vyhledávací strom nazveme AVL stromem, pokud pro každý
-jeho vrchol v platí $h(l(v)) − h(r(v)) \leq 1$.
+jeho vrchol v platí $h(l(v))~−~h(r(v)) \leq 1$.
 
 Budeme v každém vrcholu $v$ udržovat číslo $δ(v) = h(r(v)) - h(l(v))$, které nazveme znaménko vrcholu $v$.
 
@@ -202,9 +202,11 @@ Prvky jsou ukládány do pole či spojového seznamu odpovídající příslušn
 \end{figure}
 
 \subsection{Otevřená adresace}
-Prvky jsou ukládány na další ásledující místo v poli získané za pomoci dvojité hašovací funkce. V přpadě mazání prvku se zamění za značku smazaného prvku, který značí možnou existenci dalších prvků s ekvivalentním hašem. 
-Následně, pokud narazíme na značku smazaného prvku při vkládání, tak se prvek vloží na míísto značky. V případě, že na tuto znařku narazíme při vyhledávání, tak pokračujeme na další iteraci algoritmu, jako kdyby zde byl platný prvek.
-
+Prvky jsou ukládány na další následující místo v poli získané za pomoci dvojité hašovací funkce. V případě mazání prvku se zamění za
+značku smazaného prvku, který značí možnou existenci dalších prvků s ekvivalentním hašem.
+Následně, pokud narazíme na značku smazaného prvku při vkládání, tak se prvek vloží na místo značky.
+V případě, že na tuto značku narazíme při vyhledávání, tak pokračujeme na další iteraci algoritmu, protože
+jestli při uložení byla tato pozice již zaplněná, může hledaný prvek být jinde.
 
 \textbf{Dvojité hešování}:\newline Prohledávací posloupnost je dána funkcí
 $h(k, i) = (f(k) + i \cdot g(k)) \text{mod } m$, kde $f : U \rightarrow \{0, . . . , m - 1\}$ a
@@ -212,6 +214,7 @@ $g : U → \{1, . . . , m - 1\}$ jsou dvě různé hešovací funkce, $m$ je
 prvočíslo a $i$ je počet neúspěšných pokusů v aktuální operaci
 Protože je $m$ prvočíslo, je s ním $g(k)$ vždy nesoudělné a
 posloupnost navštíví každou přihrádku právě jednou.
+$m$ odpovídá velikosti pole, které se používá pro ukládání.
 
 \begin{figure}[h!]
 \centering
