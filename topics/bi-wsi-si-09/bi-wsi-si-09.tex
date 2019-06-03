@@ -116,5 +116,118 @@ Malé shrnutí z přednášky o principech OO návrhu:
       \item provázanost mezi třídami je špatná a vede k \textit{rigid}, \textit{fragile}, \textit{non-reusable} SW,
       \item zamezení vysoké provázanosti lze dosáhnout pomocí dodržování SRP, OCP, LSP, ISP a DIP.
 \end{itemize}
-%\todo{Toto mi přijde takové moc jednoduše napsané, bylo by možná lepší to popsat trochu formálněji}
+
+
+\section{Podotázky k této státnicové otázce na moodlu BI-OOP}
+
+\textbf{https://moodle.fit.cvut.cz/mod/url/view.php?id=67753}
+
+\begin{itemize}
+      \item \textit{How encapsulation and composition work together}
+      
+      \textbf{Zapouzdření} -- skrytí a kontrola vnitřního stavu objektu. Klientské objekty nemají přístup
+      k vnitřnímu stavu.
+
+      \textbf{Kompozice} -- objekt může být sestaven z několika komponent (jiných objektů) na které může
+      \textbf{delegovat} podproblémy při řešení jeho povinností. Jednotlivé komponenty objektu by neměly být
+      přístupné klientským objektů, které ho využívají. Toho lze docílit pomocí zapouzdření.
+      Objekt \textbf{O} vlastnící komponentu \textbf{C} by měl mít možnost úplné výměny komponenty \textbf{C},
+      aniž by ovlivnil jakýkoliv klientský objekt, který s objektem \textbf{O} pracuje.
+      
+      \item \textit{Explain 'self' and 'super'.}
+      
+      \textbf{self} -- reprezentuje příjemce zprávy. \textbf{Method-lookup} (kde se začíná hledat odpovídající
+      metoda pro příchozí zprávu) začíná v příjemci.
+
+      \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\textwidth]{topics/bi-wsi-si-09/self.png}
+            \caption{Method lookup pro \textbf{self}}
+      \end{figure}
+
+      \textbf{super} -- reprezentuje příjemce zprávy (úplně stejně jako \textbf{self}). \textbf{Method-lookup}
+      začíná v \textbf{superclass} (hierarchicky nadřazená třída) výrazu, který obsahuje \textbf{super}.
+
+      \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\textwidth]{topics/bi-wsi-si-09/super.png}
+            \caption{Method lookup pro \textbf{super}}
+      \end{figure}
+      
+      \item \textit{Why can we say that sending a message is making a choice?}
+      
+      Volba prováděné metody odpovídající zasílané zprávě je závislá na příjemci (konkrétní instanci třídy).
+      S každým zasláním zprávy tedy \textit{vybíráme} metodu podle aktuálního příjemce.
+      To odpovídá \textit{if, then, else} rozhodování, jehož větve se ale vytváří až za běhu programu.
+
+      \item \textit{How 'not' is implemented? What the implementation illustrates?}
+      
+      \textbf{Boolean} je implementován jako abstraktní třída. Od \textbf{Boolean} dědí třídy \textbf{True}
+      a \textbf{False}. Tyto třídy implementují metody \textbf{not}, která pouze vrací instanci toho opačného booleanu.
+      Třídy \textbf{True} a \textbf{False} mají singleton instance \textbf{true} a \textbf{false}.
+
+      \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\textwidth]{topics/bi-wsi-si-09/not.png}
+            \caption{Implementace \textbf{not}}
+      \end{figure}
+
+      \item \textit{Why is testing important?}
+      
+      \begin{itemize}
+            \item Specifikace očekávaného chování a výsledků (v jistém smyslu slouží i jako dokumentace).
+            \item Nalezení problémů a porozumění kódu.
+            \item Zvýšení důvěry v kód.
+            \item Odhalení bugů, které se projeví změnou jené části kódu.
+            \item Izolování problému.
+            \item \textit{Další nápady na tuto velice obecnou otázku viz BI-SI1, BI-SI2.}
+      \end{itemize}
+
+      Testy by měly:
+
+      \begin{itemize}
+            \item ověřit mezní hodnoty,
+            \item ověřit komplexní scénáře,
+            \item mít dobré pokrytí,
+            \item ověřit abstrakci problémů,
+            \item být nezávislé.
+      \end{itemize}
+
+      \item \textit{Object initialization practices}
+      
+      \textbf{Provider responsibility} -- je povinností každé třídy aby poskytovala \textit{well-formed} instance,
+      tedy takové instance, které nevyžadují žádné další zasílání zpráv pro svoji inicializaci.
+      K tomu je důležitá \textbf{automatická inicializace} instančních proměnných a vnitřního stavu obecně,
+      například pomocí poskytntí výchozích (\textit{default}) hodnot.
+
+      \textbf{Lazy initialization} -- pozdržení inicializace hodnoty do doby, kdy je hodnotu poprvé potřeba použít.
+      Vhodné použít v případě, že nejsou instanční proměnné používané 
+      pořád a zabírají spoustu místa nebo závisejí na jiných komponentách.
+
+      \textbf{Zakázání výchozího konstruktoru} -- pokud k vytvoření třídy vždy potřeba nějaký parametr,
+      je třeba zabránit vytvoření instance pomocí výchozího konstruktoru, například pomocí vyhození výjimky
+      ve vlastní implementaci výchozího konstruktoru.
+
+      \item \textit{Why self-sends are plans for reuse?}
+      
+      Používání odkazování na příjemce pomocí \textbf{self} v metodách zachovává informaci o třídě instance
+      příjemce. To vede k většímu znovupoužití kódu (měníme pouze malé metody v podtřídách a hlavní metoda
+      nadtřídy může zůstat jednoduchá).
+
+      \begin{minted}[breaklines]{smalltalk}
+      ClassA>>doStuff
+      ^ self getNum
+
+      ClassA>>getNum
+      ^ 10
+
+      ClassB>>getNum
+      ^ 20
+
+      ClassB new doStuff.   " >>>> 20 "
+      \end{minted}
+
+\end{itemize}
+
+
 \end{document}
