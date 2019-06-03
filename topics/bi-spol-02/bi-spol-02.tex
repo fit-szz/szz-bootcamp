@@ -1,0 +1,90 @@
+\documentclass{szzclass}
+\usepackage{dependencies/szz-math}
+\usepackage[czech]{babel}
+
+\subject{AAG}
+\code{BI-SPOL-2}
+\topic{Regulární jazyky: Deterministické a nedeterministické konečné automaty. Determinizace konečného automatu. Minimalizace deterministického konečného automatu. Operace s konečnými automaty. Regulární gramatiky, regulární výrazy, regulární rovnice.}
+
+\begin{document}
+
+\section{Regulární jazyky}
+\begin{theorem}[Kleeneova věta]
+Libovolný jazyk je regulární, právě když je přijímaný konečným automatem
+\end{theorem}
+
+\subsection{Deterministické automaty}
+\begin{definition}
+\textbf{Deterministický} konečný automat je pětice $M=(Q,\Sigma,\delta,q_0,F)$, kde
+\begin{itemize}
+\item $Q$ - konečná množina stavů
+\item $\Sigma$ - konečná abeceda
+\item $\delta$ - zobrazení $Q\times\Sigma \to Q$
+\item $q_0$ - počáteční stav
+\item $F\subseteq Q$ - množina koncových stavů
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item \textbf{Konfigurace} konečného automatu $M$ (viz výše) je 
+  \begin{itemize}
+  \item dvojice $(q,w)\in Q\times \Sigma^{*}$.
+  \item počáteční - $(q_0,w)$
+  \item koncová - $(q,\varepsilon)$, kde $q\in F$
+  \end{itemize}
+\item \textbf{Přechod} $\vdash_M$ je relace nad $Q\times\Sigma^{*}$, taková, že $(q, w) \vdash_M (p, w')$ právě tehdy, když $w = aw'$ a $\delta(q, a) = p$ pro nějaké $a\in\Sigma,w \in \Sigma{∗}.$
+\item Jazyk \textbf{je přijímaný} DKA automatem $M$, jestliže existuje přechod z $q_0$ do $q\in F$.
+\item DKA nazveme \textbf{úplně úrčený}, když je zobrazení $\delta(q,a) definováno pro všechny dvojice stavů a vstupních symbolů.$
+\end{itemize}
+
+\subsection{Nedeterministické automaty}
+\begin{definition}
+\textbf{Nedeterministický} konečný automat je pětice $M=(Q,\Sigma,\delta,q_0,F)$, kde
+\begin{itemize}
+\item $\delta$ - zobrazení $Q\times\Sigma$ do množiny všech podmnožin $Q$.
+\end{itemize}
+\end{definition}
+
+Stav $q\in Q$ je \textbf{dosažitelný}, pokud $\exists w\in\Sigma^{*}: (q_0,w)\vdash^{*}(q,\varepsilon)$. Jinak je stav nedosažitelný.
+
+Stav $q\in Q$ je \textbf{užitečný}, pokud $\exists w\in\Sigma^{*},\exists p\in F: (q,w)\vdash^{*}(p,\varepsilon)$. Jinak je stav zbytečný.
+
+\section{Determinizace konečného automatu}
+TODO
+\section{Minimalizace deterministického konečného automatu}
+TODO
+
+\section{Operace s konečnými automaty}
+\begin{itemize}
+\item Sjednocení - $L(M) = L(M1) \cup L(M2)$
+\item Průnik - $L(M) = L(M1) \cap L(M2)$
+\item Doplněk - Úplně určený DKA, $F'=Q\setminus F$
+\item Součin - ke koncovému stavu $M_1$ přidáme počáteční stav $M_2$; $q_{0,M}=q_{0,M_1}, F_M=F_2$
+\item Iterace - vytvoříme $q_0$, který bude zároveň koncový a ze všech původních koncových stavů povede $\varepsilon$ přechod do počátečního stavu $q_0$.
+\end{itemize}
+
+\section{Regulární gramatiky}
+Gramatika $G=(N,\Sigma,P,S)$ je \textbf{regulární}, jestliže každé pravidlo má tvar $A \to aB$ nebo $A \to a$, kde $A, B \in N, a \in \Sigma$, nebo tvar $S \to \varepsilon$ v případě, že $S$ se nevyskytuje na pravé straně žádného pravidla.
+
+\section{Regulární výrazy}
+\begin{definition}
+\textbf{Regulární výraz} $V$ nad abecedou $\Sigma$ je definován následujícím způsobem:
+\begin{enumerate}
+\item $\emptyset, \varepsilon, a$ jsou regulární výrazy pro všechna $a \in\Sigma$.
+\item Jsou-li $x, y$ regulární výrazy nad $\Sigma$, pak:
+\end{enumerate}
+\begin{itemize}
+\item $(x + y)$ (sjednocení, alternativa),
+\item $(x.y)$ (zřetězení) a
+\item $(x)^*$ (iterace)
+\end{itemize}
+jsou regulární výrazy nad $\Sigma$.
+\end{definition}
+
+\section{Regulární rovnice}
+\begin{definition}
+Standardní soustava \textbf{regulárních rovnic} má tvar:
+$X_i = \alpha_{i0} + \alpha_{i1}X_1 + \alpha_{i2}X_2 + \cdots + \alpha_{in}X_n, 1 \leq i \leq n$, kde $X_1, X_2, \dots , X_n$ jsou neznámé a $\alpha_{ij}$ jsou regulární výrazy nad abecedou $\Sigma$, která neobsahuje $X_1, X_2, \dots , X_n$.
+\end{definition}
+
+\end{document}
