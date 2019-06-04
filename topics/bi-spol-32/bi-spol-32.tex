@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{graphics}
 \usepackage[export]{adjustbox}[2011/08/13]
+
 % \usepackage[czech]{babel}
 % \usepackage[margin=3cm]{geometry}
 % \usepackage{wrapfig}
@@ -32,7 +33,7 @@
 Lineární rekurentní rovnice řádu $k \in N$ je libovolná rovnice ve tvaru:
 
 \begin{center}
-$a_n+k + c_{k-1}(n) a_{n+k-1} + · · · + c_1(n) a_{n+1} + c_0(n) a_n = b_n$ pro každé $n \geq n_0$,
+$c_ka_{n+k} + c_{k-1}(n) a_{n+k-1} + · · · + c_1(n) a_{n+1} + c_0(n) a_n = b_n$ pro každé $n \geq n_0$,
 \end{center}
 
 
@@ -62,7 +63,7 @@ $a_{n+k} + c_{k−1}a_{n+k−1} + · · · + c_1a_{n+1} + c_0a_n = b_n$
 \begin{itemize}
     \item $n \geq n_0$
     \item $n_0 \in Z$
-    \item $c_i \in R pro i = 0, . . . , k − 1$ jsou konstanty
+    \item $c_i \in R$ pro $i = 0, . . . , k − 1$ jsou konstanty
     \item $c_0 \neq 0$
     \item $\{b_n\}^\infty_{n = n_0}$ (pravá strana rovnice)
     \item $p(\lambda) = \lambda^k + c_{k−1}\lambda^{k−1} + · · · + c_1\lambda + c_0$ je charakteristický polynom této rovnice
