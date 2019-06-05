@@ -32,7 +32,7 @@
 \end{figure}
 
 Binární minimová halda je datová struktura tvaru binárního
-stromu, v jehož každém vrcholu $x$ je uložen jeden klíč $k(x)$, a která
+stromu, v jehož každém vrcholu $x$ je uložen jeden klíč $k(x)$ a která
 splňuje tyto dvě vlastnosti:
 \begin{itemize}
     \item \textbf{Tvar haldy}: Strom má všechny hladiny kromě poslední plně
@@ -101,7 +101,7 @@ binomiálních stromů $T = T_1, . . . , T_i$, kde
     každý $v \in V(T_i)$ a jeho syny $s_1, . . . , s_k$ platí $k(v) \leq k(s_j)$,
     $j = 1, . . . , k$.
     \item V souboru $T$ se žádný řád binomiálního stromu nevyskytuje
-    dva- nebo vícekrát.
+    více než jednou.
     \item Soubor stromů $T$ je uspořádán vzestupně podle jejich řádů
     (tedy podle stupňů jejich kořenů a tedy podle velikosti).
 \end{itemize}
@@ -139,7 +139,7 @@ $n$-prvková binomiální halda sestává z $O($log $n)$ binomiálních stromů.
 \end{figure}
 
 Binární vyhledávací strom (BVS) je binární strom, v jehož
-každému vrcholu $v$ je uložen unikátní klíč $k(v)$. Přitom pro každý
+každém vrcholu $v$ je uložen unikátní klíč $k(v)$. Přitom pro každý
 vrchol $v$ musí platit:
 \begin{itemize}
     \item Pokud $a \in L(v)$, pak $k(a) < k(v)$ .
@@ -193,8 +193,8 @@ V korektním AVL stromu může nabývat jen těchto hodnot:
 
 \section{Hešovací tabulky}
 
-\subsection{Hašování s řetízky}
-Prvky jsou ukládány do pole či spojového seznamu odpovídající příslušnmu haši.
+\subsection{Hešování s řetízky}
+Prvky jsou ukládány do pole či spojového seznamu odpovídající příslušnému heši.
 
 \begin{figure}[h!]
 \centering
@@ -202,8 +202,8 @@ Prvky jsou ukládány do pole či spojového seznamu odpovídající příslušn
 \end{figure}
 
 \subsection{Otevřená adresace}
-Prvky jsou ukládány na další následující místo v poli získané za pomoci dvojité hašovací funkce. V případě mazání prvku se zamění za
-značku smazaného prvku, který značí možnou existenci dalších prvků s ekvivalentním hašem.
+Prvky jsou ukládány na další následující místo v poli získané za pomoci dvojité hešovací funkce. V případě mazání prvku se zamění za
+značku smazaného prvku, který značí možnou existenci dalších prvků s ekvivalentním hešem.
 Následně, pokud narazíme na značku smazaného prvku při vkládání, tak se prvek vloží na místo značky.
 V případě, že na tuto značku narazíme při vyhledávání, tak pokračujeme na další iteraci algoritmu, protože
 jestli při uložení byla tato pozice již zaplněná, může hledaný prvek být jinde.
