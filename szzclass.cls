@@ -4,7 +4,7 @@
 \RequirePackage{todonotes}
 \RequirePackage[parfill]{parskip}
 \RequirePackage[margin=2.8cm]{geometry}
-
+\usepackage{hyperref}
 
 % Hlavička
 \newcommand{\subject}[1]{\def\thesubject{#1}}
