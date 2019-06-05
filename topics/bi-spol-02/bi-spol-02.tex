@@ -26,7 +26,7 @@ Libovolný jazyk je regulární, právě když je přijímaný konečným automa
 \end{definition}
 
 \begin{itemize}
-\item \textbf{Konfigurace} konečného automatu $M$ (viz výše) je 
+\item \textbf{Konfigurace} konečného automatu $M$ (viz výše) je
   \begin{itemize}
   \item dvojice $(q,w)\in Q\times \Sigma^{*}$.
   \item počáteční - $(q_0,w)$
@@ -50,7 +50,13 @@ Stav $q\in Q$ je \textbf{dosažitelný}, pokud $\exists w\in\Sigma^{*}: (q_0,w)\
 Stav $q\in Q$ je \textbf{užitečný}, pokud $\exists w\in\Sigma^{*},\exists p\in F: (q,w)\vdash^{*}(p,\varepsilon)$. Jinak je stav zbytečný.
 
 \section{Determinizace konečného automatu}
-TODO
+
+Pro každý NKA platí, že k němu existuje ekvivaletní DKA.
+
+Jako příklad uvedeme NKA:
+
+Determinizaci začneme odstraněním počátečních stavů a jejich nahrazení jedním počátečním stavem.
+
 \section{Minimalizace deterministického konečného automatu}
 TODO
 
