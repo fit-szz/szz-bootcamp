@@ -129,6 +129,17 @@ Ke každé formuli existuje formule logicky ekvivaletní, která je v úplném D
 
 Úplný KNT i DNT libovolné formule je dán jednoznačně až na pořadí (literálů, mintermů, maxtermů). Pokud má formule \textit{n} prvotních
 formulí, pak součet mintermů a maxtermů je $2^n$.
+\subsubsection{Úkázka převodu na ÚDNT}
+(Na ÚKNT se to udělá obdobně, jediné co se liší jsou ty konjunkce a disjunkce)
+\begin{itemize}
+	\item $(A \wedge B) \vee C$
+	\item $((C \vee \neg C) \wedge (A \wedge B)) \vee C$
+	\item $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee C$
+	\item $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge (\neg A \vee A)$
+	\item $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge \neg A) \vee (C \wedge A)$
+	\item $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge \neg A \wedge (\neg B \vee B)) \vee (C \wedge A \wedge (\neg B \vee B))$
+	\item $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge \neg A \wedge \neg B) \vee (C \wedge \neg A \wedge B) \vee (C \wedge A \wedge \neg B) \vee (C \wedge A \wedge B)$
+\end{itemize}
 \subsection{Ekvivalence ÚDNT a ÚKNT}
 Následující tvrzení jsou ekvivaletní:
 \begin{itemize}
