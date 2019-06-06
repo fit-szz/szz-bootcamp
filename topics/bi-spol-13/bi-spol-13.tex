@@ -22,7 +22,7 @@ $$
 
 \section{Regulární a inverzní matice}
 \begin{definition}[Regulární a inverzní matice]
-Nechť $\mathbb{A}\in T^{n,n}$. Pokud existuje $\mathbb{A}\in T^{n,n}$ tak, že 
+Nechť $\mathbb{A}\in T^{n,n}$. Pokud existuje $\mathbb{A}\in T^{n,n}$ tak, že
 $$
 \mathbb{A}\mathbb{B}=\mathbb{B}\mathbb{A}=\mathbb{E}
 $$
@@ -54,7 +54,7 @@ Víme, že levou část je možné převést na jednotkovou matici právě tehdy
 \end{enumerate}
 
 \section{Vlastní čísla}
-\begin{definition}  
+\begin{definition}
 Řekneme, že $\lambda \in \mathbb{C}$ je \textbf{vlastní číslo operátoru} $A \in \mathcal{L}(V)$, právě když existuje $x \in V$ , $x \neq \theta$, takový, že $Ax = \lambda x$. Vektor $x$ pak nazýváme \textbf{vlastním vektorem operátoru} $A$ \textbf{příslušejícím vlastnímu číslu} $\lambda$. Množinu všech vlastních čísel $A$ nazýváme \textbf{spektrem} operátoru A a značíme symbolem $\sigma(A)$.
 
 Analogicky pro matice $\mathbb{A}\in \mathbb{C}^{n,n}$, kde $\mathbb{A}=\trans{\varepsilon}{A}{}$.
@@ -70,7 +70,7 @@ Je-li $\lambda \in C$ vlastní číslo operátoru $A \in \mathcal{L}(V_n)$, pak 
 
 \begin{definition}
 Nechť $\lambda \in C$ je vlastní číslo operátoru $A \in \mathcal{L}(V_n)$. Číslo $\defect{(A -
-\lambda E)} = \dim{\ker{(A-\lambda E)}}$ nazýváme \textbf{geometrickou násobností} vlastního čísla $\lambda$ 
+\lambda E)} = \dim{\ker{(A-\lambda E)}}$ nazýváme \textbf{geometrickou násobností} vlastního čísla $\lambda$
 a značíme ji $\nu_g(\lambda)$.
 \end{definition}
 
@@ -100,7 +100,7 @@ Determinant se dá vypočítat kombinací následujících postupů:
 \begin{itemize}
 \item Přes definici.
 \item Sarrusovo nebo křížové pravidlo. (Sorosovo pravidlo zde asi nepomůže)
-\item Je-li matice $\mathbb{A}$ trojúhelníková, lze determinant spočítat vynásobením čísel na diagonále.
+\item Je-li matice $\mathbb{A}$ v trojúhelnákovitém HST, tedy na diagonále se nikde nevyskytuje 0, lze determinant spočítat vynásobením čísel na diagonále.
 \item $\det{\mathbb{A}}=\det{\mathbb{A}^T}$
 \item Úprava GEM
   \begin{itemize}
@@ -163,12 +163,6 @@ Operátor $\mathbb{A} \in \mathcal{L}(V)$ nazveme \textbf{diagonalizovatelný}, 
     \item porovnat algebraické a geometrické násobnosti u každého $\lambda \in \sigma (A)$,
     \item rovnají-li se pro každé $\lambda \in \sigma (A)$, bázi $\mathcal{X}$ sestavíme popořadě z bazických vektorů všech vlastních podprostorů. Matice přechodu $\trans{\mathcal{X}}{E}{\varepsilon}$ je bude obsahovat ve sloupcích, diagonální matice operátoru $\trans{\mathcal{X}}{A}{}$ bude na diagonále obsahovat v odpovídajícím pořadí všechna vlastní čísla (každé zopakované tolikrát, kolik je jeho násobnost).
   \end{itemize}
-\end{itemize}
-
-\section{Zdroje}
-\begin{itemize}
-\item Cvičení
-\item Skripta
 \end{itemize}
 
 \end{document}
