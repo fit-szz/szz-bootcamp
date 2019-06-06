@@ -56,7 +56,7 @@ Formální jazyk je rekurzivně spočetný, když lze:
 \item přijmout \textbf{(ne)deterministickým Turingovým strojem}
 \item generovat \textbf{neomezenou gramatikou}
 \end{itemize}
-Například (problém nasazení)L = {R : Turingův stroj R nepřijímá vstup R}.
+Například (problém zastavení)L = \{[R, $w$] : Turingův stroj R se pro vstup $w$ zastaví\}.
 
 \section{Turingovy stroje}
 Turingův sttoj se skládá z \textbf{řídící jednotky}, \textbf{neomezené čtecí pásky} rozdělené do buněk a \textbf{čtecí hlavy}.
@@ -68,11 +68,11 @@ uspořádaná \textbf{sedmice: R = (Q, $\Sigma$, G, $\delta$, $q_0$, B, F)}.
 \begin{itemize}
 \item Q je konečná neprázdná množina stavů
 \item $\Sigma$ je konečná vstupní abeceda
-\item G je konečný neprázdná pracovní abeceda ($\Sigma$ $\subset$ G)
+\item G je konečná neprázdná pracovní abeceda ($\Sigma$ $\subset$ G)
 \item $\delta$ je přechodová funkce (liší se u jednotlivých TS)
 \item $q_0$ počáteční stav
 \item B $\in$ (G bez $\Sigma$) je prázdný symbol (BLANK)
-\item F $\leq$ Q je množina koncových stavů
+\item F je množina koncových stavů (F $\subseteq$ Q)
 \end{itemize}
 Na začátku vypočtu se nachází TS v počátečním symbolu $q_0$, páska je vyplněna BLANK znaky, na "prvních" buňkách pásky je zapsán vstup a čtecí hlava ukazuje na první buňku vstupu.
 \newline
