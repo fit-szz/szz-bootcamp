@@ -14,7 +14,7 @@
 \titlespacing*{\subsection}{0pt}{1ex}{0ex}
 \usepackage{dependencies/szz-math}
 
-\topic{Metody řešení rekurentních rovnic, sestavování a   řešení rekurentních rovnic při analýze časové složitosti algoritmů.}
+\topic{Metody řešení rekurentních rovnic, sestavování a řešení rekurentních rovnic při analýze časové složitosti algoritmů.}
 \author{Daniel Hampl}
 \renewcommand*\contentsname{Obsah}
 \code{BI-SPOL-32}
@@ -30,12 +30,17 @@
 
 \subsection{Obecná rekurentní rovnice}
 
-Lineární rekurentní rovnice řádu $k \in N$ je libovolná rovnice ve tvaru:
+Obecnou rekurentní rovnicí rozumíme jakýkoliv vztah typu
 
 \begin{center}
-$c_ka_{n+k} + c_{k-1}(n) a_{n+k-1} + · · · + c_1(n) a_{n+1} + c_0(n) a_n = b_n$ pro každé $n \geq n_0$,
+    $a_{n+k}=f(a_(n+k-1),a_(n+k-2),...,a_n,n).$
 \end{center}
 
+Nadále se ale budeme spíše zabývat lineárními rekurentními rovnicemi řádu $k \in N$:
+
+\begin{center}
+    $c_ka_{n+k} + c_{k-1}(n) a_{n+k-1} + · · · + c_1(n) a_{n+1} + c_0(n) a_n = b_n$ pro každé $n \geq n_0$,
+\end{center}
 
 kde:
 \begin{itemize}
@@ -57,7 +62,7 @@ Lineární rekurentní rovnice řádu k s konstantními koeficienty je
 libovolná rekurentní rovnice ve tvaru:
 
 \begin{center}
-$a_{n+k} + c_{k−1}a_{n+k−1} + · · · + c_1a_{n+1} + c_0a_n = b_n$ 
+$a_{n+k} + c_{k−1}a_{n+k−1} + · · · + c_1a_{n+1} + c_0a_n = b_n$
 \end{center}
 
 \begin{itemize}
