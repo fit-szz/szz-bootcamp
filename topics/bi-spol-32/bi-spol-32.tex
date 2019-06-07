@@ -77,13 +77,11 @@ $a_{n+k} + c_{k−1}a_{n+k−1} + · · · + c_1a_{n+1} + c_0a_n = b_n$
     \item pokud existuje $k$ ruzných $\lambda_i$, potom $\{\lambda\}^\infty_{n = n_0}$ tvoří bázi prostoru řešení dané rovnice (stačí najít prvních $k$ členů)
 \end{itemize}
 
-
-
 \subsection{Moivre-ova věta}
+
 $\alpha \pm i\beta = r[\text{cos}(\Phi) \pm i\text{sin}(\Phi)] \implies (\alpha \pm i\beta)^n = r^n[\text{cos}(n\Phi) \pm i\text{sin}(n\Phi)]$
 
-
-% \newpage
+Tuto větu použijeme při hledání dvou nezávislých realných posloupností.
 
 \section{Řešení}
 
@@ -102,13 +100,10 @@ $t(n) \leq cn~\text{log}~n$, kde $c > 0$ je vhodně zvolená konstanta.
 Indukcí dokážme správnost odhadu, tedy že pro řešení rovnice platí
 $t(n) =\nolinebreak O(n~\text{log}~n)$.
 
-
 Indukční krok
 (ověření, že $t(n) \leq cn~\text{log}~n$ vyhovuje rekurenci $t(n) = 2t(\lfloor n/2 \rfloor) + n$)
 Předpokládejme, že platí pro $\lfloor n/2 \rfloor$ a dosaďme
 $t(\lfloor n/2 \rfloor) \leq c \lfloor n/2 \rfloor~\text{log}~ \lfloor n/2 \rfloor$ do počáteční rovnice. Dostaneme
-
-
 
 \begin{align*}
 t(n) &\leq 2(c \lfloor n/2 \rfloor \log{\lfloor n/2 \rfloor}) + n\\
@@ -186,8 +181,6 @@ $a = 6, b = 4$\newline
 $n^{\log_4 6}~\dot{=}~n^{1,3} = \Omega(n) \implies f(n) = O(n^{log_4 6-0,1}) \implies$ případ (1).\newline
 Čili $t(n) = \Theta(n^{\log_4 6})$.
 
-
-
 \textbf{Příklad 2}
 
 Rovnice (MergeSort) $t(n) = 2t(n/2) + n$\newline
@@ -202,7 +195,6 @@ $a = 3, b = 4$\newline
 $n^{log_4 3}~\dot{=}~n^{0,7} = o(n^2)$ a platí, že $3 \cdot (\dfrac{n}{4})^2 \leq cn^2$ pro
 nějakou $c < 1 \implies$ případ (3).\newline
 Čili $t(n) = Θ(n^2)$
-
 
 % \begin{figure}
 %     \includegraphics[width=.8\textwidth, center]{topics/bi-spol-32/images/mt1.PNG}
@@ -222,6 +214,5 @@ nějakou $c < 1 \implies$ případ (3).\newline
 \begin{figure}[h]
     \includegraphics[width=1\textwidth, center]{topics/bi-spol-32/images/kuchar.PNG}
 \end{figure}
-    
 
 \end{document}
