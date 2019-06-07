@@ -162,4 +162,64 @@ Neseřazený spojový seznam: implementace je stejná jako u neseřazeného pole
 Seřazený spojový seznam: implementace vložení/odstranění/test přítomnosti je stená jako u neseřazeného pole. Sjednocení/průnik/porovnání mohou být
 implementovány lépe - jako u seřazeného pole.\newline
 Implementace spojovým seznamem má větší režii na paměť než seřazené pole.
+
+
+\subsection{Tabulka (Mapa, Slovník)}
+\subsubsection{Popis}
+Kontejner, který obsahuje dvojice klíč-hodnota. Klíče jsou unikátní. Základní interface:
+\begin{itemize}
+    \item \textit{init: -> Map},
+    \item vložení klíče s hodnotou (insert) \textit{ins(_,_,_): Key, Val, Map -> Map},
+    \item odstranění klíče s hodnotou (remove) \textit{del(_,_): Key, Map -> Map},
+    \item test přítomnosti klíče \textit{isSet(_,_): Key, Map -> bool},
+    \item výběr hodnoty podle klíče \textit{read(_,_): Key, Map -> Val}.
+\end{itemize}
+
+Lze iterovat přes dvojice klíč-hodnota nebo pouze přes klíče nebo pouze přes hodnoty.
+
+Mapy a množiny jsou podobné. Množinu můžeme považovat
+za speciální případ mapy, kde hodnoty jsou typu \textit{bool}.
+
+\subsubsection{Implementace}
+\begin{itemize}
+    \item pole - přímý přístup (klíče jsou indexy v poli)
+    \item pole (neseřazené)
+    \item pole (seřazené)
+    \item spojový seznam (jednosměrný, neseřazený)
+    \item spojový seznam (jednosměrný, seřazený)
+    \item binární vyhledávací strom
+    \item rozptylovací funkce (hash table)
+\end{itemize}
+\subsubsection{Implementace - pole - přímý přístup}
+Klíče mohou být pouze celá čísla z intervalu 0 až maximální délka pole.
+Nepřítomnost prvku musí být určena speciální hodnotou (například NULL).
+Implementace je rychlá:
+\begin{itemize}
+    \item insert(k, v) - O(1)
+    \item del(k) - O(1)
+    \item isSet(k) - O(1)
+    \item read(k) - O(1)
+\end{itemize}
+
+\subsubsection{Implementace - neseřazené pole}
+Pole obsahuje neseřazené páry klíč-hodnota. Nové prvky jsou přidávány na konec pole.
+Při hledání klíče se musí projít celé pole.
+\begin{itemize}
+    \item insert(k, v) - nový prvek se umístí na konec pole (O(1)). To může způsobit duplicitu. Proto se musí nejdříve otestovat projitím pole (O(n)) = O(n)
+    \item del(k) - prochází se pole (O(n)) a když je prvek nalezen, nahradí se posledním prvkem pole (O(1)) = O(n)
+    \item isSet(k) - hledá se v poli (O(n)) = O(n)
+    \item read(k) - hledá se v poli (O(n)) = O(n)
+\end{itemize}
+Jiné operace:
+
+\subsubsection{Implementace - seřazené pole}
+Pole obsahuje seřazené páry klíč-hodnota.
+Při hledání klíče se využije binární vyhledávání.
+\begin{itemize}
+    \item insert(k,v) - místo pro vložení se najde binárním hledáním (O(log n)). Pak ale prvky za tímto místem musí být odsunuty pravo (O(n)) = O(n)
+    \item del(k) - prvek se najde binárně (O(log n)), ale opět se musí posunout (O(n)) po vymazání = O(n)
+    \item isSet(k) - v poli se hledá binárně (O(log n)) = O(log n)
+    \item read(k) - v poli se hledá binárně (O(log n)) = O(log n)
+\end{itemize}
+
 \end{document}
