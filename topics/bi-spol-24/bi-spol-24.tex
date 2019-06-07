@@ -243,10 +243,19 @@ Protocol}\label{dhcp---dynamic-host-configuration-protocol}}
 \hypertarget{ux159uxedzenuxed-datovuxe9ho-toku}{%
 \section{Řízení datového
 toku}\label{ux159uxedzenuxed-datovuxe9ho-toku}}
-
-\begin{verbatim}
-???? QoS??? TODO
-\end{verbatim}
+\subsection{Řízení datového toku - flow control}
+\begin{itemize}
+  \item kontroluje se mezi jedním senderem a reciverem
+  \item "plovoucí okénko" (slinding window)
+  \item stop-and-wait (ACK)
+  \item může se přímo říct odesílateli rychlost kterou by měl odesílat
+\end{itemize}
+\subsection{Kontrola zahlcení (congestion control)}
+Detekce pomocé packet loss nebo zvětšení zpoždění
+\begin{itemize}
+  \item traffic shaping (Token bucket, Leaky bucket)
+  \item rezervace pásma pro určitě spoje
+\end{itemize}
 
 \hypertarget{princip-a-vyuux17eituxed-nat-network-adress-translation}{%
 \section{Princip a využití NAT (Network Adress
@@ -261,6 +270,10 @@ Translation)}\label{princip-a-vyuux17eituxed-nat-network-adress-translation}}
   s nedostatkem IPv4 adres)
 \item
   přepisuje port, adresu nebo jinou hodnotu v paketu
+\item 
+  striktně odděluje LAN od WAN
+\item 
+  funguje jako směrovač (router)
 \item
   druhy:
 
@@ -277,9 +290,10 @@ Translation)}\label{princip-a-vyuux17eituxed-nat-network-adress-translation}}
   \end{itemize}
 \end{itemize}
 
-\begin{verbatim}
-TODO
-\end{verbatim}
+% nenapádá mě, co sem přidat
+% \begin{verbatim}
+% TODO
+% \end{verbatim}
 
 \#\#~Systém DNS - ``Domain Name System'' - primárně určen pro překlad:
 jméno \textless-\textgreater{} adresa - několik typů záznamů: -
