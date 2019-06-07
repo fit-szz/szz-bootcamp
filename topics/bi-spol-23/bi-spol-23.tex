@@ -190,9 +190,24 @@ Vrstvy:
 \section{Protokoly linkové
 vrstvy}\label{protokoly-linkovuxe9-vrstvy}}
 
-\begin{verbatim}
-????????? TODO
-\end{verbatim}
+Zodpovídají za přenos dat mezi propojenými systémy a mohou také zajišťovat spolehlivost přenosu či adresaci v rámci segmentu - MAC.
+MAC = Medium access control. Unikátní ID zařízení. Přiděleno výrobcem. 6 oktetů. Obsahuje doplňkový znak (byte stuffing), je to flag, který
+udává začátek a konec rámce. Také obsahuje doplňkový bit (bit stuffing).
+\begin{itemize}
+  \item HDLC - bitově orientovaný protokol
+  \item SLIP
+  \begin{itemize}
+    \item definuje pouze zapouzdření paketů seriové lince
+    \item rámec označen znaky END
+    \item speciální znaky: END a ESC
+  \end{itemize}
+  \item PPP
+  \begin{itemize}
+    \item Point to point protocol
+    \item podmnožina HDLC
+    \item bitové spoje - bit stuffing
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{potvrzovacuxed-metody}{%
 \section{Potvrzovací metody}\label{potvrzovacuxed-metody}}
@@ -354,10 +369,14 @@ Existuje několik přístupů.
 \hypertarget{principy-fungovuxe1nuxed-propojovacuxedch-suxedux165ovuxfdch-prvkux16f}{%
 \section{Principy fungování propojovacích síťových
 prvků}\label{principy-fungovuxe1nuxed-propojovacuxedch-suxedux165ovuxfdch-prvkux16f}}
-
-\begin{verbatim}
-????????? TODO
-\end{verbatim}
+Pro propojení se používají tyto prvky:
+\begin{itemize}
+  \item Repeater: zesiluje signál, pracuje na fyzické vrstvě
+  \item Hub (rozbočovač): rozešle přijatý paket na všechny své porty, pracuje na fyzické vrstvě
+  \item Bridge: propojuje dvě sítě, pracuje na linkové vrstvě, odděluje kolizní segmenty
+  \item Switch: linková vrstva, narozdíl od hubu pamatuje si přiřazení adres MAC k portům (tabulka [MAC, port]), přepíná pakety mezi porty, v podstatě bridge s více než 2mi porty
+  \item Router: propojuje sítě na síťové vrstvě, provádí směrování paketů po sítí, není závislý na fyzické technologii, směruje po různých technologiích
+\end{itemize}
 
 
 \end{document}
