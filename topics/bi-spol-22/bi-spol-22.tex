@@ -169,10 +169,10 @@ Implementace spojovým seznamem má větší režii na paměť než seřazené p
 Kontejner, který obsahuje dvojice klíč-hodnota. Klíče jsou unikátní. Základní interface:
 \begin{itemize}
     \item \textit{init: -> Map},
-    \item vložení klíče s hodnotou (insert) \textit{ins(_,_,_): Key, Val, Map -> Map},
-    \item odstranění klíče s hodnotou (remove) \textit{del(_,_): Key, Map -> Map},
-    \item test přítomnosti klíče \textit{isSet(_,_): Key, Map -> bool},
-    \item výběr hodnoty podle klíče \textit{read(_,_): Key, Map -> Val}.
+    \item vložení klíče s hodnotou (insert) \textit{ins(\_,\_,\_): Key, Val, Map -> Map},
+    \item odstranění klíče s hodnotou (remove) \textit{del(\_,\_): Key, Map -> Map},
+    \item test přítomnosti klíče \textit{isSet(\_,\_): Key, Map -> bool},
+    \item výběr hodnoty podle klíče \textit{read(\_,\_): Key, Map -> Val}.
 \end{itemize}
 
 Lze iterovat přes dvojice klíč-hodnota nebo pouze přes klíče nebo pouze přes hodnoty.
