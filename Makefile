@@ -31,3 +31,6 @@ new:
 
 example: example/math.tex
 	xelatex -shell-escape -output-directory=build example/math.tex
+
+clean/%:
+	rm -rf build/*$**
