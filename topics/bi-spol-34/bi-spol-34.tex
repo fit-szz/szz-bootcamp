@@ -28,13 +28,13 @@ využití při vyšetřování průběhu funkce.}
 
 \section{Limita funkce}
 \subsection{Definice}
-Buďte $f$ reálná funkce reálné proměnné a 
-$a \in \overline{\mathbb{R}}$. Nechť $f$ je definovaná na okolí bodu 
-$a$, s možnou výjimkou bodu a samotného. Řekneme, že 
-$c \in \overline{\mathbb{R}}$ je limitou funkce $f$ v bodě $a$, 
-právě když pro každé okolí $H_c$ bodu $c$ existuje okolí 
+Buďte $f$ reálná funkce reálné proměnné a
+$a \in \overline{\mathbb{R}}\ (\overline{\mathbb{R}}=\mathbb{R}\cup{\pm\infty})$. Nechť $f$ je definovaná na okolí bodu
+$a$, s možnou výjimkou bodu a samotného. Řekneme, že
+$c \in \overline{\mathbb{R}}$ je limitou funkce $f$ v bodě $a$,
+právě když pro každé okolí $H_c$ bodu $c$ existuje okolí
 $H_a$ bodu $a$ takové, že z podmínky $x \in H_a \backslash \{a\}$
-plyne $f(x) \in H_c$. 
+plyne $f(x) \in H_c$.
 
 V symbolech:
 \begin{center}
@@ -54,14 +54,14 @@ $\lim\limits_{x \rightarrow a} f(x) = c$, $\lim\limits_a f = c$.
 
 \subsection{Heineho věta}
 $\lim\limits_{x \rightarrow a} f(x) = c$, právě když je $f$ definována
-na okolí bodu $a$ (s možnou výjimkou bodu $a$) a pro každou posloupnost 
+na okolí bodu $a$ (s možnou výjimkou bodu $a$) a pro každou posloupnost
 $(x_n)_{n=1}^\infty$ s limitou $a$ a splňující
 
 \begin{center}
     $\{x_n \mid n\in\mathbb{N}\} \subset D_f \backslash \{a\}$
 \end{center}
-  
-platí  
+
+platí
 $\lim\limits_{x \rightarrow \infty} f(x_n) = c$.
 
 \begin{figure}[h]
@@ -73,10 +73,10 @@ $\lim\limits_{x \rightarrow \infty} f(x_n) = c$.
 \subsection{Jednostraná limita}
 Buďte $f$ reálná funkce reálné proměnné a $a \in \mathbb{R}$.
 Nechť $f$ je definovaná na levém, resp. pravém, okolí bodu $a$.
-Řekneme, že $c\in\overline{\mathbb{R}}$ je limitou funkce 
-$f$ v bodě $a$ zleva, resp. zprava, právě když pro každé okolí 
-$H_c$ bodu $c$ existuje levé okolí $H^−_a$, resp. pravé okolí 
-$H^+_a$, bodu $a$ takové, že z podmínky 
+Řekneme, že $c\in\overline{\mathbb{R}}$ je limitou funkce
+$f$ v bodě $a$ zleva, resp. zprava, právě když pro každé okolí
+$H_c$ bodu $c$ existuje levé okolí $H^−_a$, resp. pravé okolí
+$H^+_a$, bodu $a$ takové, že z podmínky
 
 \begin{center}
 $x \in H^-_a \ \{a\}, \ \text{resp.} \ x \in H^+_a \ \{a\}$,
@@ -95,17 +95,17 @@ $\lim\limits_{x\to a+} f(x) = c, \text{nebo} \lim\limits_{a+} f = c$.
 \end{center}
 
 \subsection{Heineho věta pro jednostranné limity}
-$\lim\limits_{x \rightarrow a_-} f(x) = c$, resp. 
+$\lim\limits_{x \rightarrow a_-} f(x) = c$, resp.
 $\lim\limits_{x \rightarrow a_+} f(x) = c$,
-právě když je $f$ definována na levém, resp. 
-pravém, okolí bodu $a$ a pro každou posloupnost 
+právě když je $f$ definována na levém, resp.
+pravém, okolí bodu $a$ a pro každou posloupnost
 $(x_n)_{n=1}^\infty$ s limitou $a$ a splňující
 
 \begin{center}
     $\{x_n\, |\, n\in\mathbb{N}\} \subset D_f \cap (-\infty,a), \quad \textrm{resp.} \quad \{x_n\, |\, n\in\mathbb{N}\} \subset D_f \cap (a,+\infty)$,
 \end{center}
-  
-platí  
+
+platí
 $\lim\limits_{x \rightarrow \infty} f(x_n) = c$.
 
 % \begin{figure}[h]
@@ -126,17 +126,17 @@ $\lim\limits_{x \rightarrow \infty} f(x_n) = c$.
 
 \subsection{Vlastnosti}
 Hodnota limity závisí na okolí bodu, nikoli na samotném bodě. Funkce $f$ v bodě $a$
-ani nemusí být definovaná, přesto limita může existovat. Příkladem je funkce 
+ani nemusí být definovaná, přesto limita může existovat. Příkladem je funkce
 $f(x)\nolinebreak :=\nolinebreak \text{sgn} \frac{1}{x^2}$,
 $D_f = \mathbb{R} \backslash \{0\}$.
 Ačkoliv $0$ nepatří do $D_f$ platí $\lim\limits_{x\to 0} f(x) = 1$.
 
 Nechť $a \in \mathbb{R}$. Limita $\lim\limits_{x \rightarrow a} f(x)$ existuje a je rovna c ∈ R, právě když existují obě
-jednostranné limity $\lim\limits_{x \rightarrow a_+} f(x)$ a $\lim\limits_{x \rightarrow a_-} f(x)$ a obě jsou rovny c. 
+jednostranné limity $\lim\limits_{x \rightarrow a_+} f(x)$ a $\lim\limits_{x \rightarrow a_-} f(x)$ a obě jsou rovny c.
 
 \newpage
 
-Nechť $f$ a $g$ jsou funkce, 
+Nechť $f$ a $g$ jsou funkce,
 $a,b,c \in \overline{\mathbb{R}}$ a platí tři podmínky
 \begin{itemize}
     \item $\displaystyle\lim_{x\to a} g(x) = b$,
@@ -146,49 +146,49 @@ $a,b,c \in \overline{\mathbb{R}}$ a platí tři podmínky
 Potom platí  $\displaystyle\lim_{x\to a} f(g(x)) = c$.
 
 
-Nechť $f$ a $g$ jsou funkce a 
+Nechť $f$ a $g$ jsou funkce a
 $a \in \overline{\mathbb{R}}$. Potom
 \begin{equation*}
 \begin{aligned} \lim_a (f + g) &= \lim_a f + \lim_a g, \\ \lim_a f \cdot g &= \lim_a f \cdot \lim_a g, \\ \lim_a \frac{f}{g} &= \frac{\lim_a f}{\lim_a g}, \end{aligned}\end{equation*}
-platí v případě, že výrazy na pravé straně jsou definovány a v posledním případě za předpokladu, že 
+platí v případě, že výrazy na pravé straně jsou definovány a v posledním případě za předpokladu, že
 $\frac{f}{g}$
-je definována na okolí bodu 
+je definována na okolí bodu
 $a$
-s možnou výjimkou bodu 
+s možnou výjimkou bodu
 $a$
 samotného.
 
 \subsection{Důsledek heineho věty}
-Nechť 
+Nechť
 $f$
- je funkce definovaná na okolí bodu 
+ je funkce definovaná na okolí bodu
 a
 $a\in\overline{\mathbb{R}}$
- a 
+ a
 $(x_n)_{n=1}^\infty$
-, 
+,
 $(z_n)_{n=1}^\infty$
- jsou dvě reálné posloupnosti patřící do 
+ jsou dvě reálné posloupnosti patřící do
 $D_f$
-, konvergující k 
+, konvergující k
 $a$
- a splňující podmínky 
+ a splňující podmínky
 $x_n\neq a$
- a 
+ a
  $z_n\neq a$
- pro všechna 
+ pro všechna
 $n\in\mathbb{N}$
 . Pokud limity
 $\lim\limits_{n\to\infty} f(x_n) \textrm{ a } \lim\limits_{n\to\infty} f(z_n)$
-existují a jsou různé, nebo alespoň jedna z nich neexistuje, potom limita  
+existují a jsou různé, nebo alespoň jedna z nich neexistuje, potom limita
 $\lim\limits_{x \rightarrow a} f(x)$
 neexistuje.
 
 \subsection{Nerovnost}
 
-Mějme funkce $f$ a 
-$g$ a nechť existují limity  
-$\displaystyle\lim_{x\to a} f(x)$ a  
+Mějme funkce $f$ a
+$g$ a nechť existují limity
+$\displaystyle\lim_{x\to a} f(x)$ a
 $\displaystyle\lim_{x\to a} g(x)$.
 Pak platí následující dvě tvrzení:
 \begin{itemize}
@@ -223,7 +223,7 @@ Nechť $f$ je funkce definovaná na okolí bodu $a\in\mathbb{R}$. Pokud existuje
 
 \begin{equation*}
 \lim_{x\to a} \frac{f(x) - f(a)}{x-a}\end{equation*}
- 
+
 nazveme její hodnotu \textbf{derivací funkce} $f$ v bodě $a$
 a označíme $f'(a)$. Pokud je tato limita konečná
 (tj. $f'(a) \in \mathbb{R}$) řekneme, že funkce $f$
@@ -310,7 +310,7 @@ Funkde $f$ \textbf{je spojitá na intervalu $J$}, právě kdyz je spojitá v ka�
 právě když existuje okolí (v krajním bodě jednostranné) $H_a \subset D_f$ bodu $a$ tak, že
 \begin{enumerate}
     \item pro všechna $x \in H_a$ platí $f(x) \leq f(a)$,
-    \item pro všechna $x \in H_a$ platí $f(x) \geq f(a)$, 
+    \item pro všechna $x \in H_a$ platí $f(x) \geq f(a)$,
     \item pro všechna $x \in H_a \backslash \{a\}$ platí $f(x) < f(a)$,
     \item pro všechna $x \in H_a \backslash \{a\}$ platí $f(x) > f(a)$,
 \end{enumerate}
