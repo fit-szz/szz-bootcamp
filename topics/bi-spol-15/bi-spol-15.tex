@@ -30,7 +30,7 @@ Jazyk obsahuje \textit{logické symboly} a \textit{mimologické symboly L}.
   \item symboly pro \textit{funkce} ($f, g, \dots$)
 \end{itemize}
 \subsection{Term}
-Řetězec symbolů v jazyce predikátové logiky se nazývá \texttt{term} jestliže vznikne použitím těchto pravidel v konečně mnoho krocích:
+Řetězec symbolů se nazývá \texttt{term} jestliže vznikne použitím těchto pravidel v konečně mnoho krocích:
 \begin{itemize}
   \item každá proměnná a konstanta je term
   \item jsou-li $t_1, t_2,\dots,t_n$ termy a $f$ je $n$-ární funkční symbol, potom $f(t_1,\dots,t_n)$ je term
@@ -64,13 +64,13 @@ Jeden jazyk může mít více interpretací
 \section{Pravdivost formulí}
 L je jazyk a M je jeho interpretace
 \begin{itemize}
-  \item ohodnocení proměnných je funkce $e$ z množiny proměnných, které každé volné proměnné přiřuzej nějaký prvek univerza M
+  \item ohodnocení proměnných je funkce $e$ z množiny proměnných, které každé volné proměnné přiřazuje nějaký prvek univerza M
   \item výrazem $t[e]$ označujeme hodnotu termu $t$ při ohodnocení $e$.
   \begin{itemize}
     \item je-li term $t$ proměnná $x$, pak $t[e]$ = $e(x)$
     \item je-li n-ární funkční symbol a term $t$ je $f(t_1,...,t_n)$, pak $t[e] = f(t_1[e],...,t_n[e])$
   \end{itemize}
-  \item výraz e(x/m) se oznašuje hodnocení, které všem proměnným přiřadí stejnou hodnotu jako e, jenom e(x) = m
+  \item výraz e(x/m) se označuje hodnocení, které všem proměnným přiřadí stejnou hodnotu jako e, jenom e(x) = m
 \end{itemize}
 Pravdivost formule v interpretaci M při ohodnocení e se definuje indukcí podle složitosti formule
 \begin{figure}[!h]
@@ -115,8 +115,8 @@ Teorie neostrého uspořádání
   \item L = {q(x, y)}. Pro teorii neostrého uspořádání platí následující axiomy
   \begin{itemize}
     \item R: $(\forall{x}) r(x,x)$ - reflexifita
-    \item T: $(\forall{x})(\forall{y})(\forall{z})(r(x,y) \wedge r(x,y) \Rightarrow r(x,z))$ - tranzitivita
-    \item As $(\forall{x})(\forall{y})(\forall{z})(r(x,y) \wedge r(x,y) \Rightarrow (x = y))$ - slabá asymetrie
+    \item T: $(\forall{x})(\forall{y})(\forall{z})(r(x,y) \wedge r(y,z) \Rightarrow r(x,z))$ - tranzitivita
+    \item As $(\forall{x})(\forall{y})(r(x,y) \wedge r(y,x) \Rightarrow (x = y))$ - slabá asymetrie
   \end{itemize}
 \end{itemize}
 Teorie ostrého uspořádání
@@ -124,9 +124,9 @@ Teorie ostrého uspořádání
   \item pro teorii ostrého uspořádání platí následující axiomy
   \begin{itemize}
     \item T: $(\forall{x})(\forall{y})(\forall{z})(r(x,y) \wedge r(x,y) \Rightarrow r(x,z))$ - tranzitivita
-    \item IR: $(\forall{x}\neg p(x,x))$ - ireflexivita
+    \item IR: $(\forall{x})\neg p(x,x)$ - ireflexivita
   \end{itemize}
 \end{itemize}
-Teorie neomezeného hustého lineárnáho uspořádání je teorie hustého lineátního uspořádání, pro kterou navíc platí:
+Teorie neomezeného hustého lineárního uspořádání je teorie hustého lineárního uspořádání, pro kterou navíc platí:
 $(\forall{x})(\exists{y})(\exists{z})(y < x \wedge x < z)$ - neomezenost.
 \end{document}
