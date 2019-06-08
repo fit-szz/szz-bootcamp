@@ -1,0 +1,88 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\subject{SI2}
+\code{BI-WSI-SI-25}
+\topic{Konfigurační řízení: řízení verzí, řízení změn, správa prostředí, continuous integration, řízení dodávek, vzájemné souvislosti.}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Konfigurační řízení}
+Jedna z nejdůležitejších podpůrných činností v rámci SW vývoje. Cílem je zajistit řád a pořádek v konfiguraci SW produktu.
+\subsection{Základní aktivity}
+\begin{itemize}
+  \item řízení změn
+  \item verzování
+  \item release managment
+\end{itemize}
+\subsection{Cíle}
+\begin{itemize}
+  \item evidence všech částí SW produktu
+  \item zajistit, že provádění změn SW produktu samotný produkt nepoškodí
+  \item získat přehled o stavu konfigurace SW produktu
+\end{itemize}
+\subsection{Kontrola verzí}
+\begin{itemize}
+  \item evidence SW položek
+  \item práce na více verzích současně
+  \item obnovení konkrétní verze
+  \item GIT, SVN
+  \item branch (vedlejší větev/větve), tag (read-only copy/záložka mezi verzemi), trunk (hlavní větev) - v pojetí SVN
+  \item konfigurační jednotka - libovolný soubor, který se verzuje
+\end{itemize}
+\subsection{Řízení změn}
+\begin{itemize}
+  \item proces, který změnu zakomponuje do projektu se všemi náležitostmi (včetně například testování)
+  \item eviduje se typ změny a vazba na specifikaci
+  \item Ticketovací systém - youtrack/redmine/github/bugzilla\dots
+\end{itemize}
+\section{Správa prostředí}
+Software poběží u zákazníka, ale musí se někde vyvíjet a testovat, tzn. existuje více prostředí, kde program poběží.
+\subsection{U dodavatele}
+\begin{itemize}
+  \item vývoj
+  \begin{itemize}
+    \item lokální vývoj, programátorovi by se mělo programovat pohodlně
+    \item povinná sada testů před commitem - měly by být krátké a rychlé 
+  \end{itemize}
+  \item integrační
+  \begin{itemize}
+    \item continuous integration - provedení smoke testů a daily build
+    \item po smoke testech (pokud projdou) se provedé rozsáhlé testování automatizovanými testy
+  \end{itemize}
+  \item testovací
+  \begin{itemize}
+    \item funkční/nefunkční testy
+    \item manuální testy
+  \end{itemize}
+\end{itemize}
+\subsection{U zákazníka}
+\begin{itemize}
+  \item akceptační - testuje prostředí u zákazníka
+  \item produkční - testuje se prostředí, na kterém běží výsledná aplikace
+\end{itemize}
+\section{Řízení dodávek}
+Jak často se budou zákazníkovi poskytovat nové buildy záleží na zvoleném modelu SDCL modelu (agile, waterfall\dots).
+Většinou cílem je automatizace procesu dodávek.
+\subsection{Proces}
+\begin{itemize}
+  \item vyrobit dodávku
+  \item nainstalovat dodávku
+  \item otestovat dodávku
+  \item připravit dodávku pro instalaci zákazníkem
+\end{itemize}
+\section{Continuous integration}
+\begin{itemize}
+  \item souhrn různých vývojářských nástrojů a metod k urychlení vývoje SW
+  \item integrace kodu do celkového systému na každodenní bázi (většinou pomocí build serveru)
+  \item při mnoha commitech se sloučí do skupin, pro menší zátež (někdy i rychlejší deploy při mnoha testech)
+  \item jako první se provedou smoke testy $\rightarrow$ pokud projdou $\rightarrow$ ostatní testy $\rightarrow$ pokud projdou $\rightarrow$ build a deploy
+\end{itemize}
+\end{document}
