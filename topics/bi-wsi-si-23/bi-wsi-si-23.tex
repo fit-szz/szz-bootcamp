@@ -1,0 +1,82 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\subject{SI2}
+\code{BI-WSI-SI-23}
+\topic{Softwarový proces a jeho zlepšování: standardy, základní model SPI (software process improvement) a přístupy (prescriptive, inductive, best practices), proces organizace, projektu, jedince a souvislosti.}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Softwarový proces}
+Množina aktivit potřebných k vývoji SW. Vždy je potřeba udělat:
+\begin{itemize}
+    \item specifikaci - co bude systém dělat
+    \item architekrturu a design - jak a z čeho se systém bude skládat
+    \item implementace - vlastní výroba systému
+    \item validace - ověření, že systém dělá co má
+    \item další vývoj - úpravy systému na základě (měnících se/dalších) požadavků
+\end{itemize}
+
+\subsection{Modely SW procesu}
+\begin{itemize}
+    \item plánovaný SW proces (plan-driven)
+    \begin{itemize}
+        \item waterfall
+        \item iterative
+    \end{itemize}
+    \item agilní SW proces
+    \begin{itemize}
+        \item scrum
+        \item XP
+    \end{itemize}
+\end{itemize}
+\section{Zlepšování}
+Provádí se pro zvýšení kvality softwaru, snížení nákladů nebo urychlit proces vývoje.
+\newline
+Zlepšení procesů = cyklický proces:
+\begin{itemize}
+    \item měření
+    \item analýza
+    \item změna
+\end{itemize}
+\subsection{PDCA model}
+Jedná se o plán, který navrhuje jakým způsoveb řešit zlepšení/opravu systému.
+\begin{itemize}
+    \item plan
+    \begin{itemize}
+        \item identifikovat problém
+        \item navrhnout řešení
+        \item naplánovat změny
+    \end{itemize}
+    \item do - otestovat řešení
+    \item check - zhodnotit výslekdy testu
+    \item act - rozpracovat konečné řešení
+\end{itemize}
+\section{Zralost procesu}
+Zavedení optimálních metod SW inženýrství do procestu vývoje. Úroveň zralosti je odrážena použitím optimálních technických a manažerských postupů.
+V jednotlivých krocích za sebou:
+\begin{itemize}
+    \item initial
+    \item repeatable - disciplinovaný proces
+    \item defined - konzistentní
+    \item managed - kontrolovaný a udržovaný
+    \item optimizing - zaměření se na zlepšení
+\end{itemize}
+Základní varianty se rozdělují na systematický/dlouhodobý přístup (ISO, CMM - perspektivní vs SEL/NASA - induktivní) a best practices.
+\newline
+Perspektivníé - popisují, jak by měl systém vypadat. Aplikují zpravidla změny, které se osvědčili v jiných organizacích nebo oprimální SW. procesy.
+\newline
+Induktivní - analýza současného stavu
+\begin{itemize}
+    \item zamezení minulých problémů
+    \item opakování minulých úspěchů
+\end{itemize}
+Best practices - použití především osvědčených praktik (přímo použitelné strategie, techniky a praktiky).
+\end{document}
