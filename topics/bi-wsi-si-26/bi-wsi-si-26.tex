@@ -1,0 +1,62 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\subject{SI2}
+\code{BI-WSI-SI-24}
+\topic{Údržba: život softwarového díla, role a význam údržby, vazba na SDLC a jednotlivé činnosti softwarového inženýrství, servisní smlouva, role měření (pracnosti, nákladů a dalších metrik) při údržbě.}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Život SW díla}
+\begin{itemize}
+    \item před nasazením SW kroky jako analýza, design a implementace
+    \item po nasazení SW následuje údržba a další rozvoj
+\end{itemize}
+Čas po kterou je produkt udržován je několikanásobně delší než vývoj. Jednotlivé kroky za sebou:
+\newline
+Inception $\rightarrow$ elaboration $\rightarrow$ construction $\rightarrow$ transition $\rightarrow$ mantenance
+\newline
+Typy údržby:
+\begin{itemize}
+    \item corrective - oprava nalezených chyb a problémů
+    \item adaptive - udržení v měnícím se prostřdedí
+    \item perfective - zlepšování výkonnosti nebo udržitelnosti
+    \item preventive - detekce a oprava chyb než se stanou skutečné
+\end{itemize}
+
+\section{SDLC}
+Při změně SW zpravidla potřebujeme procést celý vývojový cyklus znovu (analýza, design, implementace, testování, dodávka) - miniwaterfall.
+\newline
+Na rozdíl od počátečního vývoje je cyklus značně redukován, protože se zaměřuje pouze na nově dodávanou funkcionalitu.
+\newline
+Pokud jsme zároveň tvůrci produktu, ne miniwaterfall velmi efektivní (system známe, tým vyvíjející původní SW se zároveň stará o jeho údržbu).
+\newline
+S rostoucím rozdílem mezi týmem vyvíjející a spravující systém je efektivita miniwaterfallu přímo úměrná kvalitě dokumentace projektu.
+
+\subsection{Konfigurační řízení}
+Definuje process změnového řízení a eviduje všechny požadavky zákazníka.
+\subsection{Testování}
+Především regresní testy, protože testování celého systému je náročné.
+\subsection{Odhady}
+Přesné odhady jsou klíčové, aby udržba byla profitabilní. Musí být konzistetní a odchylky musíme být schopni zdůvodnit.
+\subsection{Metriky}
+Jsou klíčové pro odhady a jsou základem ceny servisní smlouvy. Sleduje se rozsah změn v MD a poměr změn vůči původní velikosti projektu.
+\section{SLA - servisní smlouva}
+V rámci provozu systému a jeho podpory jsou garantovány určitě parametry.
+\begin{itemize}
+    \item dostupnost - jak budeme k dispozici
+    \item stabilita
+    \item response time - za jak dlouhou dobu musíme odpověď na dotaz
+    \item fix time - za jak dlouho musí být chyba opravena
+\end{itemize}
+Při porušení SLA hrozí sankce od zákazníka. Základem je nedeklarovat parametry, které nemůžeme ovlivnit.
+\newline
+Podpora se dá rozdělit podle doby dostupnosti (24/7, 8*5,\dots) nebo podle místa, kde se podpora koná (on-site: u zákazníka / on-call: po telefonu)
+
+\end{document}

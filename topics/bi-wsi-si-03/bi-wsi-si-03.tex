@@ -1,0 +1,86 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\subject{DBS}
+\code{BI-WSI-SI-03}
+\topic{Normalizace relačního schématu a normální formy (první, druhá, třetí, BCNF).}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Normalizace}
+Cílem normalizace je minimalizovat redundanci data a aktualizační anomálie. Měla by vést k vzniku tabulek,
+které lze snadno udržovt.
+
+\subsection{Fuknční závislost}
+$X$ je množina všech atributu, $Y$ a $Z$ jsou $\subseteq$ $X$. $Z$ závisí funkčně na $Y$, jestliže ke každé $Y$ hodnotě
+existuje maximálně jedna $Z$ hodnota. Značí se jako $Y \rightarrow Z$.
+
+\subsubsection{Příklad}
+\begin{itemize}
+  \item ke každému kinu existuje nanejvýš jedna adresa $\Rightarrow$ nazev\_kina $\rightarrow$ adresa
+  \begin{itemize}
+    \item název kina určuje atribut adresa
+    \item naopak adresa závizí na názvu kina
+  \end{itemize}
+  \item pro každou dvojici {kino, film} existuje nejvýše jedno datum, kdy se film v kině vysílá $\Rightarrow$ nazev\_kina, jmeno\_filmu $\rightarrow$ datum
+  \begin{itemize}
+    \item dvojice jméno kina a jméno filmu určuje atribut datum
+    \item datum závisí na dvojici jmen
+  \end{itemize}
+\end{itemize}
+\subsubsection{Amstrongova pravidla}
+\begin{itemize}
+  \item triviální funkční závislost = jestliže Y je $\subseteq$ X, pak X $\rightarrow$ Y
+  \item tranzitivita = jestliže X $\rightarrow$ Y a Y $\rightarrow$ Z, pak X $\rightarrow$ Z
+  \item kompozice pravé strany = X $\rightarrow$ Y a X $\rightarrow$ Z, pak X $\rightarrow$ YZ
+  \item dekompozice pravé strany = X $\rightarrow$ YZ, pak X $\rightarrow$ Y a X $\rightarrow$ Z
+\end{itemize}
+\subsubsection{Klíč relace}
+Řekněme R(A), kde K je $\subseteq$ A. Tak K je klíčem schématu R(A), jestliže splňuje dvě vlastnosti:
+\begin{itemize}
+  \item K $\rightarrow$ A
+  \item neexistuje K' $\subset$ K taková, že K' $\rightarrow$ A
+\end{itemize}
+
+\section{Normální formy}
+\begin{itemize}
+  \item 1NF - atributy jsou atomické (nexistují strukturované a vicehodnotové atributy)
+  \item 2NF - žádný neklíčový atribut není závislý na části klíče (vždy závisí na celém)
+  \item 3NF - jsou-li všechny neklíčové atributy závislé na klíči přímo a nikoliv tranzitivně
+  \begin{itemize}
+    \item nesmí tranzitivně záviset na jiném klíči
+    \item nesmí záviset na jiném neklíčovém atributu
+    \item musí záviset pouze na primárním klíči
+  \end{itemize}
+\end{itemize}
+\subsection{BCNF - Boyce-Coddova normální forma}
+Schéma relace R je v BNFC, jestliže pro každou netriviální závistlo X $\rightarrow$ Y platí, že X obsahuje klíč schématu R. Pokud je schéma v BCNF,
+pak je i v 3NF.
+
+\section{Normalizace}
+Eliminace aktualizačních anomálií se zajišťuje převedením relačního schématu do 3NF (resp. BCNF). Lze normalizovat pomocí dekompozice.
+Požadavky dekompozice:
+\begin{itemize}
+  \item výsledná schémata by měla mít "stejnou" sémantiku - nové i staré schéma musí mít stejnou funkční závislost
+  \item nová relace by měla obsahovat "stejná" data, jaká by obsahovala původní relace
+  \item o dekompozici lze uvažovat jako o projekcích původní relace, kde každá projekce definujé nové relace, a jejich spojením se musí dostat
+  stejná data jako měla původní relace - \texttt{beztrátová dekompozice}
+\end{itemize}
+\subsection{Beztrátová dekompozice}
+Musí být splněna pravidla:
+\begin{itemize}
+  \item schéma R(\underline{A},B,C), kde A, B, C jsou disjuktní, a je splněna funkční závislost B $\rightarrow$ C
+  \item po rozdělení R na schémata R1(\underline{B},C) a R2(\underline{A},B) $\Leftrightarrow$ je rozdělení (dekompozice) bezztrátové
+\end{itemize}
+
+Normalizace je důležitá u "write intesive" databází, databáze kde se hodně zapisují a upravují data.
+\newline
+Naopak u "read only" databází se vyplatí denormalizace, zavedením redundance se sníží odezva na složitejší dotazy, protože denormalizované
+databáze mají většinou méně tabulek než normalizované. A každé spojování tabulek při dotazování prodlužuje dobu odezvy.
+\end{document}
