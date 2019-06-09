@@ -28,7 +28,8 @@ Jediná možnost provázání dat ze dvou relací je referenční integritou (FO
 \end{itemize}
 
 \subsection{Transformace silné entity}
-Daná entita se převede na tabulku s hodnotami entita(\underline{identifikator}, povinny\_atribut, nepovinny\_atribut).
+Daná entita se převede na tabulku s hodnotami
+\textbf{entita(\underline{identifikator}, povinny\_atribut, nepovinny\_atribut)}.
 Podtržení znamená, že je to primární klíč.
 \begin{figure}[h!]
     \centering
@@ -36,12 +37,15 @@ Podtržení znamená, že je to primární klíč.
 \end{figure}
 
 \subsection{Vztah 1:1, obě části jsou ve vztahu povinné}
-Dojde k sjednocení daných entit do jedné tabulky zamestnanec\_vuz(\underline{cislo\_z}, jmneo\_z, adresa, spz, vyrobce, model).
-Kde navíc spz je NOT NULL a UNIQUE (protože byl identifikátorem).
+Dojde k sjednocení daných entit do jedné tabulky
+\textbf{zamestnanec\_vuz(\underline{cislo\_z}, jmneo\_z, adresa, spz, vyrobce, model)}.
+Kde navíc \textbf{spz je NOT NULL a UNIQUE} (protože byl identifikátorem).
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{topics/bi-wsi-si-02/images/oneToOne.png}
 \end{figure}
+
+\newpage
 
 \subsection{Vztah 1:1, kde jen jedna část je povinná}
 Entity se nemohou spojit kvůli nepovinnosti jedné strany. Převedou se tedy na dvě tabulky, kde tabulka, jež je nepovinnou částí, bude mít ID
@@ -53,6 +57,7 @@ odkaz na povinnou část.
 \begin{itemize}
     \item zamestnanec(\underline{cislo\_z}, jmeno\_z, adresa)
     \item vuz(\underline{spz}, vyrobce, model, \texttt{cislo\_z}) a \underline{cislo\_z} je NOT NULL UNIQUE (kvůli zachování vazby 1:1)
+    \item vuz[cislo\_z] $\subseteq$ zamestnanec[cislo\_z] 
 \end{itemize}
 
 \subsection{Vztah 1:1, obě nepovinné}
@@ -60,12 +65,15 @@ odkaz na povinnou část.
     \centering
     \includegraphics[width=0.5\textwidth]{topics/bi-wsi-si-02/images/oneToOneV2.png}
 \end{figure}
-Lze vyřešit dvěmi způsoby. První řešení odpovídá předchozímu případu, akorát cislo\_z v tabulce vuz bude nepovinný.
+Lze vyřešit dvěmi způsoby. \textbf{První řešení} odpovídá předchozímu případu, akorát \textbf{cislo\_z} v tabulce vuz bude \textbf{nepovinný}.
+
 Druhé řešení přidává relační tabulky:
 \begin{itemize}
     \item zamestnanec(\underline{cislo\_z}, jmeno\_z, adresa)
     \item vuz(\underline{spz}, vyrobce, model)
     \item zamestnanec\_vuz(\underline{cislo\_z}, spz), kde SPZ je NOT NULL a UNIQUE
+    \item zamestnanec\_vuz[spz] $\subseteq$ vuz[spz]
+    \item zamestnanec\_vuz[cislo\_z] $\subseteq$ zamestnanec[cislo\_z] 
 \end{itemize}
 
 \subsection{Vztah 1:N, povinná účást stany N (determinant)}
@@ -74,13 +82,14 @@ Druhé řešení přidává relační tabulky:
     \includegraphics[width=0.6\textwidth]{topics/bi-wsi-si-02/images/oneToN.png}
 \end{figure}
 \begin{itemize}
-    \item pacient(\underline{id\_pac}, jmeno\_pac, id\_pok), kde id\_pok je NOT NULL
+    \item pacient(\underline{id\_pac}, jmeno\_pac, id\_pok)
     \item pokoj(\underline{id\_pok}, poc\_luzek)
+    \item pacient[id\_pok] $\subseteq$ pokoj[id\_pok], kde id\_pok je NOT NULL
 \end{itemize}
 
 
 \subsection{Vztah 1:N, nepovinná účást stany N (determinant)}
-Opět dva způsoby jak se dá řešit, první je vzít řešení z předchozí ukázky a nastavit \underline{id\_pok} na nepovinný. A druhé řešení
+Opět dva způsoby jak se dá řešit, první je vzít řešení z předchozí ukázky a nastavit \textbf{\underline{id\_pok} na nepovinný}. A druhé řešení
 je opět vytvoření vazební tabulky
 \begin{figure}[h!]
     \centering
@@ -90,6 +99,8 @@ je opět vytvoření vazební tabulky
     \item pacient(\underline{id\_pac}, jmeno\_pac),
     \item pokoj(\underline{id\_pok}, poc\_luzek)
     \item umisteni(\underline{id\_pac}, id\_pok), kde id\_pok je NOT NULL
+    \item umisteni[id\_pac] $\subseteq$ pacient[id\_pac] 
+    \item umisteni[id\_pok] $\subseteq$ pokoj[id\_pok]
 \end{itemize}
 
 
@@ -102,6 +113,8 @@ je opět vytvoření vazební tabulky
     \item kino(\underline{id\_kina}, nazev\_kina),
     \item film(\underline{id\_filmu}, nazev\_filmu)
     \item predstaveni(\underline{id\_kina, id\_filmu})
+    \item predstaveni[id\_kina] $\subseteq$ kino[id\_kina]
+    \item predstaveni[id\_filmu] $\subseteq$ film[id\_filmu]
 \end{itemize}
 Toto řešení způsobuje to, že v jendom kině se může hrát film pouze jednou. Tento problém se řeší pomocí dekompozice.
 
@@ -114,6 +127,8 @@ Toto řešení způsobuje to, že v jendom kině se může hrát film pouze jedn
     \item kino(\underline{id\_kina}, nazev\_kina),
     \item film(\underline{id\_filmu}, nazev\_filmu)
     \item predstaveni(\underline{id\_predstaveni}, datum, id\_kina, id\_filmu), ID kina a filmu jsou NOT NULL
+    \item predstaveni[id\_kina] $\subseteq$ kino[id\_kina] 
+    \item predstaveni[id\_filmu] $\subseteq$ film[id\_filmu]
 \end{itemize}
 
 
@@ -128,6 +143,7 @@ Ale pomocí kombinace číslo bloku + číslo pokoje jsmě již schopní pokoj n
 \begin{itemize}
     \item blok(\underline{id\_bloku}, nazev\_bloku),
     \item pokoj(\underline{id\_pokoje, id\_bloku})
+    \item pokoj[id\_bloku] $\subseteq$ blok[id\_bloku]
 \end{itemize}
 
 \subsection{Identifikační závislost}
@@ -140,6 +156,7 @@ identifikován pomocí uživatele.
 \begin{itemize}
     \item osoba(\underline{id\_osoby, jmeno\_osoby})
     \item profil(\underline{id\_osoby}, fotka)
+    \item profil[id\_osoby] $\subseteq$ osoba[id\_osoby]
 \end{itemize}
 
 \section{ISA hierarchie}
@@ -160,11 +177,13 @@ Příklad:
     \begin{itemize}
         \item osoba(\underline{id\_osoby}, email, telefon, jmneo, ico, dic)
     \end{itemize}
-    \item polimorfismus
+    \item polymorfismus
     \begin{itemize}
         \item osoba(id\_osoby, email, telefon), kde ID osoby je UNIQUE
         \item fyzicka(\underline{id\_osoby}, jmneo)
         \item pravnicka(\underline{id\_osoby}, ico, dic)
+        \item fyzicka[id\_osoby] $\subseteq$ osoba[id\_osoby]
+        \item pravnicka[id\_osoby] $\subseteq$ osoba[id\_osoby]
     \end{itemize}
     \item oddělené tabulky
     \begin{itemize}
