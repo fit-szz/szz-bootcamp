@@ -1,0 +1,106 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\subject{SI2}
+\code{BI-WSI-SI-30}
+\topic{Komponenty obchodní logiky EJB. Typy JavaBeans z pohledu uchování stavu (session). Životní cyklus nestavové a stavové EJB. Mechanismus injektování EJB. Popis rozhraní @Local a @Remote.}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{EJB}
+Enterprise Java Beans jsou serverové komponenty umožňující modulární tvorbu podnikatelských aplikací.
+\newline
+Specifikace EJB je součástí množiny API definující Java Enterprise Edition (Java EE).
+\newline
+Cílem EJB je oddělit business logiku aplikace od prezentační a persistentní vrstvy. Poskytuje:
+\begin{itemize}
+    \item znovupoužitelnost kódu
+    \item oddělení logiky aplikace
+    \item transakční zpracování
+    \item bezpečnost
+    \item intergrace s ostatními technologiemi
+    \item jednodušší testování
+\end{itemize}
+Rozdělují se na:
+\begin{itemize}
+    \item Session Beans
+    \begin{itemize}
+        \item statefull
+        \item stateless
+        \item singleton
+    \end{itemize}
+    \item message driven bean
+\end{itemize}
+\subsection{EJB kontejner}
+Dedikovaný virtuální prostor v aplikačním serveru, kam se nasazují EJB komponenty
+\begin{itemize}
+    \item komunikace se vzdáleným klientem - zjednodušuje komunikaci mezi klientem a aplikací
+    \item dependency injection - zajišťuje naplnění deklarovaných promenných (datových atributů) např. další EJB, datové zdroje (sql spojení)\dots
+    \item pooling - vytváření poolu instancí pro bezstavové beany a message-driven beany
+    \item řízení životního cyklu - stará se o vytváření, inicializaci a destrukci instancí
+\end{itemize}
+\subsection{Stateless (bezstavové)}
+\begin{itemize}
+    \item neuchovávají stav relevatní pro klienta mezi obsluhou jeho jednotlivých požadavků
+    \item pouze na žádost něco udělá s daty, které dostane
+    \item recyklují se - po vykonání práce může jít do poolu
+    \item klientu vždy na serveru přidělena samostatná instance
+    \item thread safe
+    \item lze použít i datové atributy instance beanu (není zaručeno, že se jejich atribyty při zavolání nezmění)
+    \item obsahuje class notaci @Stateless
+    \item může obsahovat atributy, které jsou injektované (JDBC spojení)
+    \item po kompletním vytvoření se zavolají metody s notací @PostConstruct (lze v nich například zkontrolovat spojení)
+    \item když je bean ve stavu method-ready-pool může obsluhovat klientské požadavky
+    \item před zníčením sse volají metody s anotací @PreDestroy (lze například ukončit DB spojení)
+    \item pokud bean vyvolala výjimku = žádné @PreDestroy = okamžité odstranění beany z paměti
+\end{itemize}
+\subsection{Stateful (stavová)}
+\begin{itemize}
+    \item uchovávají svůj stav mezi voláním metod (obsluha požadavků klienta) v rámci jendé seassion
+    \item anotace třídy je @Statefull
+    \item pro každého klienta se tvoří nová instance, při dalším volání metod se použije vždy stejný objekt obsahující data z předchozé interakce klienta
+    \item v rámci životního cyklu může dojít k pasivaci = serializaci beanu (odstranění z paměti a uložení na disk) a následně obnovení (děje se tak, při nedostatku paměti)
+    \item anotace @PostConstruct a @PreDestroy se chovají jako u stateless
+    \item navíc stavy spojené s pasivací - @PrePasivate a @PostActivate
+    \item bean může existovat po určitě dlouhou dobu - nastavuje se timeout
+\end{itemize}
+\subsection{Singleton}
+\begin{itemize}
+    \item tento EJB má anotaci @Singleton
+    \item globálně sdílený stav
+    \item bean je synchronyzována - buď si řeší synchronizaci sama nevo pomocí anotace @Lock
+\end{itemize}
+\subsection{Message driven}
+\begin{itemize}
+    \item reagují na zprávu
+    \item pracují asynchronně - nevrací tedy odpověď
+\end{itemize}
+\section{Injection EJB}
+Do EJB se dá injectovat další EJB nebo i jiné třídy. K naplnění proměnných dochází při vytváření beany - vše zajišťuje EJB kontejner.
+Používá JNDI pro vyhledávání
+\begin{itemize}
+    \item @EJB - anotace pro injectování jiné beany
+    \item @Resource - anotace pro injectování zdrojů dat nebo kontextu
+\end{itemize}
+\section{Rozhraní}
+Definuje co musí daná bean implementovat, každá musí být dostupná lokálně nebo vzdáleně (nebo obojí)
+\subsection{Lokální}
+\begin{itemize}
+    \item implicitní chování, pokud není jinak specifikováno
+    \item lokální dostupnosti se většinou myslí, že je dostupná pro ostatní komponenty běžící na stejné JVM
+    \item anotace @loacl
+\end{itemize}
+\subsection{Remote}
+\begin{itemize}
+    \item pro volání vzdálené JVM
+    \item například EJB běží na aplikačním serveru a komunikuje s PC uživatele
+    \item získání instance pomocí JNDI
+    \item anotace @Remote
+\end{itemize}
+\end{document}
