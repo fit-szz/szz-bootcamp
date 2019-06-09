@@ -26,5 +26,133 @@
 \newpage
 
 
+\section{Posloupnost}
+\subsection{Definice}
+Zobrazení množiny $\mathbb{N}$ do množiny $\mathbb{R}$ nazýváme reálná posloupnost.
+
+\subsection{Limita}
+Reálná posloupnost $(a_n)_{n=1}^\infty$ má limitu $\alpha\in\overline{\mathbb{R}}$,
+právě když pro každé okolí $H_\alpha$ bodu $\alpha$ lze nalézt $n_0\in\mathbb{N}$ takové,
+že pro všechna $n\in\mathbb{N}$ větší než $n_0$ platí $a_n\in H_\alpha$. V symbolech
+
+\begin{equation*}
+\big({\forall H_\alpha} \big) \big({\exists n_0\in\mathbb{N}} \big) \big({\forall n \in \mathbb{N}} \big) \big({n>n_0 \, \Rightarrow \, a_n \in H_\alpha} \big).\end{equation*}
+
+Tuto skutečnost můžeme zapsat několika možnými ekvivalentními způsoby:
+
+\begin{equation*}
+\lim_{n\to\infty} a_n = \alpha \quad \text{nebo} \quad \lim a_n = \alpha \quad \text{nebo} \quad a_n \to \alpha.\end{equation*}
+
+\subsection{Konvergence}
+Buď $(a_n)_{n=1}^\infty$ posloupnost. Pokud pro její limitu platí
+$\displaystyle\lim_{n\to\infty} a_n \in\mathbb{R}$,
+pak se nazývá konvergentní. V ostatních případech ji nazýváme divergentní.
+
+\section{Řada}
+\subsection{Definice}
+Formální výraz tvaru
+
+\begin{equation*}
+\sum_{k=0}^\infty a_k = a_0 + a_1 + a_2 + \cdots,\end{equation*}
+
+kde $(a_k)_{k=0}^\infty$ je zadaná číselná posloupnost,
+nazýváme číselnou řadou. Pokud je posloupnost částečných součtů
+
+\begin{equation*}
+s_n := \sum_{k=0}^n a_k, \quad n\in\mathbb{N}_0,\end{equation*}
+
+konvergentní, nazýváme příslušnou řadu také konvergentní.
+V opačném případě mluvíme o divergentní číselné řadě.
+Součtem konvergentní řady $\sum_{k=0}^\infty a_k$
+nazýváme hodnotu limity $\displaystyle\lim_{n\to\infty} s_n$
+
+
+\subsection{Konvergence řady}
+\subsubsection{Nutná podmínka konvergence}
+Pokud řada $\sum_{k=0}^\infty a_k$ konverguje,
+potom pro limitu jejích sčítanců platí
+$\displaystyle \lim_{k\to\infty} a_k = 0$.
+
+\textbf{Důsledek}
+Pokud limita posloupnosti $(a_k)^∞_k=0$ je
+nenulová nebo neexistuje, potom řada
+$\sum_{k=0}^\infty a_k$ není konvergentní.
+
+\subsubsection{Bolzano-Cauchy}
+Řada $\displaystyle\sum_{k=0}^\infty a_k$
+konverguje právě tehdy, když pro každé
+$\epsilon>0$ existuje $n_0\in\textbf{R}$
+tak, že pro každé $n\geq n_0$ a $p\in\mathbb{N}$ platí
+
+\begin{equation*}
+|a_n + a_{n+1} + \cdots + a_{n+p}| < \epsilon .\end{equation*}
+
+\subsubsection{Absolutní konvergence}
+
+Číselnou řadu $\sum_{k=0}^\infty a_k$ nazýváme absolutně
+konvergentní, pokud číselná řada $\sum_{k=0}^\infty |a_k|$ konverguje.
+
+Pokud řada absolutně konverguje, potom tato řada konverguje.
+
+\subsubsection{Leibnizovo kritérium}
+Buď $(a_k)_{k=0}^\infty$ klesající posloupnost s nezápornými členy konvergující k nule. Potom je řada
+
+\begin{equation*}
+\sum_{k=0}^\infty (-1)^k a_k\end{equation*}
+
+konvergentní.
+
+\subsubsection{Srovnávací kritérium}
+Buďte $\sum_{k=0}^\infty a_k$ a $\sum_{k=0}^\infty b_k$
+číselné řady. Potom platí následující dvě tvrzení.
+\begin{itemize}
+    \item Nechť pro každé $k\in\mathbb{N}$ platí nerovnost
+    $0\leq|a_k|\leq b_k$ a nechť řada $\sum_{k=0}^\infty a_k$
+    konverguje. Potom řada $\sum_{k=0}^\infty b_k$absolutně konverguje.
+    \item Nechť pro každé $k\in\mathbb{N}$ platí nerovnosti
+    $0\leq a_k\leq b_k$ a $\sum_{k=0}^\infty a_k$ diverguje.
+    Potom i řada $\sum_{k=0}^\infty b_k$ diverguje.
+\end{itemize}
+
+\subsubsection{d'Alembertovo kritérium}
+Nechť $a_k>0$ pro každé $k\in \mathbb{N}_0$. Pokud
+
+\begin{equation*}
+\lim_{k\to\infty} \frac{a_{k+1}}{a_k} > 1,\end{equation*}
+
+potom řada  $\sum_{k=0}^\infty a_k$ diverguje. Pokud ovšem
+
+\begin{equation*}
+\lim_{k\to\infty} \frac{a_{k+1}}{a_k} < 1,\end{equation*}
+
+potom řada  $\sum_{k=0}^\infty a_k$ konverguje.
+
+\subsection{Odhadování růstu}
+Nechť $f$ je spojitá funkce na $\langle 1,+\infty)$ a $n\in\mathbb{N}$. Je-li $f$ klesající, pak
+
+\begin{equation*}
+f(n) + \int_1^n f(x) \,\mathrm{d} x \leq \sum_{k=1}^n f(k) \leq f(1) + \int_1^n f(x) \,\mathrm{d}x.\end{equation*}
+
+Je-li $f$ rostoucí, pak
+
+\begin{equation*}
+f(1) + \int_1^n f(x) \,\mathrm{d} x \leq \sum_{k=1}^n f(k) \leq f(n) + \int_1^n f(x) \,\mathrm{d}x.\end{equation*}
+
+\subsubsection{Integráln kritérium}
+
+Buď $\displaystyle\sum_{n=1}^\infty a_n$ číselná řada s kladnými členy taková,
+že existuje spojitá a monotónní funkce definovaná na $\langle 1,+\infty)$ taková,
+že $f(n)=a_n$ pro každé $n$. Potom
+\begin{itemize}
+    \item Pokud integrál $\displaystyle\int_1^\infty f(x)\,\mathrm{d}x$ konverguje,
+    pak číselná řada $\displaystyle\sum_{n=1}^\infty a_n$ konverguje.
+    \item Pokud integrál $\displaystyle\int_1^\infty f(x)\,\mathrm{d}x$ diverguje,
+    pak číselná řada $\displaystyle\sum_{n=1}^\infty a_n$ diverguje.
+\end{itemize}
+
+
+
+
+
 
 \end{document}
