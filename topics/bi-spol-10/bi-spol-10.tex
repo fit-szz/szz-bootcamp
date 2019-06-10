@@ -7,11 +7,19 @@
 
 \begin{document}
 
+\tableofcontents
+\newpage
+
+\section{Požadavky na konzistenci databáze}
+
+V rámci DBMS (Database Management Service) je potřeba myslet na konzistenci dat a jejich ochranu. Je potřeba
+myslet na to, že žádná akce by neměla ohrozit integritu celého systému.
+
 \begin{itemize}
 \item Dva základní požadavky na DBMS:
   \begin{itemize}
-  \item chránit data – ve smyslu odolnosti vůči různým haváriím serveru 
-  \item poskytnout korektní, rychlý a asynchronní pčístup vetšímu množství současně pracujících uživatelů. 
+  \item chránit data – ve smyslu odolnosti vůči různým haváriím serveru
+  \item poskytnout korektní, rychlý a asynchronní pčístup vetšímu množství současně pracujících uživatelů.
   \end{itemize}
 \item Řešení
   \begin{itemize}
@@ -22,7 +30,8 @@
 \end{itemize}
 
 \section{Transakce}
-vhodná programová jednotka a vhodné mechanismy, které zabezpečí, že po skončení akce (korektním i nekorektním) zůstane databáze konzistentní (platí všechna IO definovaná ve schématu).
+
+Vhodná programová jednotka a vhodné mechanismy, které zabezpečí, že po skončení akce (korektním i nekorektním) zůstane databáze konzistentní (platí všechna IO definovaná ve schématu).
 
 \begin{itemize}
 \item COMMIT - potvrzení
@@ -30,6 +39,7 @@ vhodná programová jednotka a vhodné mechanismy, které zabezpečí, že po sk
 \end{itemize}
 
 Stavový diagram transakce
+
 \begin{itemize}
 \item aktivní (Active) - od začátku (probíhají DML příkazy)
 \item částečně potvrzený (Partially Commited) - po provedení poslední operace transakce
@@ -68,7 +78,7 @@ Precendenční graf rozvrhu:
   \begin{itemize}
   \item jedna transakce READ(A) před tím než druhá transakce WRITE(A)
   \item jedna transakce WRITE(A) před tím než druhá transakce READ(A)
-  \item posledni WRITE(A) v jende je pred poslednim WRITE(A) v druhe. 
+  \item posledni WRITE(A) v jende je pred poslednim WRITE(A) v druhe.
   \end{itemize}
 \end{itemize}
 
@@ -87,14 +97,15 @@ Dvoufázová transakce:
 Dobře formované transakce:
 \begin{itemize}
 \item transakce zamyká objekt, chce-li k němu přistupovat
-\item transakce nezamyká objekt, když ho již zamkla 
+\item transakce nezamyká objekt, který již zamkla
 \item transakce neodmyká objekt, který nezamkla
 \item na konci transakce nezůstane žádný objekt zamčený
 \end{itemize}
 
 Jestliže všechny transakce v dané množině transakcí T jsou:
+
 \begin{itemize}
-\item dobře formované 
+\item dobře formované
 \item dvoufázové $\Rightarrow$ pak každý jejich legální rozvrh je uspořádatelný.
 \end{itemize}
 
