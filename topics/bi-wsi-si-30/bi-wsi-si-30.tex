@@ -57,7 +57,7 @@ Dedikovaný virtuální prostor v aplikačním serveru, kam se nasazují EJB kom
     \item může obsahovat atributy, které jsou injektované (JDBC spojení)
     \item po kompletním vytvoření se zavolají metody s notací @PostConstruct (lze v nich například zkontrolovat spojení)
     \item když je bean ve stavu method-ready-pool může obsluhovat klientské požadavky
-    \item před zníčením sse volají metody s anotací @PreDestroy (lze například ukončit DB spojení)
+    \item před zníčením se volají metody s anotací @PreDestroy (lze například ukončit DB spojení)
     \item pokud bean vyvolala výjimku = žádné @PreDestroy = okamžité odstranění beany z paměti
 \end{itemize}
 \subsection{Stateful (stavová)}
