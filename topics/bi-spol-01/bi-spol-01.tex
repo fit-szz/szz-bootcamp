@@ -1,10 +1,12 @@
 \documentclass{szzclass}
 
-\title{Přehled Chomského hierarchie formálních jazyků a gramatik. Turingovy stroje. Třídy problémů P, NP, NP-těžký, NP-úplný.}
+\subject{AAG}
+\code{BI-SPOL-01}
+\topic{Přehled Chomského hierarchie formálních jazyků a gramatik. Turingovy stroje. Třídy problémů P, NP, NP-těžký, NP-úplný.}
 \author{Jakub Rathouský}
 
 \begin{document}
-\maketitle
+
 \tableofcontents
 \newpage
 
@@ -59,7 +61,7 @@ Formální jazyk je rekurzivně spočetný, když lze:
 Například (problém zastavení)L = \{[R, $w$] : Turingův stroj R se pro vstup $w$ zastaví\}.
 
 \section{Turingovy stroje}
-Turingův sttoj se skládá z \textbf{řídící jednotky}, \textbf{neomezené čtecí pásky} rozdělené do buněk a \textbf{čtecí hlavy}.
+Turingův stroj se skládá z \textbf{řídící jednotky}, \textbf{neomezené čtecí pásky} rozdělené do buněk a \textbf{čtecí hlavy}.
 Čtecí hlava se umí pohybovat oběma směry, či posečkat na stejném místě.
 \newline
 Formální definice Turingova stroje je:
@@ -80,7 +82,7 @@ Konfigurace obecně je prvek $<q,s,n>$, kde \textit{q} je aktuální stav, \text
 \subsection{Deterministický Turingův stroj}
 Má následující přechodovou funkci $\delta$:
 
-$\delta$ je zobrazení z (Q bez F) x G do Q x G x \{-1, 0, 1\}
+$\delta$ je zobrazení z (Q bez F) x G do Q x G x \{-1, 0, 1\} ($(Q \setminus F) \times G \rightarrow Q \times G \times \{-1, 0, 1\}$)
 \newline
 Je-li TS v \textbf{nekoncovém} stavu a z pásky \textbf{čte} nějaký symbol z pracovní abecedy, poté \textbf{přejde} do dalšího stavu, na pásku \textbf{zapíše} nějaký symbol
 a čtecí hlava se \textbf{posune}.
@@ -96,7 +98,7 @@ Je-li TS v \textbf{koncovém} stavu, \textbf{zastaví se} a dál \textbf{nepokra
 \subsection{Nedeterministický Turingův stroj}
 Má následující přechodovou funkci $\delta$:
 
-$\delta$ je zobrazení z (Q bez F) x G do množiny všech podmnožin množiny Q x G x \{-1, 0, 1\}
+$\delta$ je zobrazení z (Q bez F) x G do množiny všech podmnožin množiny Q x G x \{-1, 0, 1\} ($(Q \setminus F) \times G \rightarrow \mathcal{P}(Q \times G \times \{-1, 0, 1\})$)
 \newline
 \newline
 Na rozdíl od DTS může mít v daném stavu několik přechodů pro daný symbol.

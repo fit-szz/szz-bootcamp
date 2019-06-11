@@ -3,10 +3,11 @@
 \usepackage{dependencies/szz-code}
 \usepackage{hyperref}
 
-\title{Čisté objektové paradigma — kvalita návrhu OO systémů.}
+\topic{Čisté objektové paradigma — kvalita návrhu OO systémů.}
+\subject{OOP}
+\code{BI-WSI-SI-10}
 
 \begin{document}
-\maketitle
 
 \tableofcontents
 \newpage
@@ -24,7 +25,7 @@ Jediné, co lze zde uvést je, že kvalita návrhu se odvíjí od návrhových p
 
 \begin{itemize}
       \item \textit{Explain the pattern matching pattern}
-      
+
       \textbf{Pattern matching} -- zachycení textových (či jiných) vzorů. Jedná se o parsování. Vzor je
       zachycen pouze při přesné shodě. Pro implementaci se používá vzor \textbf{Parser Combinator}.
 
@@ -34,18 +35,18 @@ Jediné, co lze zde uvést je, že kvalita návrhu se odvíjí od návrhových p
       a vrátí objekt obsahující syntaktickou hodnotu a zbytek vstupu, který nebyl použit.
 
       \textbf{ParserCombinator} -- funkce vyššího řádu (\textbf{higher-order-function}: jako parametry dostává opět
-      funkce), která dostává jako parametry jeden nebo více parsovacích funkcí (\textbf{Parser}). 
-      Definuje funkci, která přes cyklus aktivuje všechny vstupní parsery a nad výsledky může 
-      ještě provést nějakou funkci (například \textit{sum()}). Tato funkce je výstupem pro 
+      funkce), která dostává jako parametry jeden nebo více parsovacích funkcí (\textbf{Parser}).
+      Definuje funkci, která přes cyklus aktivuje všechny vstupní parsery a nad výsledky může
+      ještě provést nějakou funkci (například \textit{sum()}). Tato funkce je výstupem pro
       \textbf{ParserCombinator}.
 
       Příklad postupu tvorby parser combinatoru v Javascriptu pro parsování součtu (\textit{' 10 + 34  '}).
 
       \textbf{https://dev.to/yelouafi/a-gentle-introduction-to-parser-combinators-21a0}
-      
+
 
       \item \textit{Define criteria and compare the 'using' relation and inheritance.}
-      
+
       \textbf{Kritéria} -- stanovují požadavky kladené na funkcionalitu. Slouží k porovnání různých
       implementačních metod. Například máme třídu \textit{TextEditor}, která umí svůj text
       formátovat více způsoby. Pak jako kritéria můžeme definovat například:
@@ -73,7 +74,7 @@ Jediné, co lze zde uvést je, že kvalita návrhu se odvíjí od návrhových p
       \end{figure}
 
       \item \textit{Explain the Strategy design pattern.}
-      
+
       \textbf{Strategy pattern} -- definujeme rodinu podobných algoritmů, každý zapouzdříme do své vlastní
       třídy, která poskytuje stejné rozhraní jako ostatní třídy z této rodiny algoritmů.
       Konkrétní algoritmus lze pak měnit za běhu programu.
@@ -85,7 +86,7 @@ Jediné, co lze zde uvést je, že kvalita návrhu se odvíjí od návrhových p
       \end{figure}
 
       \item \textit{Explain the Null object pattern, when and how to use it.}
-      
+
       \textbf{Null object pattern} -- jedna z podtříd definuje chování prázdného (\textit{null}) objektu.
       Tímto způsobem lze eliminovat kontrolování \textit{null} hodnoty před každou operací.
 
@@ -94,30 +95,30 @@ Jediné, co lze zde uvést je, že kvalita návrhu se odvíjí od návrhových p
 
       \begin{itemize}
             \item \textit{TSNode} -- abstraktní třída pro vrchol stromu,
-            
+
             \item \textit{TSBinnaryNode extends TSNode} -- třída reprezentující existující vrchol stromu,
             která obsahuje 3 atributy: \textit{value}, \textit{left}, \textit{right} a na metodu
             \textit{isEmpty()} odpovídá \textit{false},
-            
+
             \item \textit{TSEmptyNode extends TSNode} -- třída reprezentující neexistující vrchol stromu,
             která neobsahuje žádné atributy a na metodu
             \textit{isEmpty()} odpovídá \textit{true}.
-            
+
       \end{itemize}
 
       \textit{TSEmptyNode} může být \textit{Singleton}, protože instance této třídy nemá žádné vnitřní
       instanční proměnné a proto se všechny instance \textit{TSEmptyNode} chovají stejně. Není tedy důvod
       jich vytvářet zbytečně moc.
-      
+
       \begin{figure}[h]
             \centering
             \includegraphics[width=1\textwidth]{topics/bi-wsi-si-10/null.png}
             \caption{Null object pattern}
       \end{figure}
 
-      
+
       \item \textit{What is dynamic dispatch, explain single and double-dispatch, give examples.}
-      
+
       \textbf{Dynamic dispatch} -- proces výběru implementace polymorfické operace (metody) za běhu programu.
 
       \textbf{Single dispatch} -- výběr metody je závislý pouze na jednom objektu. Jedná se o klasické
