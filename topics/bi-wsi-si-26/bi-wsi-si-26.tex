@@ -24,10 +24,10 @@ Inception $\rightarrow$ elaboration $\rightarrow$ construction $\rightarrow$ tra
 \newline
 Typy údržby:
 \begin{itemize}
-    \item corrective - oprava nalezených chyb a problémů
-    \item adaptive - udržení v měnícím se prostřdedí
-    \item perfective - zlepšování výkonnosti nebo udržitelnosti
-    \item preventive - detekce a oprava chyb než se stanou skutečné
+    \item corrective (opravné) - oprava nalezených chyb a problémů
+    \item adaptive (adaptivné) - udržení v měnícím se prostřdedí
+    \item perfective (zdokonalovací) - zlepšování výkonnosti nebo udržitelnosti
+    \item preventive (preventivní) - detekce a oprava chyb než se stanou skutečné
 \end{itemize}
 
 \section{SDLC}
@@ -38,8 +38,43 @@ Na rozdíl od počátečního vývoje je cyklus značně redukován, protože se
 Pokud jsme zároveň tvůrci produktu, je miniwaterfall velmi efektivní (system známe, tým vyvíjející původní SW se zároveň stará o jeho údržbu).
 \newline
 S rostoucím rozdílem mezi týmem vyvíjející a spravující systém je efektivita miniwaterfallu přímo úměrná kvalitě dokumentace projektu.
+\newline
+Snadno se měří náklady na údržbu - přesné odhady pro uzavření servisní smlouvy
 
+\section{Správa}
+\subsection{Problémy}
+Více různých prostředí:
+\begin{itemize}
+    \item vývojové - oprava chyb, vývoj nových funkčností
+    \item testovací - ověření oprav, kontrola neovlivnění ostatních částí
+    \item produkční
+    \item školící
+    \item \dots
+\end{itemize}
+Ideální stav, když se jedná o totožné prostředí, ale dochází k problémům s:
+\begin{itemize}
+    \item licencemi
+    \item HW požadavky
+    \item testovacími daty (obsah osobních dat/příliš velká)
+\end{itemize}
+Velikost testovacích dat, dělají se řezy dat:
+\begin{itemize}
+    \item zmenšní požadavku na kapacitu disku
+    \item zajistit reprezentativní vzorek dat (problém podle čeho data ožíznout)
+    \item zajistit konzistenci dat (nutné neporušit referenční integritu)
+    \item problém pro výkonnostní testy
+\end{itemize}
+Anonymizace:
+\begin{itemize}
+    \item odstranic citlivé údaje - co vše je citlivé?
+    \item zachovat délky řezů, formáty dat, závislost mezi tebulkami, odlišný obsah v závislosti na jiném údaji, vnitřní logika (např. rodné číslo)
+\end{itemize}
+Údržba cizího systému přináší mnoho problémů, je nutná dokumentace, vytvořit si znalostní bázi o řešení problémů a je nebezpečí zníčení původní architektury (architekturu navrhl někdo jiný).
+\newline
+Dodávky se rozdělují podle verzí s novými funkčnostmi a těmi, které opravují akutní opravy. Je potřeba používat CM (konfigurační řízení) pro verzování současné práce na
+opravách a vývoji nových funkcí.
 \subsection{Konfigurační řízení}
+Evidence nových požadavků, změn a chyb. Plánování nasazování nových verzí.
 Definuje process změnového řízení a eviduje všechny požadavky zákazníka.
 \subsection{Testování}
 Především regresní testy, protože testování celého systému je náročné.
@@ -47,6 +82,35 @@ Především regresní testy, protože testování celého systému je náročn�
 Přesné odhady jsou klíčové, aby udržba byla profitabilní. Musí být konzistetní a odchylky musíme být schopni zdůvodnit.
 \subsection{Metriky}
 Jsou klíčové pro odhady a jsou základem ceny servisní smlouvy. Sleduje se rozsah změn v MD a poměr změn vůči původní velikosti projektu.
+
+\section{Podpora}
+Jedná se o službu pro uživatele systému, umožňuje řešit problémy, které se během používání objeví.
+Typy podpory:
+\begin{itemize}
+    \item po telefonu
+    \item po emailu
+    \item po internetu
+\end{itemize}
+Podpora se dělí do několika úrovní:
+\begin{itemize}
+    \item 1. úroveň
+    \begin{itemize}
+        \item komunikuje se zákazníkem a snaží se identifikovat příčiny problému
+        \item řešení hledá v databázi možných řešení, která se během provozu podpory vytváří
+        \item vyřeší většinu problémů
+    \end{itemize}
+    \item 2. úroveň
+    \begin{itemize}
+        \item technická úroveň
+        \item hlubší znalost daného produktu a technologie
+        \item mohou být osoby z vývojového týmu
+    \end{itemize}
+    \item řeší nejvíce obtížné případy
+    \item experti v dané oblasti
+\end{itemize}
+\subsection{Shrnutí}
+Typicy se jedná o dlouhodobé smlouvy. Podpora zajišťuje firmě stabilní množství práce/peněz. Velkou výhodou je dobrá znalsot systému,
+protože se dobře dělají odhady pracnosti nových funkcí a náročnost provádění údržby.
 \section{SLA - servisní smlouva}
 V rámci provozu systému a jeho podpory jsou garantovány určitě parametry.
 \begin{itemize}
