@@ -1,0 +1,121 @@
+\documentclass{szzclass}
+\usepackage{hyperref}
+
+
+\subject{BEZ}
+\code{BI-SPOL-8}
+\topic{Infrastruktura veřejného klíče, distribuce klíčů, digitální podpis. Certifikáty, certifikační autority. Kryptograficky bezpečné generátory náhodných čísel.}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+
+\tableofcontents
+\newpage
+
+\section{Infrastruktura veřejného klíče}
+Jedná o specifikaci technických a organizačních opatření pro vydávání, správu, používání
+a odvolávání klíčů a certifikátů.
+
+\section{Distribuce klíčů}
+Při distribuci veřejného klíče hrozí podvrhnutí prostřednictvím útoku man-in-the-middle.
+Jedná se o útok, kde komunikace probíhá přes prostředníka, který zaměňuje předávané klíče za své,
+a tím může číst obsah jednotlivých zpráv.
+
+Z tohoto důvodu vzniklo několik způsobů, které tuto situaci řeší.
+
+\section{Techniky distribuce VK}
+\subsection{Zveřejnění VK}
+\begin{itemize}
+  \item VK je zaslán individuálně nebo hromadně v rámci skupiny
+  \item vystaví se na internet, dá se do emailu, atd\dots
+  \item je to rychlé a jednoduché, ale není odolné proti podvržení
+\end{itemize}
+\subsection{Veřejně dostupný adresář}
+\begin{itemize}
+  \item vyšší stupeň bezpečnosti
+  \item distribuci zabezpečuje důvěryhodná autorita, která odpovídá za obsah a je správcem adresáře
+  \item bezpečná registrace (osobně a nebo přes zabezpečenou komunikaci)
+  \item položky jsou v adresáři ukládány jako dvojice [jméno ; VK]
+  \item problém může nastat ve chvíli, kdy se odhalí SK patřící správci
+\end{itemize}
+\subsection{Autorita pro VK}
+\begin{itemize}
+  \item autorita vykonává činnost správce adresáře
+  \item podmínkou je, že každý účastnk zná VK autority
+  \item každý účastník musí komunikovat s autoritou
+\end{itemize}
+\subsection{Certifikace veřejného klíče}
+\begin{itemize}
+  \item jedná se o distribuci VK, bez kontaktu s třetím důvěryhodným subjektem
+  \item vyžaduje se certifikát a certifikační autorita
+\end{itemize}
+\section{Certifikát}
+Jedná se o strukturu, která obsahuje:
+\begin{itemize}
+  \item VK držitele certifikátu
+  \item ID držitele certifikátu
+  \item T doba platnosti certifikátu
+\end{itemize}
+Tato struktura je podepsána soukromým klíčem certifikační autority. Každý účastník může verifikovat obsah certifikátu pomocí veřejného
+klíče certifikační autority.
+\subsection{Řetězec certifikátů}
+\begin{itemize}
+  \item posloupnost certifikátů uživatele až ke kořenovému CA
+  \item uživatel nemusí věřit CA, stačí pouze ověřit jeden, ne nutně kořenový, certifikát
+  \item certifikát je platný $\Leftrightarrow$ platné všechny certifikáty v řetězci certifikátu
+  \item pokud existuje více CA pro různé okruhy lidí, vznikají oddělené stromy certifikátů
+  \item v případě existence více stromů certifikátů, pomocí křížové certifikace, jednotlivé CA si navzájem podepíší certifikáty
+\end{itemize}
+\section{Digitální podpis}
+Digitální podpis je obvykle formou asymetrického kryptografického schématu. VS slouží k podepsání a VK k ověření.
+\newline Musí splňovat následující vlastnosti:
+\begin{itemize}
+  \item nezfalšovatelnost - podpis se nedá napodobit jiným subjektem než podepisujícím
+  \item ověřitelnost - příjemce dokumentu musí být schopen ověřit, že podpis je platný
+  \item integrita - podepsaná zpráve se nedá změnit, aniž by se zneplatnil podpis
+  \item nepopíratelnost - podepisující nesmí mít později možnost popřít, že dokument podepsal
+\end{itemize}
+
+Digitální podpisi se dělí na:
+\begin{itemize}
+  \item přímé - předají si podpis dvě strany mezi sebou (problém s popíratelností)
+  \item verifikované - využívá důvěryhodnou třetí stranu, která ověřuje podpisy všech zpráv
+\end{itemize}
+
+\section{Kryptograficky bezpečné generátory náhodných čísel}
+Náhodné číslo - čislo vygenerované procesem, který má nepředpovídatelný výsledek a jehož průběh
+nelze přesně reprodukovat. Tomuto procesu říkáme generátor náhodných čísel.
+
+Od náhodných posloupností očekáváme dobré statistické vlastnosti:
+\begin{itemize}
+  \item rovnoměrné rozdělení - všechny hodnoty jsou generovány stejnou pravděpodobností
+  \item jednotlivé generované hodnoty jsou nezávislé - není mezi nimi žádná korelace
+\end{itemize}
+
+\subsection{Pseudonáhodné generátory}
+Jedná se o algoritmicky generovaná "náhodná" čísla. Generátory potřebují náhodný a tajný seed.
+
+Kryptograficky bezpečný PRNG musí splňovat:
+\begin{itemize}
+  \item next-bit test: pokud se zná prvních n bitů náhodné posloupnost, nesmí existovat algoritmus, který
+  v polynomiálním čase dokáže předpovědět další bit, s pravděpodobnstí větsí jak 1/2.
+  \item state compromise: i když je znám vnitřní stav generátoru, nelze zpětně zrekonstruovat dosavadní vygenerovanou
+  posloupnost. Navíc, pokud do generátoru za běhu vstupuje entropie, nemělo by být možné ze znalosti stavu
+  předpovědět stav v dalších iteracích.
+\end{itemize}
+
+\subsection{Blum-Blum-Shub}
+Jedná se o PRNG, který by měl být kryptograficky bezpečný.
+\begin{center}
+  $x_{n+1} = x^2_{n-1} mod m$
+\end{center}
+\begin{itemize}
+  \item $x_0$ je definováno seedem a musí být větší 1 (jinak by nefungovalo to umocňování)
+  \item modul m = q*r, kde q i r jsou prvočísla
+  \item pro q i r musí platit, že q/r = 3 (mod 4)
+  \item při znalosti x0 lze dopočítat pomocí rovnice jakýkoliv člen, proto musí zůstat utajen
+  \item pokud $x_{n+1}$ vyjde sudé, jde na výstup 0, jinak 1
+\end{itemize}
+\end{document}
