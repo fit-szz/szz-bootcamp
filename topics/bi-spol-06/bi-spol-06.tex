@@ -23,7 +23,13 @@
 \tableofcontents
 \newpage
 
-
+\secction{Asymetrické kryptosytémy}
+\begin{itemize}
+    \item pro šifrování a dešifrování se používá rozdílného klíče
+    \item používají se soukromé klíče (SK) a veřejné klíče (VK)
+    \item šifruje se pomocí VK a dešifruje pomocí SK
+    \item SK se nedá z VK v rozumném čase zjistit
+\end{itemize}
 \section{RSA}
 \begin{itemize}
     \item zabezpečení utajené komunikace
@@ -91,6 +97,7 @@ Definice:
 \end{itemize}
 \subsubsection{Problém faktorizace}
 \begin{itemize}
+    \item jedná se o převedení čísla na součin jeho faktorů (rozklad na prvočísla)
     \item pokud $p$ a $q$ jsou 100číslicová prvočísla, tak pak $n$ je 200číslicové
     \item nejrychlejší známý algoritmus potřebuje pro faktorizaci $~10^6$ roků k faktorizci takového čísla
     \item naopak, pokud je známo d, ale nezná se $\Phi(n)$, je možné lehce faktorizovat n, protože se ví, že $e*d - 1$ je násobkem $\Phi(n)$
@@ -172,6 +179,13 @@ Musí platit:
     \item délka klíče je přímo uměrná kvalitě šifry
     \item když je $m$ prvočíslo a $m-1$ je součin malých prvočísel $\rightarrow$ je možné pomocí speciální metody nalézt logaritmus modulo $m$ méně operacemi než $O(log^2_2m)$
 \end{itemize}
+\subsection{Problém diskrétního logaritmu}
+\begin{itemize}
+    \item $C = t^k (mod p)$
+    \item pokud se zná t, k a p $\Rightarrow$ C se spočítá snadno
+    \item inverzní operace je ale náročná - tzn. spočítat k ke znalosti t, p a C
+    \item $k = |log_t(C)|_p$, k = diskrétní logaritmus
+\end{itemize}
 \section{Hešovací funkce}
 Silný nástroj moderní kryptografie. Jedna z klíčových kryptologických myšlenek. Základní pojmy: \textit{jednosměrnost} a \textit{bezkoliznost}.
 \newline
@@ -231,6 +245,27 @@ Prvotní zavolání obsahuje první blok a definovanou konstantu, která se ří
 
 \subsection{SHA-2}
 Pod SHA-2 patří SHA-(224/256/384/512).
+
+Založen na Damgard-Merklově konstrukci:
+\begin{itemize}
+    \item je to iterativní konstrukce
+    \item f zpracovává aktuální blok zprávy $M_i$ a výsledek je kontext $H_i$
+    \item $H_i$ nutně tvoří vstup do f v dalším kroku
+    \item f má tedy vstupy $H_{i-1}$ a $M_i$
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{topics/bi-spol-06/image/sha2.png}
+    \caption{SHA2 kompresní funkce}
+\end{figure}
+
+SHA = Secure Hash Algorithm
+\begin{itemize}
+    \item nástupce SHA-1
+    \item nejvýznamější rozdíly jsou v délce hashovacího kódu, který určuje odolnost hashového kodu vůči
+     nalezení kolizí 1. a 2. řádu
+\end{itemize}
 
 \begin{figure}[h!]
     \centering
