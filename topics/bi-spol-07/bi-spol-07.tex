@@ -13,12 +13,15 @@ K šifrování i dešifrování se používá stejný (nebo jednoduše převodit
 
 \subsection{Proudové}
 \begin{itemize}
-\item Každý znak šifrován jinou transformací.
 \item Zpracováváno po jednotlivých znacích abecedy.
+\item Každý znak šifrován jinou transformací.
 \item Obvykle pracují nad binární abecedou $A=\{0,1\}$
+\item Vygeneruje se posloupnost $h_1,h_2,\dots,h_n$ (keystream) z klíče K.
 \item Proud hesla je postupně slučován s jednotlivými bity proudu OT $\Rightarrow$ ŠT.
 \item Zobrazení $E, D$ jsou typicky operace XOR.
 \end{itemize}
+
+Pokud proud hesla nezávisí na OT ani ŠT $/Rightarrow$ synchronní proudové šifry $/Rightarrow$ příjemce a odesílatel přesně synchronizován.
 
 \subsubsection{RC4}
 \begin{itemize}
@@ -35,22 +38,25 @@ K šifrování i dešifrování se používá stejný (nebo jednoduše převodit
 \item dvou pointerů j, i
 \end{itemize}
 
-% Pseudokód RC4:
-% # inicializace permutace S
-% j = 0
-% S = range(256)
-% for i in range(256):
-%   j = (j + S[i] + k[i % n]) % 256
-%   swap(S[i], S[j])
+\begin{verbatim}
+Pseudokód RC4:
+# inicializace permutace S
+j = 0
+S = range(256)
+for i in range(256):
+  j = (j + S[i] + k[i % n]) % 256
+  swap(S[i], S[j])
 
-% # tvorba hesla
-% i = 0
-% j = 0
-% for index in range(0, n):
-%   i = (i + 1) % 256
-%   j = (j + S[i]) % 256
-%   swap(S[i], S[j])
-%   h[index] = S[(S[i] + S[j]) % 256]
+# tvorba hesla
+i = 0
+j = 0
+for index in range(0, n):
+  i = (i + 1) % 256
+  j = (j + S[i]) % 256
+  swap(S[i], S[j])
+  h[index] = S[(S[i] + S[j]) % 256]
+\end{verbatim}
+
 
 \begin{figure}[!ht]
   \centering
@@ -67,7 +73,7 @@ K šifrování i dešifrování se používá stejný (nebo jednoduše převodit
 \end{itemize}
 \item Všechny bloky šifrovány stejnou transformací.
 \item Zpracováváno po blocích o $t$ znacích abecedy.
-\item Blokové šifry využívají principy algoritmů Feistelova typu.
+\item Blokové šifry využívají principy algoritmů Feistelova typu (použití více zakodování pro posílení šifry).
 \item Nejznámější blokové šifry používaly a používají blok o délce 64b: DES, 3DES, \dots
 \item V současné době se přechází na blok 128 bitů, který používá standard AES.
 \end{itemize}
@@ -75,8 +81,9 @@ K šifrování i dešifrování se používá stejný (nebo jednoduše převodit
 \subsubsection{DES}
 \begin{itemize}
 \item Používá 16 rund (iterací) a 64b bloky OT a ŠT.
-\item Šifrovací klíč $k$ má délku 56b.
+\item Šifrovací klíč $k$ má délku 56b (protože každý 8 bit je paritní).
 \item Po počáteční permutaci je blok rozdělen na dvě 32b poloviny $(L_0,R_0)$. Každá ze 16 rund transformuje $(L_i, R_i)$ na novou hodnotu $(L_{i+1},R_{i+1}) = (R_i, L_i \oplus f(R_i,k_{i+1}))$, liší se jen použitím jiného rundovního klíče $k_i$.
+\item Ve funkci probíhají operace expanze, permutace a substituce.
 \end{itemize}
 
 \begin{figure}[!ht]
@@ -88,9 +95,9 @@ K šifrování i dešifrování se používá stejný (nebo jednoduše převodit
 \subsubsection{3DES}
 \begin{itemize}
 \item 3DES prodlužuje originální DES tím, že používá DES jako stavební prvek celkem 3 krát.
-\item Používá dva nebo tři různé klíče.
-\item Kompatibilní s DES ($k_1=k_2=k_3$)
-\item Varianta EDE - Encrypt, Decrypt, Encrypt
+\item Používá dva (112b) nebo tři (168b) různé klíče.
+\item Kompatibilní s DES ($k_1=k_2=k_3$).
+\item Varianta EDE - Encrypt($k_1$), Decrypt($k_2$), Encrypt($k_3$) -- decrypt je akorát v opačném pořadí a prohodí se E za D (DED).
 \end{itemize}
 
 \subsubsection{AES}
@@ -149,6 +156,11 @@ Operační módy blokových šifer jsou způsoby použití blokových šifer v d
   \centering
   \includegraphics[width=.5\linewidth]{topics/bi-spol-07/images/ctr}
   \caption{CTR - Counter}
+  \begin{itemize}
+    \item převádí blokovou šifru na asynchronní proudovou šifru
+    \item smyslem je zaručit maximální periodu hesla (pomocí čítače)
+    \item výhoda: heslo může být vypočítání jen na základě pozice otevřeného textu a IV, nezávisle na ostaním,
+  \end{itemize}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
