@@ -127,6 +127,13 @@ Teorie ostrého uspořádání
     \item IR: $(\forall{x})\neg p(x,x)$ - ireflexivita
   \end{itemize}
 \end{itemize}
-Teorie neomezeného hustého lineárního uspořádání je teorie hustého lineárního uspořádání, pro kterou navíc platí:
-$(\forall{x})(\exists{y})(\exists{z})(y < x \wedge x < z)$ - neomezenost.
+\subsection{Úplná teorie}
+Teorie T je úplná právě když každá uzavřená formule jazyka L je buď logickým důsledkem T, nebo je vyvratitelná v T ($T \models \neg A$).
+
+Příkladem úplné teorie je teorie neomezeného hustého lineárního uspořádání, pro kterou navíc oproti částečnému uspořádání platí:
+\begin{itemize}
+  \item $(\forall x)(\forall y)(p(x, y) \lor x = y \lor p(y, x))$ - linearita
+  \item $(\forall x)(\forall y)((x < y) \Rightarrow (\exists z)(x < z < y))$ - hustota
+  \item $(\forall{x})(\exists{y})(\exists{z})(y < x \wedge x < z)$ - neomezenost
+\end{itemize}
 \end{document}
