@@ -19,12 +19,11 @@ myslet na to, že žádná akce by neměla ohrozit integritu celého systému.
 \item Dva základní požadavky na DBMS:
   \begin{itemize}
   \item chránit data – ve smyslu odolnosti vůči různým haváriím serveru
-  \item poskytnout korektní, rychlý a asynchronní pčístup vetšímu množství současně pracujících uživatelů.
+  \item poskytnout korektní, rychlý a asynchronní přístup vetšímu množství současně pracujících uživatelů.
   \end{itemize}
 \item Řešení
   \begin{itemize}
-  \item komponenta řízení soubežného (paralelního) zpracování
-  \item \item   (concurreny control)
+  \item komponenta řízení soubežného (paralelního) zpracování (concurreny control)
   \item komponenta zotavení z chyb (recovery)
   \end{itemize}
 \end{itemize}
@@ -55,7 +54,7 @@ Stavový diagram transakce
 
 \section{ACID vlastnosti transakce}
 \begin{itemize}
-\item atomicita (Atomicity) - transakce musí buď proběhnout celá nebo vůbec
+\item atomicita (Atomicity) - transakce musí buď proběhnout celá, nebo vůbec
 \item konzistence (Consistency) - transformuje databázi z konzistentního stavu do jiného konzistentního stavu
 \item nezávislost (Independence) - dílčí efekty jedné transakce nejsou viditelné jiným transakcím
 \item trvanlivost (Durability) - efekty úspěšné transakce jsou trvale uloženy
@@ -78,20 +77,20 @@ Precendenční graf rozvrhu:
   \begin{itemize}
   \item jedna transakce READ(A) před tím než druhá transakce WRITE(A)
   \item jedna transakce WRITE(A) před tím než druhá transakce READ(A)
-  \item posledni WRITE(A) v jende je pred poslednim WRITE(A) v druhe.
+  \item poslední WRITE(A) v jendé transkaci je před posledním WRITE(A) v druhé transakci.
   \end{itemize}
 \end{itemize}
 
 Paralelní zpracovaní transakcí:
 \begin{itemize}
 \item Testování uspořádatelnosti
-\item Uzamykani (LOCK TABLE)
+\item Uzamykáni (LOCK TABLE)
 \end{itemize}
 
 Dvoufázová transakce:
 \begin{itemize}
 \item 1. fáze - uzamyká se, nic neodemyká
-\item 2. fáze - od prvního odemknutí, do konce se už nic nezamyká
+\item 2. fáze - od prvního odemknutí do konce se už nic nezamyká
 \end{itemize}
 
 Dobře formované transakce:
@@ -106,7 +105,8 @@ Jestliže všechny transakce v dané množině transakcí T jsou:
 
 \begin{itemize}
 \item dobře formované
-\item dvoufázové $\Rightarrow$ pak každý jejich legální rozvrh je uspořádatelný.
+\item dvoufázové
 \end{itemize}
 
+$\Rightarrow$ pak každý jejich legální rozvrh je uspořádatelný.
 \end{document}
