@@ -4,7 +4,7 @@
 \usepackage{booktabs}
 
 \subject{MLO}
-\code{BI-SPOL-12}
+\code{BI-SPOL-15}
 \topic{Predikátová logika: jazyk, interpretace, pravdivost formulí, logický důsledek a ekvivalence. Formalizace matematických tvrzení a jejich negace. Teorie a jejich modely (např. uspořádání).}
 
 \providecommand{\tightlist}{%
@@ -53,12 +53,12 @@ Jazyk obsahuje \textit{logické symboly} a \textit{mimologické symboly L}.
   \item otevřená formule obsahuje pouze volné proměnné
 \end{itemize}
 \section{Interpretace jazyka}
-Interpretace (realizace, struktura) M = $<M,\dots,K_M,\dots,p_M,\dots,f_M,\dots>$ jazyka L obsahuje:
+Interpretace (realizace, struktura) $\mathcal{M}$ = $<M,\dots,K_\mathcal{M},\dots,p_\mathcal{M},\dots,f_\mathcal{M},\dots>$ jazyka L obsahuje:
 \begin{itemize}
   \item neprázdnou množinu M, kterou nazýváme universum interpretace,
-  \item je-li K konstanta, pak její interpretaci $K_M \in M$
-  \item je-li p $n$-ární predikát, pak $n$-ární relaci $p_M \subseteq M^n \rightarrow M$ jako jeho interpretaci
-  \item je-li f funkce mající n argumentů, pak funkci $f_M: M^n \rightarrow M$ jako její interpretaci
+  \item je-li K konstanta, pak její interpretaci $K_\mathcal{M} \in M$
+  \item je-li p $n$-ární predikát, pak $n$-ární relaci $p_\mathcal{M} \subseteq M^n \rightarrow M$ jako jeho interpretaci
+  \item je-li f funkce mající n argumentů, pak funkci $f_\mathcal{M}: M^n \rightarrow M$ jako její interpretaci
 \end{itemize}
 Jeden jazyk může mít více interpretací
 \section{Pravdivost formulí}
@@ -72,21 +72,21 @@ L je jazyk a M je jeho interpretace
   \end{itemize}
   \item výraz e(x/m) se označuje hodnocení, které všem proměnným přiřadí stejnou hodnotu jako e, jenom e(x) = m
 \end{itemize}
-Pravdivost formule v interpretaci M při ohodnocení e se definuje indukcí podle složitosti formule
+Pravdivost formule v interpretaci $\mathcal{M}$ při ohodnocení e se definuje indukcí podle složitosti formule
 \begin{figure}[!h]
   \centering
   \includegraphics[width=\textwidth]{topics/bi-spol-15/images/logicalEvaluation.png}
   \caption{Tarského definice pravdy}
 \end{figure}
-Formule A je pravdivá (platná) v interpretaci M, právě když pro každé ohodnocení e je pravdivá, tj. $M \models A[e]$.
+Formule A je pravdivá (platná) v interpretaci $\mathcal{M}$, právě když pro každé ohodnocení e je pravdivá, tj. $\mathcal{M} \models A[e]$.
 \newline
-Formule A je splnitelná, právě když v nějaké interpretaci M pro nějaké ohodnocení e je pravdivá.
+Formule A je splnitelná, právě když v nějaké interpretaci $\mathcal{M}$ pro nějaké ohodnocení e je pravdivá.
 \newline
 A je kontradikce, právě když není splnitelná.
 \section{Logická ekvivalence, logický důsledek}
 \begin{itemize}
-  \item A a B jsou logicky ekvivaletní, $A \models B \wedge B \models A$, právě když pro každou interpretaci M a pro každé ohodnocení e platí: $M \models A[e]$
-  \item B je logickým důsledkem A, $A \models B$, právě když pro každou interpretaci M a pro každé ohodnocení e platí: jestliže $M \models A[e]$, pak $M \models B[e]$
+  \item A a B jsou logicky ekvivaletní, $A \models B \wedge B \models A$, právě když pro každou interpretaci $\mathcal{M}$ a pro každé ohodnocení e platí: $\mathcal{M} \models A[e]$, právě když $\mathcal{M} \models B[e]$
+  \item B je logickým důsledkem A, $A \models B$, právě když pro každou interpretaci $\mathcal{M}$ a pro každé ohodnocení e platí: jestliže $\mathcal{M} \models A[e]$, pak $\mathcal{M} \models B[e]$
 \end{itemize}
 \section{Příklad matematického příkladu}
 \begin{itemize}
@@ -97,7 +97,7 @@ A je kontradikce, právě když není splnitelná.
 \section{Teorie a Model}
 \begin{itemize}
   \item teorie je množina uzavřených formulí
-  \item interpretace M jazyka L je modelem T, jestliže každá formule platí v M
+  \item interpretace $\mathcal{M}$ jazyka L je modelem T, jestliže každá formule platí v $\mathcal{M}$
   \item formule A je logický důsledek teroie T, jestliže v každém modelu teorie T platí A
   \item teorie T je splnitelná, právě když má model
 \end{itemize}
@@ -127,6 +127,13 @@ Teorie ostrého uspořádání
     \item IR: $(\forall{x})\neg p(x,x)$ - ireflexivita
   \end{itemize}
 \end{itemize}
-Teorie neomezeného hustého lineárního uspořádání je teorie hustého lineárního uspořádání, pro kterou navíc platí:
-$(\forall{x})(\exists{y})(\exists{z})(y < x \wedge x < z)$ - neomezenost.
+\subsection{Úplná teorie}
+Teorie T je úplná právě když každá uzavřená formule jazyka L je buď logickým důsledkem T, nebo je vyvratitelná v T ($T \models \neg A$).
+
+Příkladem úplné teorie je teorie neomezeného hustého lineárního uspořádání, pro kterou navíc oproti částečnému uspořádání platí:
+\begin{itemize}
+  \item $(\forall x)(\forall y)(p(x, y) \lor x = y \lor p(y, x))$ - linearita
+  \item $(\forall x)(\forall y)((x < y) \Rightarrow (\exists z)(x < z < y))$ - hustota
+  \item $(\forall{x})(\exists{y})(\exists{z})(y < x \wedge x < z)$ - neomezenost
+\end{itemize}
 \end{document}
