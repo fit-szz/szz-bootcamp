@@ -18,7 +18,7 @@ DBMS = systém řízení bází dat (database managment system)
 \begin{itemize}
   \item RDBMS = relační DBMS
   \item ODBMS = objektový DBMS
-  \item ORDBMS = objekto relační DBMS
+  \item ORDBMS = objektově-relační DBMS
 \end{itemize}
 
 Zabývá se seřazením velkého množství, perzistentních, spolehlivých a sdílených dat
@@ -46,7 +46,7 @@ relace = množina n-tic $\subset D_1 \times D_2 \times \dots \times D_n$ (relace
 \begin{itemize}
   \item relační algebra je "vyšší" jazyk
   \item nespecifikujeme "jak se mají věci dělat", ale "co má být výsledkem"
-  \item výsledek dorazu je relace, která může být vstupem do dalšího dotazu - jsou řetězit
+  \item výsledek dorazu je relace, která může být vstupem do dalšího dotazu - jdou řetězit
   \item řeší "pouze" dotazování nikoliv DML ani DDL
 \end{itemize}
 \subsection{Základní operace relační algebry}
@@ -65,11 +65,11 @@ relace = množina n-tic $\subset D_1 \times D_2 \times \dots \times D_n$ (relace
   \end{itemize}
   \item obecné spojení
   \begin{itemize}
-    \item $R[t_1 \Theta t_2]S (\Theta - podminka =, >, <\dots)$ (výsledek má všechny atributy včetně duplikátu)
+    \item $R[t_1 \Theta t_2]S (\Theta - podminka =, >, <\dots)$ (výsledek má všechny atributy včetně duplikací)
   \end{itemize}
   \item přejmenování atributu
   \begin{itemize}
-    \item t - alias
+    \item t $\rightarrow$ alias
   \end{itemize}
   \item množinové opearce
   \begin{itemize}
@@ -112,10 +112,11 @@ Výsledkem R $\div$ S jsou prvky x z R, které se diskvalifikovat nepodařilo.
 
 \section{SQL}
 \begin{itemize}
-  \item SQL (Structured query language) komunikaci s databázovým strojem
+  \item SQL = (Structured query language) 
+  \item slouží ke komunikaci s databázovým strojem
   \item říkáme, co chceme získat, ne jak se to má dělat
   \item intuitivně srozumitelný zápis
-  \item připomíná jednoduché anglické vety
+  \item připomíná jednoduché anglické věty
 \end{itemize}
 
 \begin{description}
@@ -148,7 +149,7 @@ Okamžik kontroly IO, dočasné vypnutí/zapnutí IO:
   \item možnosti stanovit při deklaraci integritního omezení čas, kdy se má kontrolovat
   \item kontrolu IO lze definovat jako odložitelnou až na konec transakce
   \item v rámci session pak lze stanovit, zda IO kontruje IMMEDIATE nebo až na konci transakce
-  \item Oravle dovoluje v příkazu ALTER TABLE také IO dočasně vypnouy/zneplatnit DISABLE/ENABLE CONSTRAINT
+  \item Oracle dovoluje v příkazu ALTER TABLE také IO dočasně vypnout/zneplatnit DISABLE/ENABLE CONSTRAINT
   \item zpětně zapnutí IO pak může/nemusí vyžadovat kontrolu platnosti dat již vložených v databázi
 \end{itemize}
 % \section{Dotazování v relační algebře}
