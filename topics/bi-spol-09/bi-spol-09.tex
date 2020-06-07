@@ -35,7 +35,7 @@ Zabývá se seřazením velkého množství, perzistentních, spolehlivých a sd
   \item I je množina integritních omezení
 \end{itemize}
 
-relace = množina n-tic $\subset D_1 x D_2 \dots x D_n$ (relace = tabulka)
+relace = množina n-tic $\subset D_1 \times D_2 \times \dots \times D_n$ (relace = tabulka)
 \begin{itemize}
   \item jména atribubtů [$A_1, A_2, \dots, A_n$]
   \item domény atributů $D_i$
@@ -86,7 +86,7 @@ relace = množina n-tic $\subset D_1 x D_2 \dots x D_n$ (relace = tabulka)
 \end{figure}
 
 Antijoin = podmnožina n-tic z R, které nejsou spojitelné s žádnou n-ticí z S. Minimální množinu operací
-tvoří: x, selekce, projekce, $\rightarrow$, $\cup$, $\backslash$.
+tvoří: $\times$, selekce, projekce, $\rightarrow$, $\cup$, $\backslash$.
 
 \section{Polospojení}
 Interpretace R $<$* S = podmnožina n-tic z R, které jsou spojitelné s nějakou n-ticí z S. Polospojení
@@ -102,7 +102,7 @@ Výsledkem R $\div$ S jsou prvky x z R, které se diskvalifikovat nepodařilo.
 \begin{itemize}
   \item R(x, y) a S(y)
   \item značení = R $\div$ S
-  \item definice = $R \div S =_{def} R[x] \backslash \{\{R[x] x S\} \backslash R\}[x]$
+  \item definice = $R \div S =_{def} R[x] \backslash \{\{R[x] \times S\} \backslash R\}[x]$
 \end{itemize}
 
 \begin{figure}[h!]
