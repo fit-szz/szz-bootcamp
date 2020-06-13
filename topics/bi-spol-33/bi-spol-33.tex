@@ -26,10 +26,10 @@
 \newpage
 
 \section{Modulární aritmetika}
-$Z_m$ (nebo též $Z mod m$) je množina celých čísel modulo nějaké dané přirozené číslo $m$. Nejčastěji se
-setkáme se zápisem $Zm = \{0, 1, 2 . . . , m - 1\}$.
+$\mathbb{Z}_m$ (nebo též $\mathbb{Z} mod m$) je množina celých čísel modulo nějaké dané přirozené číslo $m$. Nejčastěji se
+setkáme se zápisem $\mathbb{Z}_m = \{0, 1, 2 . . . , m - 1\}$.
 
-Nechť $a, b, c, d, m \in Z$, $m \geq 2$. Pak pokud platí současně $a \equiv b \text{ mod } m$ a $c \equiv d \text{ mod } m$, potom platí:
+Nechť $a, b, c, d, m \in \mathbb{Z}$, $m \geq 2$. Pak pokud platí současně $a \equiv b \text{ mod } m$ a $c \equiv d \text{ mod } m$, potom platí:
 
 \begin{center}
 $a + c \equiv b + d \text{ mod } m$
@@ -39,12 +39,12 @@ $a - c \equiv b - d \text{ mod } m$
 $a \cdot c \equiv b \cdot d \text{ mod } m$
 \end{center}
 
-Nechť $a, b \in Z$. Řekneme, že $a$ dělí $b$, značíme $a|b$, jestliže
-existuje $k \in Z$ takové, že $b = k \cdot a$.
+Nechť $a, b \in \mathbb{Z}$. Řekneme, že $a$ dělí $b$, značíme $a|b$, jestliže
+existuje $k \in \mathbb{Z}$ takové, že $b = k \cdot a$.
 
 Vlastnosti
 \begin{itemize}
-    \item uzavřenost $a$ \textcircled{$+$} $b \in Z_m$, $a$ \textcircled{$\cdot$} $b \in Z_m$
+    \item uzavřenost $a$ \textcircled{$+$} $b \in \mathbb{Z}_m$, $a$ \textcircled{$\cdot$} $b \in \mathbb{Z}_m$
     \item komutativita $a$ \textcircled{$+$} $b = b$ \textcircled{$+$} $a$, $a$ \textcircled{$\cdot$} $b = b$ \textcircled{$\cdot$} $a$
     \item asociativita $a$ \textcircled{$+$} $(b$ \textcircled{$+$} $c) = (a$ \textcircled{$+$} $b)$ \textcircled{$+$} $c$,
     $a$ \textcircled{$\cdot$} $(b$ \textcircled{$\cdot$} $c) = (a$ \textcircled{$\cdot$} $b)$ \textcircled{$\cdot$} $c$
@@ -56,18 +56,17 @@ Vlastnosti
 \newpage
 
 \section{GCD \& LCM}
-Číslo $d \in N^+$ je společný dělitel čísel $a$, $b$, jestliže $d|a$ a $d|b$. Největší z nich je poté gcd$(a,b)$.
+Číslo $d \in \mathbb{N}^+$ je společný dělitel čísel $a$, $b$, jestliže $d|a$ a $d|b$. Největší z nich je poté gcd$(a,b)$.
 
-Číslo $n \in N^+$ je společný násobek čísel $a$, $b$, jestliže $a|n$ a $b|n$. Nejmenší z nich je poté lcm$(a,b)$.
+Číslo $n \in \mathbb{N}^+$ je společný násobek čísel $a$, $b$, jestliže $a|n$ a $b|n$. Nejmenší z nich je poté lcm$(a,b)$.
 
-(Vlastnosti gcd a lcm). Nechť $a$, $b$ $\in Z$. Potom platí:
+(Vlastnosti gcd a lcm). Nechť $a$, $b$ $\in \mathbb{Z}$. Potom platí:
 \begin{itemize}
     \item Jestliže je n společný násobek $a$, $b$, pak $\text{lcm}(a, b)$ dělí $n$.
     \item Jestliže $a|n$ a $b|n$, pak $\text{lcm}(a, b)|n$.
     \item $\text{gcd}(a, b) = \text{gcd}(|a|, |b|)$ a $\text{lcm}(a, b) = \text{lcm}(|a|, |b|)$.
-    \item Označme $d = \text{gcd}(a, b)$. Potom $\text{gcd}( a d,bd) = 1$.
-    \item $\text{gcd}(a + cb, b) = \text{gcd}(a, b)$ pro libovolné $c \in Z$.
-    \item Jestliže $a|bc$, pro nějaké $c \in Z$ a čísla $a$, $b$ jsou nesoudělná (tj. $\text{gcd}(a, b) = 1$), potom $a|c$.
+    \item $\text{gcd}(a + cb, b) = \text{gcd}(a, b)$ pro libovolné $c \in \mathbb{Z}$.
+    \item Jestliže $a|bc$, pro nějaké $c \in \mathbb{Z}$ a čísla $a$, $b$ jsou nesoudělná (tj. $\text{gcd}(a, b) = 1$), potom $a|c$.
     \item $|a|\cdot|b| = \text{gcd}(a,b) \cdot \text{lcm}(a,b)$
 \begin{center}
 $\text{gcd}(a, b) = d = \alpha \cdot a + \beta \cdot b$,
@@ -80,14 +79,14 @@ kde $\alpha$, $\beta$ jsou celočíselné koeficienty této lineární kombinace
 \section{Teorie čísel}
 
 \subsection{Vlastnosti prvočísel}
-Funkce $π(n)$ : $N^+ \rightarrow N$ určuje počet prvočísel, která jsou menší než $n$.
+Funkce $\pi(n) : \mathbb{N}^+ \rightarrow \mathbb{N}$ určuje počet prvočísel, která jsou menší než $n$.
 
-Poměr $π(n)$ k výrazu $n/\text{log}(n)$ se s rostoucím $n$ přibližuje hodnotě $1$.
+Poměr $\pi(n)$ k výrazu $n/\text{log}(n)$ se s rostoucím $n$ přibližuje hodnotě $1$.
 
-Eulerova funkce $\Phi$ Eulerova funkce $\Phi(n) : N^+ \rightarrow N^+$ udává počet
+Eulerova funkce $\Phi$ Eulerova funkce $\Phi(n) : \mathbb{N}^+ \rightarrow \mathbb{N}^+$ udává počet
 kladných celých čísel menších nebo rovných $n$, která jsou nesoudělná s $n$.
 
-Nechť $m \in N^+$ a $a \in Z$ je číslo nesoudělné s $m$. Potom platí $a^{\Phi(m)} \equiv 1~(\text{mod }m)$.
+Nechť $m \in \mathbb{N}^+$ a $a \in \mathbb{Z}$ je číslo nesoudělné s $m$. Potom platí $a^{\Phi(m)} \equiv 1~(\text{mod }m)$.
 
 Přirozené číslo $p$ je prvočíslem, právě když platí $\Phi(p) = p - 1$.
 
@@ -114,24 +113,24 @@ dělitelem $a$ a $b$, tedy gcd$ (a, b) = r_k$.
 
 \section{Malá Fermatova věta}
 
-Nechť $p$ je prvočíslo a $a \in N^+$ takové přirozené
+Nechť $p$ je prvočíslo a $a \in \mathbb{N}^+$ takové přirozené
 číslo, které není násobkem $p$. Potom platí $a^{p-1} \equiv 1~(\text{mod }p)$.
 
-Nechť $a, b, c \in Z$ a $m \in N^+$ a nechť platí $ac \equiv bc~(\text{mod } m)$. Potom platí
+Nechť $a, b, c \in \mathbb{Z}$ a $m \in \mathbb{N}^+$ a nechť platí $ac \equiv bc~(\text{mod } m)$. Potom platí
 $a \equiv b~(\text{mod } m/d)$, kde $d$ je největší společný dělitel čílsel $m$ a $c$.
 
 
 \section{Diofantické rovnice}
 
 Jako lineární diofantickou rovnici označujeme libovolnou rovnici typu $ax +\nolinebreak by = c$
-s neznámými $x, y$, kde $a, b, c \in Z$, pro jejíž řešení má rovněž platit $x, y \in\nolinebreak Z$.
+s neznámými $x, y$, kde $a, b, c \in \mathbb{Z}$, pro jejíž řešení má rovněž platit $x, y \in\nolinebreak Z$.
 
 Lineární diofantická rovnice $ax + by = c$ má alespoň jedno řešení právě
 tehdy, když $c$ je násobkem gcd$(a, b)$.
 
 Nechť $a, b$ jsou nenulová celá čísla a dvojice $(x_0, y_0)$ je řešením rovnice
 $ax +\nolinebreak by =\nolinebreak c$. Potom množina všech celočíselných řešení této rovnice je
-$\{(x_0 +\dfrac{b}{d}k, y_0 -\dfrac{a}{d}k) :\nolinebreak k \in\nolinebreak Z\}$, kde $d = \text{gcd}(a, b)$.
+$\{(x_0 +\dfrac{b}{d}k, y_0 -\dfrac{a}{d}k) :\nolinebreak k \in\nolinebreak \mathbb{Z}\}$, kde $d = \text{gcd}(a, b)$.
 
 
 \section{Lineární kongruence}

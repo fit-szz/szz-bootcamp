@@ -33,10 +33,10 @@
 Obecnou rekurentní rovnicí rozumíme jakýkoliv vztah typu
 
 \begin{center}
-    $a_{n+k}=f(a_(n+k-1),a_(n+k-2),...,a_n,n).$
+    $a_{n+k}=f(a_{n+k-1},a_{n+k-2},...,a_n,n).$
 \end{center}
 
-Nadále se ale budeme spíše zabývat lineárními rekurentními rovnicemi řádu $k \in N$:
+Nadále se ale budeme spíše zabývat lineárními rekurentními rovnicemi řádu $k \in \mathbb{N}$:
 
 \begin{center}
     $a_{n+k} + c_{k-1}(n) a_{n+k-1} + · · · + c_1(n) a_{n+1} + c_0(n) a_n = b_n$ pro každé $n \geq n_0$,
@@ -45,8 +45,8 @@ Nadále se ale budeme spíše zabývat lineárními rekurentními rovnicemi řá
 kde:
 \begin{itemize}
     \item $n \geq n_0$
-    \item $n_0 \in Z$
-    \item $c_i(n)\ pro\ i = 0, . . . , k-1$ jsou funkce $Z \rightarrow R$
+    \item $n_0 \in \mathbb{Z}$
+    \item $c_i(n)\ pro\ i = 0, . . . , k-1$ jsou funkce $\mathbb{Z} \rightarrow \mathbb{R}$
     \item $c_0(n) \neq 0$
     \item $\{b_n\}^\infty_{n = n_0}$ (pravá strana rovnice)
     \item $\{a_n\}^\infty_{n=n_0}$ (řešení)
@@ -73,8 +73,9 @@ $a_{n+k} + c_{k−1}a_{n+k−1} + · · · + c_1a_{n+1} + c_0a_n = b_n$
     \item $\{b_n\}^\infty_{n = n_0}$ (pravá strana rovnice)
     \item $p(\lambda) = \lambda^k + c_{k−1}\lambda^{k−1} + · · · + c_1\lambda + c_0$ je charakteristický polynom této rovnice
     \item $\lambda$ je chararistické, či vlastní číslo
-    \item $\{\lambda\}^\infty_{n = n_0}$ je řešení homogení LRRsKK, pokud je $\lambda$ vlastní číslo této LRRsKK
-    \item pokud existuje $k$ ruzných $\lambda_i$, potom $\{\lambda\}^\infty_{n = n_0}$ tvoří bázi prostoru řešení dané rovnice (stačí najít prvních $k$ členů)
+    \item $\{\lambda^n\}^\infty_{n = n_0}$ je řešení homogení LRRsKK, pokud je $\lambda$ vlastní číslo této LRRsKK
+    \item pokud existuje $k$ ruzných $\lambda_i$, potom posloupnosti $\{\lambda^n_i\}^\infty_{n = n_0}$ tvoří bázi prostoru řešení přidružené homogenní rovnice (stačí najít prvních $k$ členů)
+    \item pokud je $\lambda$ m-násobným kořenem charakteristického polynomu, tak posloupnosti $(\lambda^n), (n\lambda^n), \dots, (n^{m-1}\lambda^n)$ jsou řešením přidružené homogenní rovnice
 \end{itemize}
 
 \subsection{Moivre-ova věta}
@@ -159,7 +160,7 @@ $t(n) \leq n \sum\limits_{i=0}^{\infty}(\dfrac{3}{4})^i= 4n$.
 
 \subsection{Mistrovská metoda}
 
-Nech $a \geq 1 a b > 1$ jsou konstanty, $f(n)$ funkce jedné proměnné.
+Nech $a \geq 1$ a $b > 1$ jsou konstanty, $f(n)$ funkce jedné proměnné.
 Uvažujme rekurentní rovnici: (zanedbáváme ceil a floor)
 \begin{center}
     $t(n) = at(n/b) + f(n)$ 
