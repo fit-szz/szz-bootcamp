@@ -283,7 +283,7 @@ Podle konkrétní hashovací funkce, která se konkrétně používá, se označ
 Definuje se konstantní řetězen \textit{ipad} jako řetězec b/8 bajtů s hodnotou 0x36 a \textit{opad} jako řetězec b/8 bajtů s hodnotou 0x5C.
 Klíč $K$ se doplní bity 0 vlevo od MSB bitu klíče do délky b-bitu a označí se $K^+$. Definuje se hodnota $HMAC_k(M)$ jako:
 \begin{center}
-$HMAC_k(M) = H((K^+ \oplus opad)||((K^+ \oplus ipad)||M))$
+$HMAC_k(M) = H((K^+ \oplus opad)||H((K^+ \oplus ipad)||M))$
 \end{center}
 \subsubsection{Nepadělatelnost}
 Pokud je kod připojen za zprávu M, detekuje neúmyslnou chybu při jejím přenosu. Zabraňuje útočníkovi změnit zprávu a současně změnit HMAC, protože
