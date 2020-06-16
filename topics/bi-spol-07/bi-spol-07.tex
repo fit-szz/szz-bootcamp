@@ -118,11 +118,20 @@ Operační módy blokových šifer jsou způsoby použití blokových šifer v d
   \centering
   \includegraphics[width=.75\linewidth]{topics/bi-spol-07/images/ecb}
   \caption{ECB - Electronic Code Book}
+  \begin{itemize}
+    \item Každý blok šifrován zvlášť.
+    \item Stejné bloky mají stejný šifrovaný obraz.
+    \item Není nijak zaručena integrita, útočník může libovolně měnit bloky.
+  \end{itemize}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.75\linewidth]{topics/bi-spol-07/images/cbc}
   \caption{CBC - Cipher Block Chaining}
+  \begin{itemize}
+    \item Nejpoužívanější mód blokových šifer.
+    \item Samosynchronizace po 2 blocích.
+  \end{itemize}
 \end{minipage}
 \end{figure}
 
@@ -133,9 +142,9 @@ Operační módy blokových šifer jsou způsoby použití blokových šifer v d
   \includegraphics[width=.75\linewidth]{topics/bi-spol-07/images/cfb}
   \caption{CFB - Cipher FeedBack}
   \begin{itemize}
-  \item Převádí blokovou šifru na proudovou.
-  \item Každý blok šifrován zvlášť.
-  \item Stejné bloky mají stejný šifrovaný obraz.
+    \item Převádí blokovou šifru na proudovou.
+    \item Samosynchronizace po 2 blocích.
+    \item Je třeba jenom jedno zobrazení a to šifrovací (to se použije i při dešifrování, jednoduší hw implementace).
   \end{itemize}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
@@ -143,9 +152,9 @@ Operační módy blokových šifer jsou způsoby použití blokových šifer v d
   \includegraphics[width=.75\linewidth]{topics/bi-spol-07/images/ofb}
   \caption{OFB - Output FeedBack}
   \begin{itemize}
-  \item Každý blok OT se modifikuje předchozím blokem (nebo IV) a až pak se šifruje.
-  \item Nejpoužívanější mód blokových šifer.
-  \item Proces odšifrování je schopen se zotavit a produkovat správný OT už při 2 za sebou jdoucích správných blocích ŠT.
+    \item Převádí blokovou šifru na prodovou.
+    \item Synchonní šifra, heslo je generováno zcela nezávisle na OT a ŠT.
+    \item Stejně jak CFB stačí pouze šifrování, dešifrování není třeba.
   \end{itemize}
 \end{minipage}
 \end{figure}
@@ -157,15 +166,21 @@ Operační módy blokových šifer jsou způsoby použití blokových šifer v d
   \includegraphics[width=.5\linewidth]{topics/bi-spol-07/images/ctr}
   \caption{CTR - Counter}
   \begin{itemize}
-    \item převádí blokovou šifru na asynchronní proudovou šifru
-    \item smyslem je zaručit maximální periodu hesla (pomocí čítače)
-    \item výhoda: heslo může být vypočítání jen na základě pozice otevřeného textu a IV, nezávisle na ostaním,
+    \item převádí blokovou šifru na asynchronní proudovou šifru.
+    \item smyslem je zaručit maximální periodu hesla (pomocí čítače).
+    \item výhoda: heslo může být vypočítání jen na základě pozice otevřeného textu a IV, nezávisle na ostaním.
   \end{itemize}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.75\linewidth]{topics/bi-spol-07/images/mac}
   \caption{MAC - Message Authentication Code}
+  \begin{itemize}
+    \item Řeší neporušitelnost dat.
+    \item Podobný jako CBC, ale šifrovaný text se nikam neposílá. 
+    \item Použije se jiný utajený klíč.
+    \item Nezaručuje nepopíratelnost.
+  \end{itemize}
 \end{minipage}
 \end{figure}
 
