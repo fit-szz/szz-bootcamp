@@ -1,0 +1,62 @@
+---
+subject: KOM
+---
+
+# Konceptuální modelování
+
+Konceptuální modelování slouží k popisu reality a pochopení domény,
+kterou modelujeme. Pomocí konceptuálního modelování může zjednodušit a
+navrhnout automatizaci určitých úkonů. Z konceptuálního modelování lze
+poté přejít již k samotnému návrhu aplikace, například OntoUML je
+nástroj konceptálního modelování, který lze jednoduše přeložit na UML
+(Unified Modeling Language). Díky tomu může analytik připravit v OntoUML
+model, který si poté programátor převede do UML a na základě kterého
+napíše danou aplikaci.
+
+## Pojmy
+
+-   Abstrakce Zjednodušení od nepodstatných detailů. Pracujeme s
+    koncepty namísto skutečných věcí (konceptualizace). Koncepty
+    reprezentuje dohodnutými symboly, které tvoří jazyk.
+
+-   Jazyk Jazyk může být textový, grafický nebo smíšený.
+
+-   Formální konceptualizace Oproti neformálním konceptuálním modelům,
+    které jsou dnes běžně používané, mají formální modely výhody v
+    přesnosti a možnosti je validovat a simulovat postup, který
+    reprezentují, což zvyšuje jejich kvalitu. Tyto modely lze poté
+    transformovat na návrhové modely (OntoUML -\> UML) nebo rovnou
+    přenést do implementace.
+
+-   Ulmannův trojúhelník Symbolizuje vztah mezi věcí, realitou a
+    konceptualizací.
+
+    ![ ](./ulmanns_triangle.png){width="50%"}
+
+## OntoUML
+
+OntoUML je jedním z možných nástrojů konceptuálního modelování pro
+popisování reálného světa. Narozdíl od UML nepopisuje třídy a objekty z
+programátorského hlediska, místo toho definuje objekty podle jejich
+vlastností a stavů. Součástí OntoUML je Unified Foundational Ontology
+(UFO), ta se dělá na tři části:
+
+1.  UFO-A: strukturální aspekty reality - objekty, jejich typy, podčásti
+    a role (v OntoUML se jedná o sortály)
+
+2.  UFO-B: dynamické aspekty - události, jejich části a vazby mezi nimi
+    (non-sortály)
+
+3.  UFO-C: sociální aspekty - cíle, vztahy, stavy
+
+Používá modální logiku (rozšíření predikátové logiky):
+
+-   existenční kvantifikátor
+
+-   univerzální kvantifikátor
+
+-   nutnost - ve všech světech platí
+
+-   možnost - v některém světě platí
+
+## DEMO

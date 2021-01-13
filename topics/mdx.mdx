@@ -1,0 +1,24 @@
+---
+id: mdx
+title: Powered by MDX
+---
+
+You can write JSX and use React components within your Markdown thanks to [MDX](https://mdxjs.com/).
+
+export const Highlight = ({children, color}) => ( <span style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}> {children} </span> );
+
+<Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+
+I can write **Markdown** alongside my _JSX_!
+
+
+**Fundamental Theorem of Calculus**  
+Let $f:[a,b] \to \R$ be Riemann integrable. Let $F:[a,b]\to\R$ be $F(x)=
+\int_{a}^{x}f(t)dt$.
+Then $$F$$ is continuous, and at all $x$ such that $f$ is continuous at $x$,
+$F$ is differentiable at $x$ with $F'(x)=f(x)$.

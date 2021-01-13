@@ -1,0 +1,241 @@
+---
+author: Jakub Rathouský
+subject: AAG
+code: BI-SPOL-01
+topic: Přehled Chomského hierarchie formálních jazyků a gramatik. Turingovy stroje. Třídy problémů P, NP, NP-těžký, NP-úplný.
+---
+
+# Přehled Chomského hierarchie formálních jazyků a gramatik
+
+![ ](./images/Chomsky_hierarchy.png){width="60%"}
+
+-   *Regulární jazyk* vždy zároveň bezkontextový, kontextový a
+    rekurzivně spočetný
+
+-   *Bezkontextový jazyk* vždy kontextový a rekurzivně spočetný
+
+-   *Kontextový jazyk* vždy rekurzivně spočetný
+
+## Regulární jazyk
+
+Nejjednodušší množina formálních jazyků, formální jazyk je regulární,
+když lze:
+
+-   přijmout **(ne)deterministickým konečným automatem**
+
+-   generovat **regulární gramatikou**
+
+-   popsat **regulárním výrazem**
+
+## Bezkotextový jazyk
+
+Formální jazyk je bezkontextový, když lze:
+
+-   přijmout **nedeterministickým zásobníkovým automatem**
+
+-   generovat **bezkontextovou gramatikou**
+
+Například výraz $A^nB^n$ není regulární, ale je kontextový a rekurzivně
+spočetný.
+
+## Kontextový jazyk
+
+Formální jazyk je kontextový, když lze:
+
+-   přijmout **nedeterministickým lineárně omezeným Turingovým strojem**
+
+-   generovat **kontextovou gramatikou**
+
+-   generovat **nezkracující gramatikou**
+
+Například výraz $A^nB^nC^n$ není bezkontextový ani regulární, ale je
+rekurzivně spočetný.
+
+## Rekurzivně spočetný jazyk
+
+Formální jazyk je rekurzivně spočetný, když lze:
+
+-   přijmout **(ne)deterministickým Turingovým strojem**
+
+-   generovat **neomezenou gramatikou**
+
+Například (problém zastavení)L = {\[R, $w$\] : Turingův stroj R se pro
+vstup $w$ zastaví}.
+
+# Turingovy stroje
+
+Turingův stroj se skládá z **řídící jednotky**, **neomezené čtecí
+pásky** rozdělené do buněk a **čtecí hlavy**. Čtecí hlava se umí
+pohybovat oběma směry, či posečkat na stejném místě. Formální definice
+Turingova stroje je:
+
+uspořádaná **sedmice: R = (Q, $\Sigma$, G, $\delta$, $q_0$, B, F)**.
+
+-   Q je konečná neprázdná množina stavů
+
+-   $\Sigma$ je konečná vstupní abeceda
+
+-   G je konečná neprázdná pracovní abeceda ($\Sigma$ $\subset$ G)
+
+-   $\delta$ je přechodová funkce (liší se u jednotlivých TS)
+
+-   $q_0$ počáteční stav
+
+-   B $\in$ (G bez $\Sigma$) je prázdný symbol (BLANK)
+
+-   F je množina koncových stavů (F $\subseteq$ Q)
+
+Na začátku vypočtu se nachází TS v počátečním symbolu $q_0$, páska je
+vyplněna BLANK znaky, na \"prvních\" buňkách pásky je zapsán vstup a
+čtecí hlava ukazuje na první buňku vstupu. Konfigurace obecně je prvek
+$<q,s,n>$, kde *q* je aktuální stav, *s* je nejmenší souvislá část pásky
+obsahující všechny neprázdné symboly a *n* je pozice čtecí hlavy.
+
+## Deterministický Turingův stroj
+
+Má následující přechodovou funkci $\delta$:
+
+$\delta$ je zobrazení z (Q bez F) x G do Q x G x {-1, 0, 1}
+($(Q \setminus F) \times G \rightarrow Q \times G \times \{-1, 0, 1\}$)
+Je-li TS v **nekoncovém** stavu a z pásky **čte** nějaký symbol z
+pracovní abecedy, poté **přejde** do dalšího stavu, na pásku **zapíše**
+nějaký symbol a čtecí hlava se **posune**. Je-li TS v **koncovém**
+stavu, **zastaví se** a dál **nepokračuje**.
+
+-   pro každý symbol má jasně dán přechod
+
+-   pro špatnou kombinaci stroj skončí s chybou a vstup nepřijme
+
+-   TS se zastaví právě tehdy, když přejde do koncového stavu
+
+## Nedeterministický Turingův stroj
+
+Má následující přechodovou funkci $\delta$:
+
+$\delta$ je zobrazení z (Q bez F) x G do množiny všech podmnožin množiny
+Q x G x {-1, 0, 1}
+($(Q \setminus F) \times G \rightarrow \mathcal{P}(Q \times G \times \{-1, 0, 1\})$)
+Na rozdíl od DTS může mít v daném stavu několik přechodů pro daný
+symbol. NTS si tedy může vybrat, jakým způsovem bude ve výpočtu
+pokračovat.
+
+## Porovnání síly výkonu TS
+
+NTS je stejně výkonný jako DTS.
+
+## Formální zápis
+
+(DTS) $\delta$(S, a) = (A, c, 1) = ze stavu S na symbol a se přesune do
+stavu A, zapíše symbol C a posune se o 1. (NTS) $\delta$(S, a) = {(A, c,
+1), (B, r, -1)}
+
+## Přijímání řetězce
+
+NTS **přijme** vstupní řetězec, pokud existuje aspoň jedna posloupnost
+přechodů, kdy TS přejde do koncového stavu a páska je na konci výpočtu
+prázdná. NTS **nepřijme** vstupní řetězec, pokud každá posloupnost
+skončí jako u DTS. DTS **přijme** řetězec pokud přejde do koncového
+stavu a páska je po skončení vyplněná prázdnými symboly BLANK. DTS
+**nepřijme** řetězec pokud:
+
+-   dojde-li během výpočtu k chybě v podobě nedefinovaného přechodu
+
+-   pro daný vstup neskončí (zacyklí se)
+
+-   přejde do koncového stavu, ale páska není po ukončení výpočtu
+    prázdná
+
+## Lineárně omezený TS
+
+-   nesmí použít neomezený počet buněk na pásce
+
+-   na začátku výpočtu si zvolí konstantu K a daný TS se během výpočtu
+    může pohybovat pouze na K\*(délka vstupu) buňkách pásky
+
+## Vícepáskový TS
+
+-   má více pásek a více čtecích hlava
+
+-   jednopáskové a více páskové TS jsou stejně výkonné
+
+## Kódovanání TS
+
+-   zakódování přechodové funkce TS do řetězce nad jeho abecedou
+
+-   nekonečná paměť TS lze zakódovat do konečného řetězce
+
+-   výsledná množina stavů je konečná, abeceda je konečná i pravidla
+    jsou konečné
+
+## Univerzální TS
+
+-   dostane na vstupu zakódovaný TS a řetězec w
+
+-   univerzální TS pak simuluje výpočet TS nad řetězcem w
+
+-   $R_u$ tedy vstup přijme (nepřijme) právě tehdy, když jej příjme
+    (nepříjme) R
+
+-   Formální zápis: L($R_u$) = $L_n$, kde $L_n$ = {\[R,w\], TS R přijmá
+    řetězec w }
+
+## Rozhodování jazyka
+
+TS R rozhoduje jazyk L, jestli-že jej příjmá a výpočet se pro každé
+slovo zastaví. Pro w$\in$L $\Rightarrow$ přejde do koncového stavu a
+páska **je** prázdná. Pro w$\notin$L $\Rightarrow$ přejde do koncového
+stavu a páska **není** prázdná. Tedy pro $\forall$w$\notin$L se TS
+**zastaví**.
+
+# Třídy problémů P, NP, NP-těžký, NP-úplný
+
+## Rozhodovací problém
+
+Rozhodovací problém je takový problém, na který je odpovězeno Ano nebo
+Ne. Rozlišují se instance Ano-instance a Ne-instance pro použití TS se
+instance namapují na {1,0}. Všechny Ano-instance tvoří jazyk $L_a$. TS
+řeší rozhodovací problém, pokud rozhodne $L_a$.
+
+## Optimalizační problém
+
+Optimalizační problém je problém, který hledá v nějakém ohledu optimální
+řešení. Pro lepší názornost se používá rozhodovací verze problému.
+Optimalizační a rozhodovací verze jsou výpočetně stejně náročné.
+
+## Rozhodnutelné problémy
+
+(Ne)Rozhodnutelné problémy jsou problémy, pro které existuje algoritmus,
+který je řeší. Nerozhodnutelný problém je ten, který není rozhodnutelný.
+Rozhodnutelný problém odpovídá rekurzivnímu jazyku. Nerozhodnutelný
+problém odpovídá nerekurzivním jazykům.
+
+## Třída P
+
+Třída rozhodovacích problémů, které lze řešit v polynomiálně omezeném
+čase deterministickým Turingovým strojem.
+
+## Třída NP
+
+Třída rozhodovacích problémů, které lze řešit v polynomiálně omezeném
+čase na nedeterministickým Turingovým stroji. Všechny P problémy patří
+do NP.
+
+## Třída NP-těžký
+
+Problém, na který lze převést všechny problémy ze třídy NP. Sám NP-těžký
+problém nemusí patřit do třídy NP. Jeden takový problém lze převést na
+jiný pomocí polynomiální redukce.
+
+## NP-úplný
+
+Je NP-těžký a patří do skupiny NP. Jsou to nejtěžší problémy ze třídy
+NP. Využívají se v kryptografii. Pokud by byl nalezen polynomiálně
+deterministický algoritmus pro libovolnou NP-Úplnou úlohu, všechny NP
+problémy by byly řešitelné.
+
+## Polynomiální redukce
+
+$\leq_p$: proces který převádí problém A$\rightarrow$B (A$\leq_p$B).
+Dostane na vstup instanci problému A ($I_A$) a jako výstup vrátí v
+polynomiálním čase instanci problému B ($I_B$) se stejnou pravdivostní
+hodnotou. Je-li splněno $I_A$ pak je i $I_B$.

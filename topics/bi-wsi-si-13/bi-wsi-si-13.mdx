@@ -1,0 +1,100 @@
+---
+subject: PPA
+---
+
+# Rozdělení paměti při implementaci programovacích jazyků
+
+Běh programu běží v souvislém logickém adresovém prostoru, který je
+poskytován operačním systémem. Operační systém mapuje logické adresy na
+fyzické adresy (které nemusí tvořit souvislý celek).
+
+     Kód programu
+  ------------------
+   Statické objekty
+     Halda (Heap)
+     Volná paměť
+   Zásobník (Stack)
+
+## Statické objekty
+
+-   Globální konstanty, globální proměnné, data generované
+    překladačem,\...
+
+-   Výhody
+
+    -   Nepotřebuje správu paměti při běhu programu
+
+    -   Rychlý přístup (překládá se přímo adresou v paměti)
+
+    -   Není nebezpečí out-of-memory
+
+-   Nevýhody
+
+    -   Velikost a počty musí být známy předem
+
+## Objekty na zásobníku
+
+-   Každé volání funkce má svůj aktivační záznam (activation record).
+    Podobně každý vnitřní blok.
+
+-   LIFO přístup podporuje volací a návratový mechanismus volání funkcí
+    a procedur.
+
+-   Přirozená podpora volání funkcí a návratu z funkcí. Podpora rekurze.
+
+-   Objekty jsou vloženy na zásobník při vstupu do funkce a jsou ze
+    zásobníku odebrány při návratu.
+
+-   Volání funkce je implementováno volací sekvencí, návrat je
+    implementován návratovou sekvencí.
+
+## Halda
+
+-   Obsahuje dynamické objekty/proměnné vytvořené během běhu programu,
+    např. pomocí příkazů malloc a free (C) nebo new a delete (C++).
+
+-   V některých programovacích jazycích je halda udržována pomocí
+    garbage collection.
+
+## Aktivační záznam
+
+-   S každým voláním funkce se na zásobníku vytvoří aktivační záznam.
+
+-   Jazyky bez vnořených procedur, např. C
+
+    -   Lokální statické proměnné jsou uloženy v lokálním aktivačním
+        záznamu na zásobníku.
+
+-   Jazyky s vnořenými procedurami, např. Pascal, také Lisp a
+    funkcionální jazyky obecně, kde funkce typicky vytváří jinou funkci
+
+    -   Link mezi aktivačními záznamy procedur (funkcí).
+
+## Základní typy předávání parametrů funkcí
+
+-   Hodnotou
+
+    -   Skutečná hodnota je vypočítána a následně zkopírována.
+
+    -   Vstupní parametr, chová se jako lokální proměnná.
+
+-   Odkazem
+
+    -   Volající určuje adresu v paměti.
+
+    -   Vstupní/výstupní proměnné.
+
+## Mechanismus implementace volání funkcí
+
+                       Skutečné parametry
+  ------------------------------------------------------------
+                       Návratové hodnoty
+          Řídící link (link na starý aktivační záznam)
+   Přístupový link (link na aktivační záznam vyšší procedury)
+           Uložené údaje počítače (registry, atd...)
+                        Lokální proměnné
+                    Pomocné dočasné proměnné
+
+-   Stack pointer SP - Odkaz na vrchol zasobníku
+
+-   Frame Pointer FP - Odkaz na začátek aktualního záznamu

@@ -1,0 +1,235 @@
+---
+author:
+- Jakub Rathouský
+subject: MLO
+---
+
+# Výroková logika: syntax a sémantika výrokových formulí
+
+## Prvotní výrok a formule
+
+**Prvotní výrok** je jednoduchá oznamovací věta, u které má smysl se
+ptát, zda je či není pravdivá. Prvotní výrok se označuje velkým tiskacím
+písmenem A, B..., kterým se říká **prvotní formule**.
+
+## Negace
+
+($\neg$) - negace formule je pravdivá, právě když je formule nepravdivá.
+
+## Konjunkce
+
+($\wedge$) - konjunkce dvou formulí je pravdivá tehdy, když jsou obě
+formule pravdivé.
+
+## Disjunkce
+
+($\vee$) - disjunkce dvou formulí je pravdivá, právě když alespoň jedna
+z nich je pravdivá.
+
+## Implikace
+
+($\Rightarrow$)
+
+-   implikace je nepravdivá tehdy, když předpoklad je pravdivý a závěr
+    nepravdivý
+
+-   implikace je pravdivá tehdy, když neplatí předpoklad nebo platí
+    závěr
+
+## Formule výrokové logiky
+
+### Jazyk výrokové logiky
+
+-   symboly pro prvotní formule A, B, ...
+
+-   logické spojky $\neg, \wedge, \vee, \Rightarrow, \Leftarrow$
+
+-   závorky ()
+
+### Formule výrokové logiky
+
+Je definovaná:
+
+-   prvotní formule je výroková formule
+
+-   jsou-li A a B výrokové formule, pak jsou i
+    $\neg A, (A \wedge B), (A \vee B), (A \Rightarrow B)$ výrokové
+    formule
+
+-   formule je řetězec symbolů sestavený podle předchozích 2 pravidel v
+    konečně mnoha krocích
+
+## Ekvivalence
+
+($\Leftrightarrow$) - ekvivalence dvou formulí je pravdivá právě tehdy,
+když obě mají stejnou pravdivostní hodnotu
+
+# Pravdivostní ohodnocení
+
+**Pravdivostní ohodnocení** množiny prvotních výroků je funkce *v* z
+množiny prvotních formulí do množiny {0,1}.\
+*v*: $\{A_1,...,A_n\}\rightarrow \{0,1\}$\
+Je-li *v*(A) = 1, řekne se, že A je **pravdivý při ohodnocení** *v*.\
+Je-li *v*(A) = 0, řekne se, že A je **nepravdivý při ohodnocení** *v*.
+
+# Logický důsledek
+
+Formule B je logickým důsledkem formule A, právě když pro každé
+ohodnocení v, pro které v(A) = 1, je i v(B) = 1.\
+Píše se A $\models$ B.
+
+## Vztah logického důsledku a logické ekvivalence
+
+Pro každé dvě formule výrokové logiky A, B platí:
+
+-   $A \models B \wedge B \models A$ právě, když $A \Leftrightarrow B$
+    je tautologie
+
+-   $A \models B$ právě, když $A \Rightarrow B$ je tautologie
+
+-   $A \models B$ právě, když $A \wedge \neg B$ je kontradikce
+
+# Ekvivalence a jejich zjišťování
+
+Formule A a B jsou **logicky ekvivaletní** právě tehdy, když pro každé
+ohodnocení v je v(A) = v(B). Píšeme $A \models B \wedge B \models A$
+
+## Zjišťování
+
+-   pomocí porovnání pravdivosti výroků
+
+-   úpravou formulí, převedením na sebe
+
+# Universální systém logických spojek
+
+Množina logických spojek tvoří universální systém, právě když ke každé
+formuli existuje logicky ekvivaletní formule, která obsahuje pouze tyto
+spojky. Například:
+
+-   {$\neg, \vee$}
+
+-   {$\neg, \wedge$}
+
+-   {$\neg, \Rightarrow$}
+
+-   NAND {$\uparrow$} = $\neg(A \wedge B)$
+
+-   NOR {$\downarrow$} = $\neg(A \vee B)$
+
+# Disjunktivní a konjunktivní normální tvary
+
+## DNT - disjunktivní normální tvar
+
+-   **literál** je prvotní formule nebo negace prvotní formule
+
+-   **implikant** je literál nebo konjunkce několika literálů
+
+-   formule je v **DNT**, jestliže je implikant nebo disjunkce několika
+    implikantů
+
+ukázka:
+
+-   A, $\neg B$ - literál
+
+-   $A \wedge B$, $A \wedge \neg B$, $\neg B$ - implikant
+
+-   A, $(A \wedge \neg B) \vee (A \wedge C)$, $A \vee \neg B$,
+    $A \wedge \neg B$ - DNT
+
+## KNT - konjunktivní normální tvar
+
+-   **literál** je prvotní formule nebo negace prvotní formule
+
+-   **klausule** je literál nebo disjunkce několika literálů
+
+-   formule je v **KNT**, jestliže je klausulí nebo konjunkce několika
+    klausulí
+
+ukázka:
+
+-   A, $\neg$B - literál
+
+-   A$\vee$B, A$\vee$$\neg$B, $\neg$B - klausule
+
+-   A, $(A \vee \neg B) \wedge (A \vee C)$, $A \vee\neg B$,
+    $A \wedge \neg B$ - KNT
+
+## POZOR
+
+Některé vybrané KNT jsou i DNT (a obráceně)! Například:
+
+-   A
+
+-   A$\wedge$B
+
+-   A$\vee$B
+
+## Existence DNT a KNT
+
+Ke každé formuli existuje formule logicky ekvivalentní, která je v DNT,
+a formule logicky ekvivaletní, která je v KNT. (Důkaz na slidu 11
+přednáška 3 - BI-MLO)
+
+# Úplné a minimální tvary
+
+-   **Minterm** formule A je implikant, který obsahuje všechny prvotní
+    formule vyskytující se v A
+
+-   **Maxtern** formule A je klausule, která obsahuje všechny prvotní
+    formule, vyskytující se v A
+
+-   formule je v **úplném disjunktivním normálním tvaru**, jestliže je
+    disjukcí mintermů.
+
+-   formule je v **úplném konjunktivním normálním tvaru**, jestliže je
+    konjunkcí maxtermů.
+
+## Existence úplného DNT a KNT
+
+Ke každé formuli existuje formule logicky ekvivaletní, která je v úplném
+DNT, a formule logicky ekvivaletní, která je v úplném KNT.
+
+Úplný KNT i DNT libovolné formule je dán jednoznačně až na pořadí
+(literálů, mintermů, maxtermů). Pokud má formule *n* prvotních formulí,
+pak součet mintermů a maxtermů je $2^n$.
+
+### Úkázka převodu na ÚDNT
+
+(Na ÚKNT se to udělá obdobně, jediné co se liší jsou ty konjunkce a
+disjunkce)
+
+-   $(A \wedge B) \vee C$
+
+-   $((C \vee \neg C) \wedge (A \wedge B)) \vee C$
+
+-   $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee C$
+
+-   $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge (\neg A \vee A)$
+
+-   $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge \neg A) \vee (C \wedge A)$
+
+-   $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge \neg A \wedge (\neg B \vee B)) \vee (C \wedge A \wedge (\neg B \vee B))$
+
+-   $(C \wedge A \wedge B) \vee (\neg C \wedge A \wedge B) \vee (C \wedge \neg A \wedge \neg B) \vee (C \wedge \neg A \wedge B) \vee (C \wedge A \wedge \neg B) \vee (C \wedge A \wedge B)$
+
+## Ekvivalence ÚDNT a ÚKNT
+
+Následující tvrzení jsou ekvivaletní:
+
+-   $A \models B \wedge B \models A$
+
+-   ÚDNT obsahují stejné mintermy
+
+-   ÚKNT obsahují stejné maxtermy
+
+## Logický důsledek a ÚDNT/ÚKNT
+
+Vezmou se dvě formule A a B, které obsahují stejné prvotní formule.
+$A_d, A_k, B_d, B_d$ jsou jejich ÚDNT a ÚKNT. Následující tvrzení jsou
+ekvivaletní
+
+-   $A \models B$
+
+-   Všechny mintermy $A_d$ jsou obsaženy v $B_d$
+
+-   Všechny maxterny $B_k$ jsou obsaženy v $A_k$

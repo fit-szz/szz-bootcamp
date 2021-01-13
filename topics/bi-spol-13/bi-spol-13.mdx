@@ -1,0 +1,177 @@
+---
+subject: LIN
+---
+
+# Součin matic
+
+Nechť $m,n,p\in \mathbb{N}$, $\mathbb{A}\in T^{m,n}$ a
+$\mathbb{B}\in T^{n,p}$. Součinem těchto matic je matice
+$\mathbb{D}=\mathbb{A}\mathbb{B}$, pro jejíž prvky platí:
+$$d_{ij}=\sum_{k=1}^{n}{a_{ik} b_{kj}}$$
+
+# Regulární a inverzní matice
+
+Nechť $\mathbb{A}\in T^{n,n}$. Pokud existuje $\mathbb{A}\in T^{n,n}$
+tak, že $$\mathbb{A}\mathbb{B}=\mathbb{B}\mathbb{A}=\mathbb{E}$$ Potom
+nazveme matici $\mathbb{A}$ **regulární** a matici $\mathbb{B}$
+**inverzní**. Inverzní matici značíme $\mathbb{B}=\mathbb{A}^{-1}$.
+
+Buď $\mathbb{A}\in T^{n,n}$. Následující tvrzení jsou ekvivalentní:
+
+-   $\mathbb{A}$ je regulární.
+
+-   Soubor řádků matice $\mathbb{A}$ je LN.
+
+-   $h(\mathbb{A}) = n$.
+
+-   $\mathbb{A} \sim \mathbb{E}$.
+
+## Výpočet inverzní matice
+
+Nechť $\mathbb{A} \in T^{n,n}$. Ověřte, zda je matice regulární a pokud
+je, nalezněte k ní matici inverzní $\mathbb{A}^{-1}$.
+
+1.  Hledáme matici $\mathbb{A}^{-1}$ s vlastností
+    $\mathbb{A}^{-1}\mathbb{A} = \mathbb{A}\mathbb{A}^{-1} = \mathbb{E}$.
+
+2.  Doplněním zadané matice o jednotkovou matici stejného rozměru
+    sestavme dvoublokovou rozšířenou matici
+    $(\mathbb{A} | \mathbb{E}) \in T^{n,2n}$.
+
+3.  Na celou $(\mathbb{A} | \mathbb{E})$ používáme řádkové úpravy GEM,
+    pro libovolnou posloupnost řádkových úprav realizovaných regulární
+    maticí $\mathbb{P}$ pak platí
+    $$(\mathbb{A} | \mathbb{E}) \sim (\mathbb{P}\mathbb{A} | \mathbb{P}\mathbb{E}) = (\mathbb{P}\mathbb{A} | \mathbb{P}).$$
+    Víme, že levou část je možné převést na jednotkovou matici právě
+    tehdy, když je $\mathbb{A}$ regulární. Vznikne-li při úpravách
+    $\mathbb{A}$ na horní stupňovitý tvar **nulový řádek**, pak
+    $\mathbb{A}$ je singulární a **inverze neexistuje**.
+
+4.  Je-li $\mathbb{A}$ regulární, pak pro úpravy $\mathbb{P}$ vedoucí k
+    převedení levého bloku matice $(\mathbb{A} | \mathbb{E})$ na
+    jednotkovou matici platí $\mathbb{P} = \mathbb{A}^{-1}$, tedy
+    $(\mathbb{A} | \mathbb{E}) \sim (\mathbb{E} | \mathbb{A}^{-1})$ a
+    pravý blok výsledné matice obsahuje hledanou $\mathbb{A}^{-1}$.
+
+# Vlastní čísla
+
+Řekneme, že $\lambda \in \mathbb{C}$ je **vlastní číslo operátoru**
+$A \in \mathcal{L}(V)$, právě když existuje $x \in V$ , $x \neq \theta$,
+takový, že $Ax = \lambda x$. Vektor $x$ pak nazýváme **vlastním vektorem
+operátoru** $A$ **příslušejícím vlastnímu číslu** $\lambda$. Množinu
+všech vlastních čísel $A$ nazýváme **spektrem** operátoru A a značíme
+symbolem $\sigma(A)$.
+
+Analogicky pro matice $\mathbb{A}\in \mathbb{C}^{n,n}$, kde
+$\mathbb{A}={}^{\varepsilon}A^{}$.
+
+Charakteristický polynom matice $\mathbb{A}$ (ozn. $p_\mathbb{A}$)
+definujeme předpisem
+$p_\mathbb{A}(\lambda) := \det(\mathbb{A} - \lambda \mathbb{E})$.
+
+Je-li $\lambda \in C$ vlastní číslo operátoru $A \in \mathcal{L}(V_n)$,
+pak podprostor $\ker{(A-
+\lambda E)}$ nazýváme **vlastním podprostorem operátoru** $A$
+příslušejícím vlastnímu číslu $\lambda$.
+
+Nechť $\lambda \in C$ je vlastní číslo operátoru
+$A \in \mathcal{L}(V_n)$. Číslo $\text{d} (A -
+\lambda E) = \dim{\ker{(A-\lambda E)}}$ nazýváme **geometrickou
+násobností** vlastního čísla $\lambda$ a značíme ji $\nu_g(\lambda)$.
+
+Nechť $A \in \mathcal{L}(V_n)$ a $\lambda \in \sigma(A)$. Násobnost
+čísla $\lambda$ jako kořene charakteristického polynomu $p_A$ operátoru
+$A$ nazýváme **algebraickou násobností** vlastního čísla $\lambda$ a
+značíme ji $\nu_a(\lambda )$.
+
+**Determinant** matice $\mathbb{A}\in \mathbb{C}^{n,n}$ je číslo:
+$$\det{\mathbb{A}} = \sum_{\pi\in S_n} \mathop{\mathrm{sgn}}\pi \cdot a_{1\pi(1)} a_{2\pi(2)} \cdots a_{n\pi(n)}.$$
+
+## Výpočet determinantu
+
+Determinant se dá vypočítat kombinací následujících postupů:
+
+-   Přes definici.
+
+-   Sarrusovo nebo křížové pravidlo. (Soros zde asi nepomůže)
+
+-   Je-li matice $\mathbb{A}$ trojúhelníková (tj. $\mathbb{A}_{ij} = 0$
+    pro $i > j$), lze determinant spočítat vynásobením čísel na
+    diagonále.
+
+-   $\det{\mathbb{A}}=\det{\mathbb{A}^T}$
+
+-   Úprava GEM
+
+    -   Prohození dvou řádků - mění znaménko determinantu.
+
+    -   Vynásobení jednoho řádku nenulovým číslem - determinant se tím
+        číslem musí vydělit.
+
+    -   Přičtení k jednomu řádku $\alpha$násobek jiného řádku -
+        determinant se nemění.
+
+## Výpočet vlastních čísel
+
+-   Pro danou matici $\mathbb{A} \in \mathbb{C}^{n,n}$ hledáme nenulové
+    vektory $\mathbbm{x}$ a čísla $\lambda\in\mathbb{C}$ splňující
+    rovnici $$\mathbb{A}\mathbbm{x} = \lambda \mathbbm{x}.$$
+
+-   To je ekvivalentní hledání $\lambda$ takové, že homogenní soustava
+    rovnic $$(\mathbb{A} - \lambda \mathbb{E})\mathbbm{x} = \theta$$ má
+    nenulové řešení.
+
+-   To nastává ale tehdy a jen tehdy (vzpomeňme Frobeniovu větu), když
+    je matice $\mathbb{A} - \lambda \mathbb{E}$ singulární
+    (neregulární).
+
+-   A to je zase ekvivalentní tomu, že determinant matice
+    $\mathbb{A} - \lambda \mathbb{E}$ je roven nule: abychom tedy našli
+    vlastní číslo, řešíme rovnici
+    $$\det(\mathbb{A} - \lambda \mathbb{E}) = 0.$$
+
+-   Pro zadané vlastní číslo $\lambda$ už najdeme vlastní vektory snadno
+    jako řešení homogenní soustavy uvedené výše.
+
+# Diagonalizace matice
+
+Matice $\mathbb{A},\mathbb{B}\in \mathbb{C}^{n,n}$ nazveme **podobné**,
+právě když existuje regulární $\mathbb{P}\in \mathbb{C}^{n,n}$ tak, že:
+$$\mathbb{A} = \mathbb{P}^{-1}\mathbb{B}\mathbb{P}$$
+
+Ekvivalentně platí, že matice $\mathbb{A}, \mathbb{B} \in C^{n,n}$ jsou
+podobné právě tehdy, když jsou obě maticemi stejného lineárního
+operátoru (v nějakých bázích), tedy když existuje
+$\mathbb{A} \in \mathcal{L}(V)$ a báze $\mathcal{X}, \mathcal{Y}$
+takové, že $${}^{\mathcal{X}}\mathbb{A}^{} = \mathbb{A}
+  \text{ a současně }
+  {}^{\mathcal{Y}}\mathbb{A}^{} = \mathbb{B}.$$
+
+Operátor $\mathbb{A} \in \mathcal{L}(V)$ nazveme **diagonalizovatelný**,
+jestliže existuje báze $\mathcal{X}$ prostoru $V_n$ taková, že matice
+${}^{\mathcal{X}}\mathbb{A}^{}$ je diagonální (matice je
+**diagonalizovatelná**, je-li podobná diagonální matici).
+
+-   Operátor $A \in \mathcal{L}(V)$ je diagonalizovatelný právě když
+    $\forall\lambda_0 \in \sigma (A) : \nu_a(\lambda_0) = \nu_g(\lambda_0)$.
+
+-   Libovolný soubor vlastních vektorů, ve kterém každý přísluší jinému
+    vlastnímu číslu, je vždy LN.
+
+-   Zadání tedy znamená:
+
+    -   nalézt spektrum $\sigma (A)$,
+
+    -   ke každému vlastnímu číslu nalézt bázi vlastního podprostoru,
+
+    -   porovnat algebraické a geometrické násobnosti u každého
+        $\lambda \in \sigma (A)$,
+
+    -   rovnají-li se pro každé $\lambda \in \sigma (A)$, bázi
+        $\mathcal{X}$ sestavíme popořadě z bazických vektorů všech
+        vlastních podprostorů. Matice přechodu
+        ${}^{\mathcal{X}}E^{\varepsilon}$ je bude obsahovat ve
+        sloupcích, diagonální matice operátoru ${}^{\mathcal{X}}A^{}$
+        bude na diagonále obsahovat v odpovídajícím pořadí všechna
+        vlastní čísla (každé zopakované tolikrát, kolik je jeho
+        násobnost).

@@ -1,0 +1,189 @@
+---
+subject: DBS
+---
+
+# DBS
+
+DBS = database system DBMS = systém řízení bází dat (database managment
+system)
+
+-   RDBMS = relační DBMS
+
+-   ODBMS = objektový DBMS
+
+-   ORDBMS = objektově-relační DBMS
+
+Zabývá se seřazením velkého množství, perzistentních, spolehlivých a
+sdílených dat
+
+-   velké množstí = pro data nestačí operační paměť
+
+-   perzistestní = data přetrvávají od zpracování ke zpracování
+
+-   spolehlivý = data lze rekonstruovat po chybě
+
+-   sdílených = data jsou přístupná více uživatelům
+
+# Relační databáze
+
+(R,I) je schéma relační databáze, kde
+
+-   R = $R_1$, $R_2$, ..., $R_n$ je množina relací
+
+-   I je množina integritních omezení
+
+relace = množina n-tic $\subset D_1 \times D_2 \times \dots \times D_n$
+(relace = tabulka)
+
+-   jména atribubtů \[$A_1, A_2, \dots, A_n$\]
+
+-   domény atributů $D_i$
+
+-   v relaci nezáleží na pořadí n-tic
+
+-   relace neobsahuje duplicitní n-tice
+
+# Relační algebra
+
+-   relační algebra je \"vyšší\" jazyk
+
+-   nespecifikujeme \"jak se mají věci dělat\", ale \"co má být
+    výsledkem\"
+
+-   výsledek dorazu je relace, která může být vstupem do dalšího
+    dotazu - jdou řetězit
+
+-   řeší \"pouze\" dotazování nikoliv DML ani DDL
+
+## Základní operace relační algebry
+
+-   selekce (restrikce) = relace R dle podmínky $\phi$
+
+    -   R($\phi$ = def{u$|$u$\in$R $\wedge \phi (u)$}) = množina
+        splňující podmínku
+
+-   projekce = relace R na množině atributů C, kde C $\subseteq$ A
+
+    -   $R[C] = def \{u[C] | u \in R\}$ (výběr atributů)
+
+-   přirozené spojení = relací R(a) a S(B) s výsledkem T(C)
+
+    -   $R*S = T(A \cup B)$ (výběr n-tic = rovnosti na všech průníkových
+        atributech A a B)
+
+-   obecné spojení
+
+    -   $R[t_1 \Theta t_2]S (\Theta - podminka =, >, <\dots)$ (výsledek
+        má všechny atributy včetně duplikací)
+
+-   přejmenování atributu
+
+    -   t $\rightarrow$ alias
+
+-   množinové opearce
+
+    -   sjednocení
+
+    -   průnik
+
+    -   rozdíl
+
+    -   kartézský součin
+
+![image](./images/RaExample.png){width="\\textwidth"}
+
+Antijoin = podmnožina n-tic z R, které nejsou spojitelné s žádnou n-ticí
+z S. Minimální množinu operací tvoří: $\times$, selekce, projekce,
+$\rightarrow$, $\cup$, $\backslash$.
+
+# Polospojení
+
+Interpretace R $<$\* S = podmnožina n-tic z R, které jsou spojitelné s
+nějakou n-ticí z S. Polospojení není to samé jako Left/right join. Je to
+ověření podmínky, že mohou být spojeni.
+
+![image](./images/halfConnection.png){width="\\textwidth"}
+
+Relační dělení: Interpretace $R \div S$ = výsledkem jsou všechny hodnoty
+x z R, které v R tvoří dvojici s každým prvkem y z S. Pomocí prvků y z S
+se snažíme diskvalifikovat prvky x z R. Prvek x je diskvalifikován,
+pokud v R neexistuje ve dvojici s každým y z S. Výsledkem R $\div$ S
+jsou prvky x z R, které se diskvalifikovat nepodařilo.
+
+-   R(x, y) a S(y)
+
+-   značení = R $\div$ S
+
+-   definice =
+    $R \div S =_{def} R[x] \backslash \{\{R[x] \times S\} \backslash R\}[x]$
+
+![image](./images/division.png){width="\\textwidth"}
+
+# SQL
+
+-   SQL = (Structured query language)
+
+-   slouží ke komunikaci s databázovým strojem
+
+-   říkáme, co chceme získat, ne jak se to má dělat
+
+-   intuitivně srozumitelný zápis
+
+-   připomíná jednoduché anglické věty
+
+DDL
+
+:   Definiční jazyk -- např. manipulace s tabulkama, integritní omezení
+    `CREATE TABLE`
+
+DML
+
+:   Manipulační jazyk -- např. `SELECT, INSERT, UPDATE` apod.
+
+DCL
+
+:   Jazyk na přístupy -- `GRANT <prikaz> ON <table> TO <user>`
+
+TCL
+
+:   Jazyk pro řízení transakcí -- `COMMIT`, `ROLLBACK`
+
+```{=html}
+<!-- -->
+```
+    SELECT sloupce
+    FROM tabulky
+    [WHERE podmínky]
+    [ORDER BY řazení]
+
+# Integritní omezení
+
+Omezení domény (tabulek)
+
+-   NOT NULL
+
+-   DEFAULT
+
+-   UNIQUE
+
+-   PRIMARY KEY
+
+-   REFERENCES
+
+-   CHECK
+
+Okamžik kontroly IO, dočasné vypnutí/zapnutí IO:
+
+-   možnosti stanovit při deklaraci integritního omezení čas, kdy se má
+    kontrolovat
+
+-   kontrolu IO lze definovat jako odložitelnou až na konec transakce
+
+-   v rámci session pak lze stanovit, zda IO kontruje IMMEDIATE nebo až
+    na konci transakce
+
+-   Oracle dovoluje v příkazu ALTER TABLE také IO dočasně
+    vypnout/zneplatnit DISABLE/ENABLE CONSTRAINT
+
+-   zpětně zapnutí IO pak může/nemusí vyžadovat kontrolu platnosti dat
+    již vložených v databázi

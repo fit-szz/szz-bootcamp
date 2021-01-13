@@ -1,0 +1,243 @@
+---
+subject: SAP
+---
+
+# Architektura číslicového počítače {#architektura-ux10duxedslicovuxe9ho-poux10duxedtaux10de}
+
+-   základní části počítače:
+
+    1.  Datová část (ALU) - součást procesoru
+
+    2.  Řídící část (řadič) - součást procesoru
+
+    3.  Hlavní paměť - často mimo procesor
+
+    4.  vstupní zařízení
+
+    5.  výstupní zařízení
+
+![ ](./images/hw_architektura.png){width="\\textwidth"}
+
+::: {#harward-vs.-von-neuman}
+## Harward vs. Von Neuman
+:::
+
+-   Harward má oddělenou paměť instrukcí od paměti dat, Von Neuman
+    nikoli
+
+-   Harward používaný častěji u malých jednočipových počítačů
+    (ATmega169,...)
+
+# Instrukční cyklus počítače {#instrukux10dnuxed-cyklus-poux10duxedtaux10de}
+
+-   instrukční cyklus
+
+    1.  IF - čtení instrukce (instruction fetch)
+
+    2.  ID - dekódování instrukce (instruction decode)
+
+    3.  OF - čtení operandů (operand fetch)
+
+    4.  IE - provedení instrukce (instruction execute)
+
+    5.  WE - uložení výsledku (write back)
+
+    6.  přerušení? (interrupt)
+
+-   nejnižší "úroveň" na které může programátor pracovat - staví se
+    pomocí ní SW
+
+-   **instrukce** - příkaz zakódovaný jako číslo, musí obsahovat:
+
+    -   co se má provést (instrukce)
+
+    -   s čím se to má provést (operandy)
+
+    -   kam uložit výsledek
+
+    -   kde pokračovat (např. instrukce *ret* pokračuje jinde než *add*)
+
+# Základní třídy souborů instrukcí (ISA - Instruction Set Architecture) {#zuxe1kladnuxed-tux159uxeddy-souborux16f-instrukcuxed-isa---instruction-set-architecture}
+
+-   zahrnuje:
+
+    -   typy a formáty instrukcí
+
+    -   datové typy, kódování, reprezentace a způsob uložení dat v
+        paměti
+
+    -   módy adresování a přístup do paměti dat/instrukcí
+
+    -   mimořádné stavy
+
+-   umožňuje:
+
+    -   abstrakci (různé implementace stejné architektury)
+
+    -   definici rozhraní mezi SW a HW
+
+    -   standardizuje instrukce
+
+-   adresace operandů:
+
+    -   přímá - pracuje se přímo s registrem nebo adresou v operandu
+
+    -   nepřímá - v registru/paměti je adresa na data se kterými se
+        pracuje
+
+    -   relativní - offset od určíté adresy (v registru nebo immediate)
+
+    -   indexovaná - báze + offset
+
+        -   autoinkrementace/autodekrementace
+
+::: {#stux159adaux10dovuxe1-acumulator}
+## Střadačová (acumulator) {#stux159adaux10dovuxe1-acumulator}
+:::
+
+-   implicitním operandem ALU je vždy střadač
+
+-   byl populární v 50. a 70. letech, protože HW byl drahý a paměti
+    rychlejší než CPU
+
+-   výhody
+
+    -   jednoduchý HW
+
+    -   minimální stav procesoru =\> rychlé přepínání kontextu
+
+    -   krátké instrukce (záleží na type daného operátoru)
+
+    -   jednoduché dekódování instrukcí
+
+-   nevýhody
+
+    -   častá komunikace s pamětí
+
+    -   omezený paralelismus mezi instrukcemi
+
+::: {#zuxe1sobnuxedkovuxe1-stack}
+## Zásobníková (stack) {#zuxe1sobnuxedkovuxe1-stack}
+:::
+
+-   využívání "HW zásobníku" při vykonávání programu
+
+-   např. instrukce ADD vezme 2 nejvyšší hodnoty na zásobníku a do
+    vrchní uloží jejich součet
+
+-   tento typ byl využit např. u x87 FPU (floating point unit)
+
+-   výhody:
+
+    -   jednoduchá a efektivní adresace operandů
+
+    -   krátké instrukce
+
+    -   vysoká hustota kódu (tzn. krátké programy)
+
+    -   jednoduché dekódování instrukcí
+
+    -   snadné napsání překladače (tedy bez optimalizací)
+
+-   nevýhody:
+
+    -   nelze náhodně přistupovat k lokálním datům
+
+    -   zásobník je sekvenční (omezuje paralelizmus)
+
+    -   těžké omezit přístupy do paměti
+
+::: {#registrovuxe1-gpr---general-purpose-registers}
+## Registrová (GPR - General Purpose Registers) {#registrovuxe1-gpr---general-purpose-registers}
+:::
+
+-   dnes nejrozšířenější
+
+-   RISC a CISC
+
+-   výhody:
+
+    -   registry jsou rychlejší než paměť (dokonce i než cache)
+
+    -   lze k nim přistupovat náhodně
+
+    -   mohou obsahovat mezivýsledky a lokální proměnné
+
+    -   méně častý přístup do paměti =\> potenciální možnost zrychlení
+
+-   nevýhody:
+
+    -   registrů je omezený počet
+
+    -   složitější překladač (např. které hodnoty nechat v
+        registrech...)
+
+    -   delší přepínání kontextu
+
+    -   registry nemohou obsahovat složitější datové struktury
+
+    -   k objektům v registrech nejde přistupovat přes ukazatele
+
+# Paměťový subsystém počítače {#pamux11bux165ovuxfd-subsystuxe9m-poux10duxedtaux10de}
+
+    TODO???
+
+::: {#pamux11bux165ovuxe1-hierarchie}
+## Paměťová hierarchie {#pamux11bux165ovuxe1-hierarchie}
+:::
+
+1.  registry
+
+2.  caches - extrémně rychlé, drahé, kapacitou menší, umístěné co
+    nejblíž k procesoru
+
+    -   primární cache
+
+    -   sekundární cache
+
+3.  hlavní paměť - rychlé, levnější, větší (např. paměť RAM)
+
+4.  vnější paměť - pomalé, obrovská kapacita, odkládání (např. pevný
+    disk)
+
+![ ](./images/mem_hierarchie.png){width=".5\\textwidth"}
+
+::: {#cache}
+## Cache
+:::
+
+-   řeší nízkou rychlost hlavní paměti
+
+-   většinou ve více vrstvách (L1, L2, ...)
+
+-   nižší vrstvy jsou menší rychlejší a dražší
+
+-   často jsou využívané asociativní paměti
+
+-   čtení:
+
+    -   **cache hit** - data jsou v cache nalezena
+
+        -   **hit rate** - poměr *cache hit* a počet všech dotazů
+
+        -   **hit time** - doba nalezení údajů v cache a předání
+            procesoru
+
+    -   **cache miss** - výpadek cache (je třeba načíst z nižší úrovně)
+
+        -   **miss rate** - četnost výpadků cache = 1-hit_rate
+
+        -   **miss penalty** - doba potřebná k získání z nižší paměti
+
+-   zápis:
+
+    -   pokud není v cache jde rovnou do paměti
+
+    -   **write throught** - nová hodnota se zapíše do cache i do hlavní
+        paměti
+
+    -   **write back** - zapíše se do paměti pouze když by měla být z
+        cache vyřazena
+
+-   více stupňů asociativity - více míst kam uložit paměť se stejným
+    klíčem (použití LRU při kolizích pro vyhození)

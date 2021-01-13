@@ -1,0 +1,134 @@
+---
+subject: OOP
+---
+
+# Kvalita návrhu OO systémů
+
+Bohužel žádné materiály kurzu OOP se přímo nevztahují ke kvalitě návrhu.
+
+Jediné, co lze zde uvést je, že kvalita návrhu se odvíjí od návrhových
+principů, o kterých je otázka *bi-wsi-si-09*.
+
+# Podotázky k této státnicové otázce na moodlu BI-OOP
+
+**https://moodle.fit.cvut.cz/mod/url/view.php?id=67753**
+
+-   *Explain the pattern matching pattern*
+
+    **Pattern matching** -- zachycení textových (či jiných) vzorů. Jedná
+    se o parsování. Vzor je zachycen pouze při přesné shodě. Pro
+    implementaci se používá vzor **Parser Combinator**.
+
+    **Parser** -- funkce, která dostává jako argument aktuální vstup
+    (input string) a vrací objekt. Funkce se pokouší ve vstupu najít
+    příslušný vzor (například pomocí regexů). Pokud takový vzor najde,
+    sestaví z něj syntaktickou hodnotu (například hodnotu *Integer*
+    pokud se jedná o *IntegerParser*) a vrátí objekt obsahující
+    syntaktickou hodnotu a zbytek vstupu, který nebyl použit.
+
+    **ParserCombinator** -- funkce vyššího řádu
+    (**higher-order-function**: jako parametry dostává opět funkce),
+    která dostává jako parametry jeden nebo více parsovacích funkcí
+    (**Parser**). Definuje funkci, která přes cyklus aktivuje všechny
+    vstupní parsery a nad výsledky může ještě provést nějakou funkci
+    (například *sum()*). Tato funkce je výstupem pro
+    **ParserCombinator**.
+
+    Příklad postupu tvorby parser combinatoru v Javascriptu pro
+    parsování součtu (*' 10 + 34 '*).
+
+    **https://dev.to/yelouafi/a-gentle-introduction-to-parser-combinators-21a0**
+
+-   *Define criteria and compare the 'using' relation and inheritance.*
+
+    **Kritéria** -- stanovují požadavky kladené na funkcionalitu. Slouží
+    k porovnání různých implementačních metod. Například máme třídu
+    *TextEditor*, která umí svůj text formátovat více způsoby. Pak jako
+    kritéria můžeme definovat například:
+
+    1.  přidání nového formátovacího algoritmu (*Jak pracné to bude?*),
+
+    2.  dynamické přepínání formátování za běhu (*Bude to vůbec
+        možné?*),
+
+    3.  nezávislé balíčkování (*Můžeme nový formátovací algoritmus úplně
+        oddělit od zbytku?*).
+
+    Implementace pomocí dědičnosti (**Inheritance**): třída *TextEditor*
+    bude mít nového potomka pro každý nový formátovací algoritmus.
+    Takový potomek bude přetěžovat metodu *format()*. Nepraktické pro
+    dynamické přepínání formátování za běhu (problém s 2. kritériem),
+    museli bychom vyměnit celou instanci editoru.
+
+    Implementace pomocí delegování (někdy označováno jako **using**):
+    třída *Editor* vlastní instanci třídy *Formatter* a deleguje na ní
+    formátování. Implementace třídy *Formatter* je pak uskutečněna
+    pomocí dědičnosti. To vede k jednoduché výměně formátovacího
+    algoritmu za běhu programu, stačí změnit instanční proměnnou třídy
+    *Editor* na novou instanci třídy *Formatter*.
+
+    ![ ](./inheritance-vs-delegation.png){width="100%"}
+
+-   *Explain the Strategy design pattern.*
+
+    **Strategy pattern** -- definujeme rodinu podobných algoritmů, každý
+    zapouzdříme do své vlastní třídy, která poskytuje stejné rozhraní
+    jako ostatní třídy z této rodiny algoritmů. Konkrétní algoritmus lze
+    pak měnit za běhu programu.
+
+    ![Strategy pattern](./strategy.png){width="100%"}
+
+-   *Explain the Null object pattern, when and how to use it.*
+
+    **Null object pattern** -- jedna z podtříd definuje chování
+    prázdného (*null*) objektu. Tímto způsobem lze eliminovat
+    kontrolování *null* hodnoty před každou operací.
+
+    Příklad použití: při implementaci datové struktury binárního stromu
+    lze použít **null object pattern** pro neexistující vrcholy stromu.
+    Vrcholy by pak byly implementovány těmito třídami:
+
+    -   *TSNode* -- abstraktní třída pro vrchol stromu,
+
+    -   *TSBinnaryNode extends TSNode* -- třída reprezentující
+        existující vrchol stromu, která obsahuje 3 atributy: *value*,
+        *left*, *right* a na metodu *isEmpty()* odpovídá *false*,
+
+    -   *TSEmptyNode extends TSNode* -- třída reprezentující
+        neexistující vrchol stromu, která neobsahuje žádné atributy a na
+        metodu *isEmpty()* odpovídá *true*.
+
+    *TSEmptyNode* může být *Singleton*, protože instance této třídy nemá
+    žádné vnitřní instanční proměnné a proto se všechny instance
+    *TSEmptyNode* chovají stejně. Není tedy důvod jich vytvářet zbytečně
+    moc.
+
+    ![Null object pattern](./null.png){width="100%"}
+
+-   *What is dynamic dispatch, explain single and double-dispatch, give
+    examples.*
+
+    **Dynamic dispatch** -- proces výběru implementace polymorfické
+    operace (metody) za běhu programu.
+
+    **Single dispatch** -- výběr metody je závislý pouze na jednom
+    objektu. Jedná se o klasické zaslání zprávy příjemci. Podle toho,
+    kdo je příjemcem se vybere metoda, která se provede.
+
+    ``` {.java breaklines=""}
+                receiver.doStuff();
+                // podle toho, jakého typu je receiver je vybrána příslušná metoda doStuff()
+    ```
+
+    **Double dispatch** -- výběr metody je závislý na kombinaci více
+    objektů. Jak funguje double dispatch je znázorněno na příkladu se
+    sčítáním hracích kostek. Lze sčítat kostky, kostku a pytlíček nebo
+    dva pytlíčky kostek. Výběr prováděné metody závisí jak na typu
+    objektu, kterému je zasílána zpráva *sečti*, tak na typu argumentu
+    sčítání.
+
+    ![ ](./double-dispatch.png){width="100%"}
+
+    Celý příklad na **Double dispatch** lze najít na:
+
+    **http://rmod-pharo-mooc.lille.inria.fr/OOPMooc/08-MoreOnDispatch/W8S01-Design-DoubleDispatch-Dice.pdf**

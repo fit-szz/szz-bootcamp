@@ -1,0 +1,139 @@
+---
+subject: PPA
+---
+
+# Logické programování
+
+-   Založeno na predikátové logice
+
+-   Vhodné zejména ve specifických aplikačních oblastech: databázové
+    aplikace, automatické dokazování, umělá inteligence, ...
+
+-   Prolog
+
+-   Deklarativní zápis programů, nezajímá se o složitost výpočtu
+
+# Prolog
+
+Program Prologu se skládá z Hornových klauzulí. Skládají se z těla a
+hlavičky a mohou to být:
+
+Fakta
+
+:   \- s hlavou bez těla, vždy pravdivý
+
+Pravidla
+
+:   \- s hlavou a tělem, pokud jsou splněny podmínky v těle, je pravdivý
+
+Dotazy
+
+:   \- bez těla
+
+``` {.prolog}
+hlavicka(jablko, jahoda). % fakt
+hlavicka(Promenna,X) :- telo(X). % pravidlo
+?- hlavicka(X,konstanta). % dotaz
+```
+
+-   Term
+
+    -   Struktury - funktor a seznam argumentů
+        `parent(josef,jan)`{.prolog}
+
+    -   Jednoduché objekty
+
+        -   Konstanty
+
+            -   Atomy - začínají malým písmenem `jana`{.prolog}
+
+            -   Čísla - `12 -34.5`{.prolog}
+
+        -   Proměnné - Začínají velkým písmenem `X, Name, _`{.prolog}
+
+## Seznamy
+
+-   `[] % prázdný seznam`{.prolog}
+
+-   `[1]`{.prolog}
+
+-   `[1,2,3]`{.prolog}
+
+-   `[[1,2], 3]`{.prolog}
+
+-   `[a | [b,c]] % oddělení hlavy od těla`{.prolog}
+
+## Způsob vyhodnocení dotazů
+
+-   Na program v Prologu lze nahlížet jako na databázi faktů a pravidel.
+
+-   Vyhodnocuje se na principu procházení stavového prostoru, pravidla
+    procházena DFS a tělo zleva doprava.
+
+-   Řešení se hledá metodou backtrackingu.
+
+## Unifikace
+
+Jsou tři různé operátory podobné rovnosti:
+
+-   **`X is Y`{.prolog}** - Y se provede a unifikuje výsledek s X:
+
+    -   `3 is 1+2`{.prolog} projde
+
+    -   `1+2 is 3`{.prolog} selže.
+
+-   **`X = Y`{.prolog}** - unifikuje X a Y, bez provádění:
+
+    -   `3 = 1+2`{.prolog} selže
+
+    -   `1+2 = 3`{.prolog} selže.
+
+-   **`X =:= Y`{.prolog}** - obojí provede a porovná:
+
+    -   `3 =:= 1+2`{.prolog} projde
+
+    -   `1+2 =:= 3`{.prolog} projde.
+
+Dva termy se unifikují, když:
+
+-   X, Y jsou proměnné. X a Y se unifikuji a výsledek je kladný.
+
+-   X, Y je-li jedna proměnná a druhá term. Substituuje term za
+    proměnnou.
+
+-   X, Y jsou stejné termy.
+
+-   X, Y jsou struktury, tvořené stejným funktorem, počtem parametrů a
+    jejich parametry si odpovídají.
+
+## Operátor řezu
+
+-   Řez fixuje přijaté „částečné řešení" -- omezuje splnění podcílů
+    vlevo od řezu na jedinou možnost.
+
+-   Překročení řezu zamezí využití ostatních pravidel.
+
+-   Řez neovlivňuje zpětný chod vpravo do svého výskytu.
+
+``` {.prolog}
+% přidání prvku X na jeho začátek ovšem jen v tom případě, že X v L již není
+% pridej(+X,+L,-NL) seznam NL vznikne ze seznamu L
+pridej(X,L,L) :- prvek(X,L), % je-li X již prvkem L, nepřidám ho
+  ! . % a zakáži návrat
+pridej(X,L,[X|L]). % X není prvkem L (jinak bych se sem nedostal), mohu ho tedy přidat
+```
+
+## Operátor fail
+
+*\"Jana má ráda muže, ale ne plešaté.\"*
+
+Bez operátoru řezu to nejde. S ním a se standardním predikátem fail,
+který, je-li volán, okamžitě selže, ji sestavíme poměrně snadno:
+
+``` {.prolog}
+marada(jana,X) :- plesaty(X), % je-li X plešaté uspěje,
+  !, % zakáže návrat
+  fail. % a selže.
+marada(jana,X) :- % k této klauzuli se výpočet dostane, pokud X není plešaté,
+  muz(X). % je-li to muz, má ho Jana ráda
+```

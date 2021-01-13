@@ -1,0 +1,167 @@
+---
+subject: SI2
+---
+
+# Život SW díla
+
+-   před nasazením SW kroky jako analýza, design a implementace
+
+-   po nasazení SW následuje údržba a další rozvoj
+
+Čas po kterou je produkt udržován je několikanásobně delší než vývoj.
+Jednotlivé kroky za sebou: Inception $\rightarrow$ elaboration
+$\rightarrow$ construction $\rightarrow$ transition $\rightarrow$
+mantenance Typy údržby:
+
+-   corrective (opravné) - oprava nalezených chyb a problémů
+
+-   adaptive (adaptivné) - udržení v měnícím se prostřdedí
+
+-   perfective (zdokonalovací) - zlepšování výkonnosti nebo
+    udržitelnosti
+
+-   preventive (preventivní) - detekce a oprava chyb než se stanou
+    skutečné
+
+# SDLC
+
+Při změně SW zpravidla potřebujeme procést celý vývojový cyklus znovu
+(analýza, design, implementace, testování, dodávka) - miniwaterfall. Na
+rozdíl od počátečního vývoje je cyklus značně redukován, protože se
+zaměřuje pouze na nově dodávanou funkcionalitu. Pokud jsme zároveň
+tvůrci produktu, je miniwaterfall velmi efektivní (system známe, tým
+vyvíjející původní SW se zároveň stará o jeho údržbu). S rostoucím
+rozdílem mezi týmem vyvíjející a spravující systém je efektivita
+miniwaterfallu přímo úměrná kvalitě dokumentace projektu. Snadno se měří
+náklady na údržbu - přesné odhady pro uzavření servisní smlouvy
+
+# Správa
+
+## Problémy
+
+Více různých prostředí:
+
+-   vývojové - oprava chyb, vývoj nových funkčností
+
+-   testovací - ověření oprav, kontrola neovlivnění ostatních částí
+
+-   produkční
+
+-   školící
+
+-   ...
+
+Ideální stav, když se jedná o totožné prostředí, ale dochází k problémům
+s:
+
+-   licencemi
+
+-   HW požadavky
+
+-   testovacími daty (obsah osobních dat/příliš velká)
+
+Velikost testovacích dat, dělají se řezy dat:
+
+-   zmenšní požadavku na kapacitu disku
+
+-   zajistit reprezentativní vzorek dat (problém podle čeho data
+    ožíznout)
+
+-   zajistit konzistenci dat (nutné neporušit referenční integritu)
+
+-   problém pro výkonnostní testy
+
+Anonymizace:
+
+-   odstranic citlivé údaje - co vše je citlivé?
+
+-   zachovat délky řezů, formáty dat, závislost mezi tebulkami, odlišný
+    obsah v závislosti na jiném údaji, vnitřní logika (např. rodné
+    číslo)
+
+Údržba cizího systému přináší mnoho problémů, je nutná dokumentace,
+vytvořit si znalostní bázi o řešení problémů a je nebezpečí zníčení
+původní architektury (architekturu navrhl někdo jiný). Dodávky se
+rozdělují podle verzí s novými funkčnostmi a těmi, které opravují akutní
+opravy. Je potřeba používat CM (konfigurační řízení) pro verzování
+současné práce na opravách a vývoji nových funkcí.
+
+## Konfigurační řízení
+
+Evidence nových požadavků, změn a chyb. Plánování nasazování nových
+verzí. Definuje process změnového řízení a eviduje všechny požadavky
+zákazníka.
+
+## Testování
+
+Především regresní testy, protože testování celého systému je náročné.
+
+## Odhady
+
+Přesné odhady jsou klíčové, aby udržba byla profitabilní. Musí být
+konzistetní a odchylky musíme být schopni zdůvodnit.
+
+## Metriky
+
+Jsou klíčové pro odhady a jsou základem ceny servisní smlouvy. Sleduje
+se rozsah změn v MD a poměr změn vůči původní velikosti projektu.
+
+# Podpora
+
+Jedná se o službu pro uživatele systému, umožňuje řešit problémy, které
+se během používání objeví. Typy podpory:
+
+-   po telefonu
+
+-   po emailu
+
+-   po internetu
+
+Podpora se dělí do několika úrovní:
+
+-   1\. úroveň
+
+    -   komunikuje se zákazníkem a snaží se identifikovat příčiny
+        problému
+
+    -   řešení hledá v databázi možných řešení, která se během provozu
+        podpory vytváří
+
+    -   vyřeší většinu problémů
+
+-   2\. úroveň
+
+    -   technická úroveň
+
+    -   hlubší znalost daného produktu a technologie
+
+    -   mohou být osoby z vývojového týmu
+
+-   řeší nejvíce obtížné případy
+
+-   experti v dané oblasti
+
+## Shrnutí
+
+Typicy se jedná o dlouhodobé smlouvy. Podpora zajišťuje firmě stabilní
+množství práce/peněz. Velkou výhodou je dobrá znalsot systému, protože
+se dobře dělají odhady pracnosti nových funkcí a náročnost provádění
+údržby.
+
+# SLA - servisní smlouva
+
+V rámci provozu systému a jeho podpory jsou garantovány určitě
+parametry.
+
+-   dostupnost - jak budeme k dispozici
+
+-   stabilita
+
+-   response time - za jak dlouhou dobu musíme odpověď na dotaz
+
+-   fix time - za jak dlouho musí být chyba opravena
+
+Při porušení SLA hrozí sankce od zákazníka. Základem je nedeklarovat
+parametry, které nemůžeme ovlivnit. Podpora se dá rozdělit podle doby
+dostupnosti (24/7, 8\*5,...) nebo podle místa, kde se podpora koná
+(on-site: u zákazníka / on-call: po telefonu)

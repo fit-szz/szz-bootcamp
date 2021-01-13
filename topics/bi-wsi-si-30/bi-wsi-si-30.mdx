@@ -1,0 +1,154 @@
+---
+subject: TJV
+---
+
+# EJB
+
+Enterprise Java Beans jsou serverové komponenty umožňující modulární
+tvorbu podnikatelských aplikací. Specifikace EJB je součástí množiny API
+definující Java Enterprise Edition (Java EE). Cílem EJB je oddělit
+business logiku aplikace od prezentační a persistentní vrstvy.
+Poskytuje:
+
+-   znovupoužitelnost kódu
+
+-   oddělení logiky aplikace
+
+-   transakční zpracování
+
+-   bezpečnost
+
+-   intergrace s ostatními technologiemi
+
+-   jednodušší testování
+
+Rozdělují se na:
+
+-   Session Beans
+
+    -   statefull
+
+    -   stateless
+
+    -   singleton
+
+-   message driven bean
+
+## EJB kontejner
+
+Dedikovaný virtuální prostor v aplikačním serveru, kam se nasazují EJB
+komponenty
+
+-   komunikace se vzdáleným klientem - zjednodušuje komunikaci mezi
+    klientem a aplikací
+
+-   dependency injection - zajišťuje naplnění deklarovaných promenných
+    (datových atributů) např. další EJB, datové zdroje (sql spojení)...
+
+-   pooling - vytváření poolu instancí pro bezstavové beany a
+    message-driven beany
+
+-   řízení životního cyklu - stará se o vytváření, inicializaci a
+    destrukci instancí
+
+## Stateless (bezstavové)
+
+-   neuchovávají stav relevatní pro klienta mezi obsluhou jeho
+    jednotlivých požadavků
+
+-   pouze na žádost něco udělá s daty, které dostane
+
+-   recyklují se - po vykonání práce může jít do poolu
+
+-   klientu vždy na serveru přidělena samostatná instance
+
+-   thread safe
+
+-   lze použít i datové atributy instance beanu (není zaručeno, že se
+    jejich atribyty při zavolání nezmění)
+
+-   obsahuje class notaci \@Stateless
+
+-   může obsahovat atributy, které jsou injektované (JDBC spojení)
+
+-   po kompletním vytvoření se zavolají metody s notací \@PostConstruct
+    (lze v nich například zkontrolovat spojení)
+
+-   když je bean ve stavu method-ready-pool může obsluhovat klientské
+    požadavky
+
+-   před zníčením se volají metody s anotací \@PreDestroy (lze například
+    ukončit DB spojení)
+
+-   pokud bean vyvolala výjimku = žádné \@PreDestroy = okamžité
+    odstranění beany z paměti
+
+## Stateful (stavová)
+
+-   uchovávají svůj stav mezi voláním metod (obsluha požadavků klienta)
+    v rámci jendé seassion
+
+-   anotace třídy je \@Statefull
+
+-   pro každého klienta se tvoří nová instance, při dalším volání metod
+    se použije vždy stejný objekt obsahující data z předchozé interakce
+    klienta
+
+-   v rámci životního cyklu může dojít k pasivaci = serializaci beanu
+    (odstranění z paměti a uložení na disk) a následně obnovení (děje se
+    tak, při nedostatku paměti)
+
+-   anotace \@PostConstruct a \@PreDestroy se chovají jako u stateless
+
+-   navíc stavy spojené s pasivací - \@PrePasivate a \@PostActivate
+
+-   bean může existovat po určitě dlouhou dobu - nastavuje se timeout
+
+## Singleton
+
+-   tento EJB má anotaci \@Singleton
+
+-   globálně sdílený stav
+
+-   bean je synchronyzována - buď si řeší synchronizaci sama nevo pomocí
+    anotace \@Lock
+
+## Message driven
+
+-   reagují na zprávu
+
+-   pracují asynchronně - nevrací tedy odpověď
+
+# Injection EJB
+
+Do EJB se dá injectovat další EJB nebo i jiné třídy. K naplnění
+proměnných dochází při vytváření beany - vše zajišťuje EJB kontejner.
+Používá JNDI pro vyhledávání
+
+-   \@EJB - anotace pro injectování jiné beany
+
+-   \@Resource - anotace pro injectování zdrojů dat nebo kontextu
+
+# Rozhraní
+
+Definuje co musí daná bean implementovat, každá musí být dostupná
+lokálně nebo vzdáleně (nebo obojí)
+
+## Lokální
+
+-   implicitní chování, pokud není jinak specifikováno
+
+-   lokální dostupnosti se většinou myslí, že je dostupná pro ostatní
+    komponenty běžící na stejné JVM
+
+-   anotace \@loacl
+
+## Remote
+
+-   pro volání vzdálené JVM
+
+-   například EJB běží na aplikačním serveru a komunikuje s PC uživatele
+
+-   získání instance pomocí JNDI
+
+-   anotace \@Remote

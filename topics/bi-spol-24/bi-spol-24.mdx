@@ -1,0 +1,230 @@
+---
+subject: PSI
+---
+
+# Protokolová rodina TCP/IP {#protokolovuxe1-rodina-tcpip}
+
+::: {#ipv4}
+## IPv4
+:::
+
+-   32bit adresy
+
+-   privátní rozsahy adres (neroutují se do internetu):
+
+    -   10.0.0.0/8
+
+    -   172.16.0.0/12
+
+    -   192.168.0.0/16
+
+-   MTU (Maximum Transmission Unit) - maximální délka rámce
+
+    -   definováno linkovou vrstvou
+
+    -   typicky 1500 bytů (vyšší redukuje overhead, nižší transportní
+        zpoždění)
+
+    -   každý router může fragmentovat paket - sestavení až v cílovém
+        zařízení
+
+::: {#ipv6}
+## IPv6
+:::
+
+-   128bit adresy
+
+-   Hop limit - obdoba TTL u IPv4
+
+-   minimální MTU je 1280 bytů
+
+-   pokud je paket moc dlouhý, tak ho router zahodí a odešle ICMP zprávu
+    s informací o MTU
+
+-   typy adres:
+
+    -   unicast (individuální)
+
+    -   multicast (skupinové)
+
+    -   anycast (výběrové)
+
+-   adresní prostor:
+
+    -   ::1/128 loopback
+
+    -   fc00::/7 individuální lokální adresy (obdoba privátních u IPv4)
+
+    -   fe80::/10 lokální linkové adresy
+
+    -   ff00::/8 skupinové adresy (multicast)
+
+    -   2001:db8::/32 dokumentační příklady
+
+-   síťová rozhraní mají více adres
+
+::: {#tcp-transmission-control-protocol}
+## TCP (Transmission Control Protocol)
+:::
+
+-   služba v transportní vrstvě (ISO/OSI)
+
+-   spojově orientovaná, duplexní, v jedné relaci lze přenášet neomezeně
+    dat
+
+-   zabezpečení
+
+    -   kontrolní součty
+
+    -   detekce duplicitních paketů
+
+    -   správné seřazení
+
+    -   opakované odeslání a timeout
+
+-   zahájení spojení - třícestný handshake (SYN, SYN+ACK, ACK)
+
+-   ukončení spojení - (FIN, ACK, FIN, ACK)
+
+-   nevhodné pro real-time aplikace (streaming, ...), vestavné systémy
+    (příliš komplexní), ...
+
+::: {#udp-user-datagram-protocol}
+## UDP (User Datagram Protocol)
+:::
+
+-   služba v transportní vrstvě (ISO/OSI)
+
+-   nespojová, nezabezpečená
+
+-   výhodné kde vadí režie TCP - malé bloky dat, nevadí ztráta,
+    real-time aplikace
+
+::: {#aplikaux10dnuxed-protokoly-sluux17eby}
+## Aplikační protokoly (služby) {#aplikaux10dnuxed-protokoly-sluux17eby}
+:::
+
+-   využívají služeb transportní vrstvy (TCP/IP model), nebo prezentační
+    vrstvy (ISO/OSI)
+
+-   server nabízí službu, klient se připojí a službu využívá
+    (alternativa P2P, kde se strany nerozlišují)
+
+::: {#dns}
+#### DNS
+:::
+
+-   rozebírán v další části otázky
+
+::: {#ftp}
+#### FTP
+:::
+
+-   příkazový kanál port 21/TCP
+
+-   datový kanál dynamicky přidělený port (také TCP) - aktivní/pasivní
+
+::: {#telnet}
+#### Telnet
+:::
+
+-   interaktivní příkazový terminál
+
+-   port 23/TCP
+
+-   nepodporuje šifrování (NEBEZPEČNÉ!)
+
+::: {#ssh}
+#### SSH
+:::
+
+-   port 22/TCP
+
+-   náhrada Telnetu s šifrováním
+
+::: {#mail}
+## Mail
+:::
+
+-   skupina protokolů: SMTP, IMAP4, POP3
+
+::: {#https}
+#### HTTP(S)
+:::
+
+-   80(443)/TCP
+
+::: {#dhcp---dynamic-host-configuration-protocol}
+#### DHCP - Dynamic Host Configuration Protocol
+:::
+
+-   umožní klientovy získat konfiguraci (adresu, GW, ...)
+
+# Řízení datového toku {#ux159uxedzenuxed-datovuxe9ho-toku}
+
+## Řízení datového toku - flow control
+
+-   kontroluje se mezi jedním senderem a reciverem
+
+-   \"plovoucí okénko\" (slinding window)
+
+-   stop-and-wait (ACK)
+
+-   může se přímo říct odesílateli rychlost kterou by měl odesílat
+
+## Kontrola zahlcení (congestion control)
+
+Detekce pomocí packet loss nebo zvětšení zpoždění
+
+-   traffic shaping (Token bucket, Leaky bucket)
+
+-   rezervace pásma pro určitě spoje
+
+# Princip a využití NAT (Network Adress Translation) {#princip-a-vyuux17eituxed-nat-network-adress-translation}
+
+-   překlad síťových adres
+
+-   umožňuje připojit více počítačů na jednu veřejnou IP (obchází
+    problém s nedostatkem IPv4 adres)
+
+-   přepisuje port, adresu nebo jinou hodnotu v paketu
+
+-   striktně odděluje LAN od WAN
+
+-   funguje jako směrovač (router)
+
+-   druhy:
+
+    -   Source - změna zdrojového portu nebo adresy
+
+    -   Destination - změna cílového portu nebo adresy
+
+    -   Maškaráda
+
+    -   1:1
+
+\#\# Systém DNS - "Domain Name System" - primárně určen pro překlad:
+jméno \<-\> adresa - několik typů záznamů: - **A** - 32bit IP adresa -
+**AAAA** - 128bit IP adresa - **MX** - preference a jméno mail serveru -
+**TXT** - textový řetězec - komponenty DNS: - jmenný prostor a zdrojové
+záznamy - stromová struktura - jmenné servery - vytváří jmennou
+databázi, odpovídají na dotazy - resolvery - komunikace - port 53 UDP
+(do 512B) i TCP (může i \> 512B) - pokud server nezná odpověď: -
+rekurzivní chování - sám najde odpověď a odpoví - nerekurzivní chování -
+odpoví adresu DNS serveru kde se má klient ptát - klient může požadovat
+rekurzivní chování, server ale může odmítnout
+
+::: {#typy-serverux16f}
+## Typy serverů {#typy-serverux16f}
+:::
+
+-   primární - udržují data o zóně, je autoritativní
+
+-   sekundární - kopírují data z primárního serveru, je autoritativní
+
+-   caching only - není autoritativní pro žádnou zónu
+
+-   root - udržuje záznamy root domény
+
+-   forwarding - předává rekurzivní dotaz (odlehčení linky), může sám
+    resolvovat

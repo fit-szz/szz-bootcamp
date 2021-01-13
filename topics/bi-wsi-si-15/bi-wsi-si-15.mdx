@@ -1,0 +1,187 @@
+---
+subject: PPA
+---
+
+# Funkcionální programování
+
+-   Zaměřeno na funkce a jejich vyhodnocování.
+
+-   Nemá přiřazovací příkaz, nemá vedlejší efekty, typické používání
+    rekurze.
+
+-   LISP, Haskell, R, Clojure, Python
+
+-   Odpovídající základní model výpočtu lambda kalkulus.
+
+-   Má funkce vyšších řádů: parametrem i výsledkem funkce může být
+    funkce. Má typicky uzávěry (closures).
+
+# Lisp
+
+-   Jeden z funkcionálních programovacích jazyků.
+
+-   První jazyk, co měl garbage collection.
+
+-   Lisp je case insensitive.
+
+Lisp vyhodnocuje nejdřív argumenty (podvýrazy) a potom to zbytek, pokud
+mu to nezakážeme příkazem `quote`{.lisp} (zkratka apostrof):
+
+``` {.lisp}
+'(+ 1 1) |$\Leftrightarrow$| (quote (+ 1 1))| je ve výsledku |(+ 1 1)
+```
+
+![ ](./images/eval-tree.pdf){width="4.2cm"}
+
+## Atomy
+
+čísla
+
+:   `235.4 2e10 2/3`{.lisp}
+
+proměnné
+
+:   `foo 2nd-place *foo*`{.lisp}
+
+konstanty
+
+:   `pi t nil`{.lisp}
+
+řetězce, znaky
+
+:   `"Hello!" #\a`{.lisp}
+
+pole
+
+:   `#(1 "foo" A) #1A(1 "foo" A) #2A((A B C) (1 2 3))`{.lisp}
+
+struktury
+
+:   `#s(place FIT Prague)`{.lisp}
+
+bitová pole
+
+:   `#*10110`{.lisp}
+
+hašovací tabulky
+
+:   
+
+## Seznamy
+
+![`(A ((B) C))`{.lisp}](./images/list.pdf){width="4.2cm"}
+
+![`(A ((B) C))`{.lisp}](./images/list-inner.pdf){width="4.8cm"}
+
+![`(A ((B) C))`{.lisp}](./images/list-empty.pdf){width="1cm"}
+
+![`(A ((B) C))`{.lisp}](./images/list-cons.pdf){width="1cm"}
+
+### Seznam {#seznam .unnumbered}
+
+`(cons 1 (cons 2 (cons 3 nil))) |$\Leftrightarrow$| (list 1 2 3)| je ve výsledku |(1 . (2 . (3 . nil)))`{.lisp}
+
+### Strom {#strom .unnumbered}
+
+`(cons (cons 1 2) (cons 3 4))| je ve výsledku |((1 . 2) . (3 . 4))`{.lisp}
+
+### Výběr ze seznamu {#výběr-ze-seznamu .unnumbered}
+
+![ ](./images/list-cdr.pdf){width="4.2cm"}
+
+## Funkce
+
+`(defun name (parameters) (body))`{.lisp}
+
+``` {.lisp}
+(defun sum (x y) (+ x y))
+(defun factorial (n) (if (zerop n) 1 (* n (factorial (- n 1)))))
+```
+
+## Podmínky
+
+``` {.lisp}
+(defun abs (X)
+ (cond ((> X 0) X) 
+       ((= X 0) 0) 
+       ((< X 0) (- X)) 
+))
+```
+
+``` {.lisp}
+(defun abs (X)
+  (if (> X 0) X
+   X
+   (if (= X 0) 0 (- X))
+))
+```
+
+## Rekurze
+
+Rekurze používá zasobník pro zachování stavu při vnoření do funkce
+(aktivační záznam). Doporučuje se využívat koncovou rekurzi, která šetří
+místo na zásobníku.
+
+Vnořená
+
+:   \- rekurze v rekurzi
+
+Stromová
+
+:   \- několik rekurzivních volaní
+
+Lineární
+
+:   \- jedno rekurzivní volání
+
+Koncová
+
+:   \- rekurzivní volání je poslední, co funkce udělá - optimizace
+    překladačů znovupoužití stejného stack framu
+
+``` {.lisp}
+(defun factorial (N)
+  ;;;"Compute the factorial of N."
+  (if (= N 0)
+    1
+    (* N (factorial (- N 1)))
+))
+
+(defun fast-factorial (N)
+  ;;;"A tail-recursive version of factorial."
+  (fast-factorial-aux N 1)
+)
+
+(defun fast-factorial-aux (N ACC)
+  ;;;"Multiply A by the factorial of N."
+  (if (= N 0)
+    ACC
+    (fast-factorial-aux (- N 1) (* N ACC))
+))
+```
+
+## Mapovací funkcionály
+
+Funkcionál je funkce, která má funkci jako argument.
+`(mapcar function list-1 list-2 ... list-n )`{.lisp}
+
+Aplikujeme funkci square na list s položkami 1 2 3
+`(mapcar #'square '(1 2 3))`{.lisp}
+
+-   `mapcar`{.lisp} prochází všechny seznamy prvek po prvku. Ukončí se
+    jakmile v některém z listů dojdou prvky. Návratovou hodnotou je list
+    s prvky původních listů, na které byla aplikována funkce.
+
+-   `mapc`{.lisp} funguje jako mapcar - vrací první list
+
+-   `maplist`{.lisp} prochází list prvek po prvku, do další iterace jde
+    vždy cdr ze zpracovaného listu
+
+``` {.lisp}
+(defun plus (x y) (+ x y))
+(defun square (x) (* x x))
+
+(mapcar #'square '(1 2 3)) |$\rightarrow$| (1 4 9)
+(mapcar #'plus '(1 2 3) '(3 2 1)) |$\rightarrow$| (4 4 4)
+(mapc #'plus '(1 2 3) '(3 2 1)) |$\rightarrow$| (1 2 3)
+```

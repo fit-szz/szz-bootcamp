@@ -1,0 +1,124 @@
+---
+subject: LIN
+code: BI-SPOL-12
+topic: "Soustavy lineárních rovnic: Frobeniova věta a související pojmy, vlastnosti a popis množiny řešení, Gaussova eliminační metoda."
+---
+
+# Frobeniova věta
+
+Nechť $\mathbb{A}\in T^{m,n}$. **Hodností matice** $\mathbb{A}$ nazýváme
+dimenzi lineárního obalu souboru řádků matice $\mathbb{A}$ (jako vektorů
+z $T^{1,n}$) a značíme ji $h(\mathbb{A})$:
+$$h(\mathbb{A})=dim\langle \mathbb{A}_{1:},\dots,\mathbb{A}_{m:}\rangle.$$
+
+Nechť $\mathbb{A}\in T^{m,n}$.
+
+1.  Soustava $m$ lineárních rovnich o $n$ neznámých
+    $\mathbb{A} \mathbbm{x}=\mathbbm{b}$ je řešitelná, tj.
+    $S\neq\theta$, právě tehdy, když
+    $$h(\mathbb{A})=h(\mathbb{A} | \mathbbm{b}).$$
+
+2.  Je-li $h(\mathbb{A})=h$, pak množina řešení
+    $\mathbb{A} \mathbbm{x}=\theta$ je podprostor dimenze $n-h$, tedy
+    existuje LN soubor vektorů $(\mathbbm{z}_1,\dots,\mathbbm{z}_{n-h})$
+    v $T^{n,1}$ takový, že $$S_0=\begin{cases}
+           \{\theta\}, & \text{pokud $n=h$,} \\
+           \langle \mathbbm{z}_1,\dots,\mathbbm{z}_{n-h}\rangle, & \text{pokud $h<n$.}
+           \end{cases}$$ Je-li navíc $h(\mathbb{A}|\mathbbm{b})=h$,
+    potom platí: $$S=\widetilde{\mathbbm{x}} + S_0,$$ kde
+    $\widetilde{\mathbbm{x}}$ je **partikulární řešení**
+    $\mathbb{A} \widetilde{\mathbbm{x}}=\mathbbm{b}$.
+
+# Vlastnosti a popis množiny řešení
+
+Soustava lineárních rovnic (zapsaných v HST matice
+$\begin{pmatrix}[c|c]\mathbb{A}\mathbbm{x}&\mathbbm{b}\end{pmatrix}$)
+může mít:
+
+-   Žádné řešení -- poslední sloupec je hlavní
+
+-   Jedno řešení -- všechny sloupce, kromě posledního jsou hlavní
+
+-   Více řešení -- sloupce jsou hlavní nebo vedlejší (poslední sloupec
+    nesmí být hlavní) Pro popis množiny řešení se nalezne obal LN
+    souboru možných řešení. *viz. Frobeniova věta*
+
+# Soustavy lineárních rovnic
+
+Nechť $n,m\in\mathbb{N}$ a pro všechna $i\in\{1,\dots, m\}$ a
+$j\in\{1, \dots, n\}$ platí, že $a_{ij} \in\mathbb{R}$ a
+$b_i \in\mathbb{R}$. Systém rovnic
+
+$$\begin{aligned}
+{7}
+a_{11} x_1 &&\; + \;&& a_{12} x_2 &&\; + \cdots + \;&& a_{1n} x_n &&\; = \;&&& b_1 \\
+a_{21} x_1 &&\; + \;&& a_{22} x_2 &&\; + \cdots + \;&& a_{2n} x_n &&\; = \;&&& b_2 \\
+\vdots\;\;\; &&     && \vdots\;\;\; &&  \ddots\;\;\;&& \vdots\;\;\; &&     &&& \,\vdots \\
+a_{m1} x_1 &&\; + \;&& a_{m2} x_2 &&\; + \cdots + \;&& a_{mn} x_n &&\; = \;&&& b_m \\\end{aligned}$$
+
+nazýváme **soustavou** $m$ **lineárních rovnic o** $n$ **neznámých**
+$x_1,\dots, x_n \in\mathbb{R}$.\
+Číslu $aij$ říkáme $j$**tý koeficient** $i$**té rovnice**.
+
+Množinu všech uspořádaných $n$tic
+$(x_1, x_2,\dots, x_n) \in\mathbb{R}^n$, pro které po dosazení do (2) je
+splněno všech $m$ rovnic, nazýváme **množinou řešení soustavy** a
+značíme ji $S$. Platí-li $b_1 = b_2 = \dots = b_m = 0$, říkáme, že
+soustava (2) je **homogenní**. Není-li soustava homogenní, je
+**nehomogenní**.
+
+## Horní stupňovitý tvar
+
+O matici $\mathbb{D}\in R^{m,n}$ řekneme, že je v **horním stupňovitém
+tvaru**, jestliže všechny řádky jsou nulové, nebo existuje $k\in\hat{m}$
+tak, že řádky $1$ až $k$ matice $\mathbb{D}$ jsou nenulové a řádky
+$k + 1$ až $m$ jsou nulové a jestliže platí následující:
+
+Označme pro každé $i\in\hat{k}$ index nejlevějšího nenulového prvku v
+$i$tém řádku jako $j_i$, tj.
+
+$$j_i=\min{\{\ell\in\hat{n}|\mathbb{D}\neq 0\}}.$$ Potom platí
+$1 \leq j_1 < j_2 < \cdots < j_k$.
+
+Je-li matice v horním stupňovitém tvaru, potom sloupcům s indexy
+$j_1, j_2, \dots , j_k$ říkáme **hlavní sloupce**, ostatním říkáme
+**vedlejší sloupce**.
+
+O soustavě $\mathbb{A}\mathbbm{x} = \mathbbm{b}$ řekneme, že je v horním
+stupňovitém tvaru, pokud matice této soustavy $(\mathbb{A}|\mathbbm{b})$
+je v horním stupňovitém tvaru.
+
+## Postup pro řešení SLR
+
+-   Převedu SLR do matice $(\mathbb{A}|\mathbbm{b})$.
+
+-   Převedu do HST pomocí GEM.
+
+-   Poslední sloupec hlavní $\rightarrow$ nemá řešení.
+
+-   Jinak:
+
+    -   Najdu volné a vázané proměnné (odpovídá vedlejším a hlavním
+        sloupcům).
+
+    -   Pro partikulární řešení zvolim volné proměnné libovolně a
+        dopočítám vázané proměnné.
+
+    -   Pro $S_0$ zvolim libovolnou bázi (třeba standardní).
+
+    -   Pro každý bazický vektor dopočítám z homogenní rovnice vázané
+        proměnné a dostanu bázi $S_0$.
+
+    -   Řešením je $S=\widetilde{\mathbbm{x}}+S_0$, kde $S_0$ je
+        lineární obal báze.
+
+# Gaussova eliminační metoda
+
+Cílem GEM je převést matici do horního stupňovitého tvaru, pomocí úprav
+$(G1)$, $(G2)$ a $(G3)$.
+
+-   Prohození dvou řádků.
+
+-   Vynásobení jednoho řádku nenulovým číslem.
+
+-   Přičtení jednoho řádku k jinému.

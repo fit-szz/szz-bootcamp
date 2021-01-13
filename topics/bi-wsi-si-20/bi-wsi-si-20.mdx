@@ -1,0 +1,115 @@
+---
+subject: SI1.2
+---
+
+# Přiřazení zodpovědností třídám během návrhu
+
+Cílem je správně přiřadit zodpovědnosti třídám.
+
+-   Navrhnout systém tak, aby byl dlouhodobě udržitelný a rozšiřitelný -
+    Rozšíření bude zřejmě provádět jiný tým a není možné se spolehnout
+    na znalosti autorů
+
+-   Snadno lokalizovatelné dopady změn - Snadné odhady pracnosti
+    požadovaných rozšíření
+
+-   Minimalizace dopadů při provádění změn - Změna v jedné části systému
+    by neměla ovlivňovat jinou část
+
+# GRASP vzory
+
+-   Základní vzory / principy pro přiřazení zodpovědností třídám
+
+-   Zodpovědnost je úkol, který má třída řešit
+
+-   Existuje mnoho způsobů rozdělení úloh mezi třídy
+
+-   Neexistuje jediné správné řešení
+
+Informační expert
+
+:   (Information Expert)
+
+    -   Základní princip přiřazení zodpovědnosti
+
+    -   Popis - Přiřaďte zodpovědnost třídě, která má informace potřebné
+        pro splnění této zodpovědnosti
+
+Nízká provázanost
+
+:   (Low Coupling)
+
+    -   Zmenšuje dopad při provádění změn
+
+    -   Popis - Přiřaďte zodpovědnost tak, aby provázanost zůstala nízká
+
+    -   Každá třída by si měla vystačit při plnění úkolu sama a
+        minimalizovat nutnost využití ostatních tříd
+
+    -   Zvyšuje možnost znovupoužití
+
+    -   Počet vazeb mezi třídami by měl být minimální
+
+Vysoká soudržnost
+
+:   (High Cohesion)
+
+    -   Podporuje nízkou provázanost
+
+    -   Popis - Přiřaďte zodpovědnost tak, aby soudržnost zůstala vysoká
+
+    -   Každá třída by měl být zaměřena na jediný úkol
+
+    -   Zvyšuje srozumitelnost systému
+
+    -   Zodpovědnost třídy je snadno pochopitelná
+
+-   Jedna třída umí všechno
+
+    -   Nízká provázanost
+
+    -   Malá soudržnost
+
+-   Každá třída pouze jednu metodu
+
+    -   Vysoká provázanost
+
+    -   Velká soudržnost
+
+# Popis spolupráce objektů
+
+## UML sekvenční diagram
+
+-   Objekt
+
+    -   Pojmenovaný
+
+    -   Nepojmenovaný
+
+-   Třída
+
+    -   Statická metoda
+
+![ ](./images/sekvencni-diagram.png){width=".55\\linewidth"}
+
+![ ](./images/sekvencni-async.png){width=".55\\linewidth"}
+
+![ ](./images/sekvencni-navratova.png){width=".55\\linewidth"}
+
+![ ](./images/sekvencni-vytvareni.png){width=".55\\linewidth"}
+
+## UML diagram tříd - využití během návrhu
+
+Použití v dokumentaci a pro generování kódů. Může vycházet z doménového
+návrhu. Diagram tříd je závislý na:
+
+-   Zvolené technologii
+
+-   Zvolené architektuře
+
+-   Použitých architektonických vzorech (GRASP, GoF)
+
+# Zdroje
+
+-   Přednášky -
+    <https://courses.fit.cvut.cz/BI-SI1/@B171/lectures/index.html>

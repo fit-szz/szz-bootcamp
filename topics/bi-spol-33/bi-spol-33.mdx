@@ -1,0 +1,236 @@
+---
+subject: ZDM
+---
+
+# Modulární aritmetika
+
+$\mathbb{Z}_m$ (nebo též $\mathbb{Z} mod m$) je množina celých čísel
+modulo nějaké dané přirozené číslo $m$. Nejčastěji se setkáme se zápisem
+$\mathbb{Z}_m = \{0, 1, 2 . . . , m - 1\}$.
+
+Nechť $a, b, c, d, m \in \mathbb{Z}$, $m \geq 2$. Pak pokud platí
+současně $a \equiv b \text{ mod } m$ a $c \equiv d \text{ mod } m$,
+potom platí:
+
+$a + c \equiv b + d \text{ mod } m$
+
+$a - c \equiv b - d \text{ mod } m$
+
+$a \cdot c \equiv b \cdot d \text{ mod } m$
+
+Nechť $a, b \in \mathbb{Z}$. Řekneme, že $a$ dělí $b$, značíme $a|b$,
+jestliže existuje $k \in \mathbb{Z}$ takové, že $b = k \cdot a$.
+
+Vlastnosti
+
+-   uzavřenost $a$ $+$ $b \in \mathbb{Z}_m$, $a$ $\cdot$
+    $b \in \mathbb{Z}_m$
+
+-   komutativita $a$ $+$ $b = b$ $+$ $a$, $a$ $\cdot$ $b = b$
+    $\cdot$ $a$
+
+-   asociativita $a$ $+$ $(b$ $+$ $c) = (a$ $+$ $b)$ $+$ $c$, $a$
+    $\cdot$ $(b$ $\cdot$ $c) = (a$ $\cdot$ $b)$ $\cdot$ $c$
+
+-   neutrální prvek $a$ $+$ $0 = |a|_m$, $a \cdot 1 = |a|_m$
+
+-   inv. prvek $a$ $+$ $\bar{a} = 0$
+
+-   distributivita $a$ $\cdot$ $(b$ $+$ $c) = a$ $\cdot$ $b$ $+$ $a$
+    $\cdot$ $c$
+
+# GCD & LCM
+
+Číslo $d \in \mathbb{N}^+$ je společný dělitel čísel $a$, $b$, jestliže
+$d|a$ a $d|b$. Největší z nich je poté gcd$(a,b)$.
+
+Číslo $n \in \mathbb{N}^+$ je společný násobek čísel $a$, $b$, jestliže
+$a|n$ a $b|n$. Nejmenší z nich je poté lcm$(a,b)$.
+
+(Vlastnosti gcd a lcm). Nechť $a$, $b$ $\in \mathbb{Z}$. Potom platí:
+
+-   Jestliže je n společný násobek $a$, $b$, pak $\text{lcm}(a, b)$ dělí
+    $n$.
+
+-   Jestliže $a|n$ a $b|n$, pak $\text{lcm}(a, b)|n$.
+
+-   $\text{gcd}(a, b) = \text{gcd}(|a|, |b|)$ a
+    $\text{lcm}(a, b) = \text{lcm}(|a|, |b|)$.
+
+-   $\text{gcd}(a + cb, b) = \text{gcd}(a, b)$ pro libovolné
+    $c \in \mathbb{Z}$.
+
+-   Jestliže $a|bc$, pro nějaké $c \in \mathbb{Z}$ a čísla $a$, $b$ jsou
+    nesoudělná (tj. $\text{gcd}(a, b) = 1$), potom $a|c$.
+
+-   $|a|\cdot|b| = \text{gcd}(a,b) \cdot \text{lcm}(a,b)$
+
+    $\text{gcd}(a, b) = d = \alpha \cdot a + \beta \cdot b$,
+
+    kde $\alpha$, $\beta$ jsou celočíselné koeficienty této lineární
+    kombinace.
+
+# Teorie čísel
+
+## Vlastnosti prvočísel
+
+Funkce $\pi(n) : \mathbb{N}^+ \rightarrow \mathbb{N}$ určuje počet
+prvočísel, která jsou menší než $n$.
+
+Poměr $\pi(n)$ k výrazu $n/\text{log}(n)$ se s rostoucím $n$ přibližuje
+hodnotě $1$.
+
+Eulerova funkce $\Phi$ Eulerova funkce
+$\Phi(n) : \mathbb{N}^+ \rightarrow \mathbb{N}^+$ udává počet kladných
+celých čísel menších nebo rovných $n$, která jsou nesoudělná s $n$.
+
+Nechť $m \in \mathbb{N}^+$ a $a \in \mathbb{Z}$ je číslo nesoudělné s
+$m$. Potom platí $a^{\Phi(m)} \equiv 1~(\text{mod }m)$.
+
+Přirozené číslo $p$ je prvočíslem, právě když platí $\Phi(p) = p - 1$.
+
+Nechť $p$ je prvočíslo a $a \in N$. Potom $\Phi(p^a) = p^a - p^{a-1}$.
+
+Nechť $m, n \in N$ a gcd$(m, n) = 1$. Potom $\Phi(mn) = \Phi(m)\Phi(n)$.
+
+![image](./images/primes.png){width=".75\\textwidth"}
+
+## Eukleidův algoritmus
+
+Nechť a, b jsou celá čísla, pro která platí $a \geq b > 0$. Nechť
+$\{r_n\}^{k+1}_{n=0}$ je klesající posloupnost zbytků definovaná
+rekurentním vztahem $r_{n+2} = r_n\text{ mod }r_{n+1}$ s počátečními
+podmínkami $r_0 = a$, $r_1 = b$. kde $r_{k+1} = 0$ pro $(k > 0)$ je její
+první nulový člen. Potom její poslední nenulový člen (tj. poslední
+nenulový zbytek) je největším společným dělitelem $a$ a $b$, tedy
+gcd$(a, b) = r_k$.
+
+# Malá Fermatova věta
+
+Nechť $p$ je prvočíslo a $a \in \mathbb{N}^+$ takové přirozené číslo,
+které není násobkem $p$. Potom platí $a^{p-1} \equiv 1~(\text{mod }p)$.
+
+Nechť $a, b, c \in \mathbb{Z}$ a $m \in \mathbb{N}^+$ a nechť platí
+$ac \equiv bc~(\text{mod } m)$. Potom platí
+$a \equiv b~(\text{mod } m/d)$, kde $d$ je největší společný dělitel
+čílsel $m$ a $c$.
+
+# Diofantické rovnice
+
+Jako lineární diofantickou rovnici označujeme libovolnou rovnici typu
+$ax +\nolinebreak by = c$ s neznámými $x, y$, kde
+$a, b, c \in \mathbb{Z}$, pro jejíž řešení má rovněž platit
+$x, y \in\nolinebreak Z$.
+
+Lineární diofantická rovnice $ax + by = c$ má alespoň jedno řešení právě
+tehdy, když $c$ je násobkem gcd$(a, b)$.
+
+Nechť $a, b$ jsou nenulová celá čísla a dvojice $(x_0, y_0)$ je řešením
+rovnice $ax +\nolinebreak by =\nolinebreak c$. Potom množina všech
+celočíselných řešení této rovnice je
+$\{(x_0 +\dfrac{b}{d}k, y_0 -\dfrac{a}{d}k) :\nolinebreak k \in\nolinebreak \mathbb{Z}\}$,
+kde $d = \text{gcd}(a, b)$.
+
+# Lineární kongruence
+
+(skvělá ukázka na:
+<http://mi21.vsb.cz/sites/mi21.vsb.cz/files/unit/linearni_kongruence.pdf>)
+Pro daná celá čísla $a, b$ a $m > 1$ hledáme celé $x$ takové, že platí
+$ax \equiv b~(\text{mod } m)$.
+
+Lineární kongruence má řešení právě tehdy, když gcd$(a, m)|b$. Všechna
+řešení jsou tvaru
+
+$x = x_0 + k ·\dfrac{m}{\text{gcd}(a, m)}$,
+
+kde $k$ je libovolné celé číslo a pro $x_0$ existuje $y_0$ takové, že
+dvojice $(x_0, y_0)$ je řešením rovnice $ax + my = b$.
+
+Jestliže gcd$(a, m)|b$, potom kongruence $ax \equiv b~(\text{mod } m)$
+má konečně mnoho řešení modulo m. Tato řešení jsou dána výrazem
+
+$|x_0 + k ·\dfrac{m}{\text{gcd}(a, m)}|_m$
+
+pro $k =\nolinebreak 1, 2, 3, . . . , \text{gcd}(a, m)$, kde pro $x_0$
+existuje nějaké $y_0$ tak, že dvojice $(x_0, y_0)$ je řešením
+$ax + my = b$.
+
+# Čínská věta
+
+Budeme řešit systém lineárních kongruencí:
+
+$x \equiv a_1~(\text{mod } m_1)$
+
+$x \equiv a_2~(\text{mod } m_2)$
+
+· · ·
+
+$x \equiv a_N~(\text{mod } m_N )$
+
+kde čísla $m_i$ jsou po dvou nesoudělná, tedy gcd$(m_i, m_j ) = 1$ pro
+všechna $i, j$, kde $i \neq\nolinebreak j$.
+
+Řešení tohoto systému existuje a všechna řešení jsou kongruentní modulo
+$M$ (tedy v $Z_M$ je řešení určeno jednoznačně), kde
+
+$M = \prod\limits_{i=1}^{N}m_i$.
+
+Definujme $M_i = \dfrac{M}{m_i}$.
+
+Jelikož gcd$(m_i, M_i) = 1$, pak existují řešení $X_i$ lineárních
+kongruencí $M_iX_i \equiv 1$ (mod $mi$) pro všechna
+$i \in \{1, . . . , N\}$, navíc platí pro všechna
+$j \neq i$$M_iX_i \equiv 0$ (mod $m_j$).
+
+Z čehož plyne:
+
+$x \equiv a_1X_1M_1 + . . . + a_N X_NM_N~(\text{mod }M)$
+
+Příklad 1:
+
+$x \equiv 1~(\text{mod } 2)$ $x \equiv 2~(\text{mod } 3)$
+$x \equiv 3~(\text{mod } 5)$
+
+\- - -
+
+$M = 2\cdot 3 \cdot 5 = 30$ $M_1 = 15,~M_2=10,~M_3=6$
+
+$M_1X_1 = 15X_1 \equiv 1~(\text{mod }2)$ $X_1 = 1$
+
+$M_2X_2 = 10X_2 \equiv 1~(\text{mod }3)$ $X_2 = 1$
+
+$M_3X_3 = 6X_3 \equiv 1~(\text{mod }5)$ $X_3 = 1$
+
+\- - -
+
+$x = 1 \cdot 1 \cdot 15 + 2 \cdot 1 \cdot 10 + 3  \cdot 1  \cdot 6 = 53 \equiv 23~(\text{mod }30)$
+
+# Zobecněná Čínská věta
+
+Systém lineárních kongruencí má řešení právě tehdy, když gcd$(m_i, m_j)$
+dělí $a_i - a_j$ pro všechna $i, j : 1 \leq i < j \leq N$. Pokud řešení
+existuje, je určeno jednoznačně modulo lcm$(m_1, m_2, . . . , m_N)$.
+
+Příklad 2:
+
+$x \equiv 5~(\text{mod } 6)$ $x \equiv 3~(\text{mod } 10)$
+$x \equiv 8~(\text{mod } 15)$
+
+\- - -
+
+$x = 5 + 6t$
+
+$5 + 6t \equiv 3~(\text{mod } 10)$ $6t \equiv 8~(\text{mod }  10)$
+$t \equiv 8 \cdot 6^{-1}~(\text{mod }  10)$
+$t \equiv 3~(\text{mod }  10)$ $t = 3 + 10u$
+
+$x = 5 + 6t = 5 + 6(3 + 10u) = 23 + 60u$
+
+$23 + 60u \equiv 8~(\text{mod } 15)$
+$0\cdot u \equiv 0~(\text{mod } 15)$ $u \in N$
+
+\- - -
+
+$x = 5 + 6t = 23 + 60u$ lcm$(6, 10, 15) = 30$
+
+$x \equiv 23~(\text{mod } 30)$

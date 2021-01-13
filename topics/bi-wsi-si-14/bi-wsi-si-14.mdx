@@ -1,0 +1,153 @@
+---
+author:
+- Tomáš Starý
+- Daniel Hampl
+subject: PPA
+---
+
+# Definice
+
+Lambda ($\lambda$) kalkul je formální systém používaný v teoretické
+informatice a matematice pro studium funkcí a rekurze, lambda kalkul je
+Turing-complete. Funkce zapsané v lambda kalkulu lze poté vyhodnotit
+pomocí substituce.
+
+## Syntaxe lambda kalkulu
+
+U lambda kalkulu se používá prefixový zápis, tedy operátory se píší před
+operandy, například `(+ (* 5 3)(* 5 3))`{.lisp}. Vyhodnocení poté
+probíhá zleva doprava a to následovně:
+
+1.  `(+ (* 5 3) (* 5 3))`{.lisp}
+
+2.  `(+ 15 (* 5 3))`{.lisp}
+
+3.  `(+ 15 15)`{.lisp}
+
+4.  `30`{.lisp}
+
+Zápis funkce s proměnnou se poté zapisuje takto: $(\lambda x. + x\ 1)$.
+
+## Beta redukce
+
+Vyhodnocování funkcí v lambda kalkulu se dělá pomocí beta ($\beta$)
+redukce. Beta redukce provedená na příkladu zápisu funkce:
+
+1.  $(\lambda x. + x\ 1)$
+
+2.  $(\lambda x. + x\ 1)2$ 2 za závorkou je argumentem funkce.
+
+3.  $(+\ 2\ 1)$
+
+4.  3
+
+Další platné zápisy: $(\lambda x. + x\ x)\ 2 \Rightarrow (+\ 2\ 2)$.
+
+## Volné a vázáné proměnné
+
+V lambda kalkulu rozlišuje dva typy proměnných a to vázané a volné.
+Vázané proměnné jsou takové proměnné, které jsou zároveň argumentem dané
+funkce. Lambda kalkul má lokální rozsah platnosti (scope). Například pro
+funkci $(\lambda x . + x\ y)$ je vázanou proměnnou $x$ a $y$ je v tomto
+případě volná proměnná.
+
+## Alfa redukce
+
+Alfa $(\alpha)$ redukce odstraňuje přetížení identifikátorů pomocí
+přejmenování argumentu a jeho vázaných proměnných. Ukázka na
+$(\lambda x . (\lambda x . +\ (-\ x\ 1))\ x\ 3)\ 9$.
+
+1.  $(\lambda y . +\ (-\ y\ 1)\ 9\ 3)$
+
+2.  $(+\ (-\ 9\ 1)\ 3)$
+
+3.  $(+\ 8\ 3)$
+
+## Eta redukce
+
+Eta $(\eta)$ redukce (optimalizace): $(\lambda x. fx) = f$ pokud se x
+nevyskytuje nikde volně v $f$.
+
+1.  $(\lambda x.(\lambda y.yy)x)$
+
+2.  $(\lambda y. yy)$ (po $\eta$ redukci)
+
+## Pořadí vyhodnocování
+
+Rozlišujeme 2 možná pořadí vyhodnocování, normální (lazy) a aplikativní
+(strict), přičemž platí, že pokud lze výraz vyhodnotit více způsoby a
+výsledný výraz je v normálním tvaru, pak všechny způsoby produkují
+stejný výsledek.
+
+Normální vyhodnocování probíhá tak, že nejdříve nalezneme nejlevější
+$\lambda$ a její argumenty a proveď na nich substituci. Pro aplikativní
+vyhodnocování se postupuje tak, že opět nalezneme nejlevější $\lambda$ a
+její aplikuj její argumenty, pak proveď substituci. U aplikativního
+vyhodnocování může dojít k zacyklení.
+
+Normálním tvarem poté pokládáme takový tvar lambda výrazu, na kterém již
+nelze provádět beta redukci.
+
+## Zápis čísel v lambda kalkulu
+
+Churchova čísla je způsob jak reprezentovat přirozená čísla v
+$\lambda$-kalkulu. Každé číslo je reprezentováno jako funkce s dvěma
+parametry, první parametr se $n$-krát opakuje, druhý je jakousi
+\"zarážkou\".
+
+-   $0 = (\lambda s.(\lambda z.z))$
+
+-   $1 = (\lambda s.(\lambda z. (s z)))$
+
+-   $2 = (\lambda s.(\lambda z. (s (s z))))$
+
+-   $3 = (\lambda s.(\lambda z. (s (s (s z)))))$
+
+Případně ve zkráceném zápisu: $\lambda sz.z = 0 | \lambda sz. s(z) = 1$
+
+Vybrané operace s čísly pak zavádíme následovně:
+
+-   $+~x~1 =~$succ$~= (\lambda x. \lambda s. \lambda z. s (x s z))$
+
+-   $-~x~1 =~$pred$~= (\lambda x. \lambda s. \lambda z. x (\lambda f. \lambda g.g (f s)) (\lambda g.z) (\lambda m.m))$
+
+-   $+~x~y =~$add$~= (\lambda x. \lambda y. \lambda s. \lambda z. x s (y s z))$
+
+-   $*~x~y =~$mult$~= (\lambda x. \lambda y. \lambda z. x (y z)) nebo * x y = (\lambda x. \lambda y. \lambda s. \lambda z. x (y s) z)$
+
+## Kombinátor
+
+Výraz bez volných proměnných se nazývá kombinátor.
+
+Příklady:
+
+Rekurze
+
+:   \- $Y:~\lambda f.(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))$
+
+Indentita
+
+:   \- $I:~\lambda x.x$
+
+Aplikace
+
+:   \- $APP:~\lambda f.\lambda x.(f~x)$
+
+Cyklus
+
+:   \- $L:~(\lambda x.(x~x)~\lambda x.(x~x))$
+
+## Rekurze
+
+Rekurze se dá vytvořit pomocí Y-kombinátoru. Ukázka použití na
+faktoriálu:
+
+-   Y-kombinátor -
+    $Y=\lambda f.(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))$
+
+-   Fibonacciho posloupnost
+    $F_0=(\lambda f.\lambda x.(=~n~0)~1~(f~(-~n~1)))$
+
+-   $F = Y F_0 = (\lambda f.(\lambda x.~f~(x~x))~(\lambda x.~f~(x~x))) (\lambda f.\lambda x.(=~n~0)~1~(f~(-~n~1)))$
+
+-   $F~5 = 120$

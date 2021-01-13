@@ -1,0 +1,121 @@
+---
+subject: DBS
+---
+
+# Požadavky na konzistenci databáze
+
+V rámci DBMS (Database Management Service) je potřeba myslet na
+konzistenci dat a jejich ochranu. Je potřeba myslet na to, že žádná akce
+by neměla ohrozit integritu celého systému.
+
+-   Dva základní požadavky na DBMS:
+
+    -   chránit data -- ve smyslu odolnosti vůči různým haváriím serveru
+
+    -   poskytnout korektní, rychlý a asynchronní přístup vetšímu
+        množství současně pracujících uživatelů.
+
+-   Řešení
+
+    -   komponenta řízení soubežného (paralelního) zpracování
+        (concurreny control)
+
+    -   komponenta zotavení z chyb (recovery)
+
+# Transakce
+
+Vhodná programová jednotka a vhodné mechanismy, které zabezpečí, že po
+skončení akce (korektním i nekorektním) zůstane databáze konzistentní
+(platí všechna IO definovaná ve schématu).
+
+-   COMMIT - potvrzení
+
+-   ROLLBACK - zrušení
+
+Stavový diagram transakce
+
+-   aktivní (Active) - od začátku (probíhají DML příkazy)
+
+-   částečně potvrzený (Partially Commited) - po provedení poslední
+    operace transakce
+
+-   potvrzený (Commited) - po úspešném zakončení, tj. po potvrzení
+    operace COMMIT
+
+-   chybný (Failed) - v normálním průběhu transakce nelze pokračovat
+
+-   zrušený (ABorted) - po skončení operace ROLLBACK, tj. uvedení
+    databáze do stavu před započetím transakce
+
+![ ](./images/state.pdf){width="50%"}
+
+# ACID vlastnosti transakce
+
+-   atomicita (Atomicity) - transakce musí buď proběhnout celá, nebo
+    vůbec
+
+-   konzistence (Consistency) - transformuje databázi z konzistentního
+    stavu do jiného konzistentního stavu
+
+-   nezávislost (Independence) - dílčí efekty jedné transakce nejsou
+    viditelné jiným transakcím
+
+-   trvanlivost (Durability) - efekty úspěšné transakce jsou trvale
+    uloženy
+
+**Žurnál** obsahuje sekvenci změnových vektorů \<XID, pageID, offset,
+length, old data, new data\> Žurnál a přidružená infrastruktura umožňuje
+implementaci Atomicity a Durability u transakčního zpracování. Informace
+z transakčního žurnálu se používají pouze pro obnovu databáze po chybě.
+
+# Rozvrhy
+
+Stanovení pořadí provádění dílčích akcí více transakcí v čase nazveme
+**rozvrhem**. Rozvrh je korektní, když je v nějakém smyslu ekvivalentní
+kterémukoliv sériovému rozvrhu.
+
+Rozvrh je uspořádatelný (koretní) pokud nemá precendenční graf kružnici.
+Rozvrhy jsou ekvivalentní mají-li stejný precendenční graf.
+
+Precendenční graf rozvrhu:
+
+-   uzly = jednotlivé transakce rozvrhu
+
+-   hrany (orientované)
+
+    -   jedna transakce READ(A) před tím než druhá transakce WRITE(A)
+
+    -   jedna transakce WRITE(A) před tím než druhá transakce READ(A)
+
+    -   poslední WRITE(A) v jendé transkaci je před posledním WRITE(A) v
+        druhé transakci.
+
+Paralelní zpracovaní transakcí:
+
+-   Testování uspořádatelnosti
+
+-   Uzamykáni (LOCK TABLE)
+
+Dvoufázová transakce:
+
+-   1\. fáze - uzamyká se, nic neodemyká
+
+-   2\. fáze - od prvního odemknutí do konce se už nic nezamyká
+
+Dobře formované transakce:
+
+-   transakce zamyká objekt, chce-li k němu přistupovat
+
+-   transakce nezamyká objekt, který již zamkla
+
+-   transakce neodmyká objekt, který nezamkla
+
+-   na konci transakce nezůstane žádný objekt zamčený
+
+Jestliže všechny transakce v dané množině transakcí T jsou:
+
+-   dobře formované
+
+-   dvoufázové
+
+$\Rightarrow$ pak každý jejich legální rozvrh je uspořádatelný.

@@ -1,0 +1,172 @@
+---
+subject: SI1.2
+---
+
+# Analýza a správa požadavků
+
+## Cíle
+
+-   Vymezit hranice systému
+
+-   Umožnit přesnější odhad pracnosti
+
+-   Vyjasnit si zadání se zákazníkem
+
+-   Zachytit omezení, která jsou na IS kladena
+
+## Kategorizace základní
+
+-   Funkční
+
+-   Obecné (Nefunkční)
+
+    -   Určují omezení kladená na systém
+
+    -   Mají zásadní dopad na návrh architektury
+
+    -   Určují dodržování standardů
+
+## FURPS
+
+F (functionality)
+
+:   \- funkčnost
+
+U (usability)
+
+:   \- použitelnost
+
+R (reliability)
+
+:   \- spolehlivost
+
+P (performace)
+
+:   \- výkon
+
+S (supportability)
+
+:   -- podporovatelnost / rozšiřitelnost
+
+## Evidované informace
+
+-   Název požadavku
+
+-   Zkratka -- usnadňuje odkazování na požadavek
+
+-   Popis -- nejdůležitější část
+
+-   Typ (kategorie)
+
+-   Priorita
+
+-   Složitost
+
+## Zdroje informací
+
+-   Komunikace se zákazníkem
+
+-   Model obchodních procesů
+
+-   Zadávací dokumentace
+
+## Splnění požadavků
+
+-   vždy ověřitelné
+
+-   jasné
+
+-   mají priority
+
+# Případy užití
+
+-   Detailní specifikace funkčních požadavků.
+
+-   Typicky se jednotlivé požadavky rozpadají na několik případů užití.
+
+-   Skládá se z:
+
+    -   Seznam účastníků
+
+    -   Diagram případů užití
+
+    -   Seznam případů užití (název, zkratka, popis, scénář, podmínky)
+
+## Využití
+
+-   Základ pro tvorbu uživatelské příručky
+
+-   Podklady k tvorbě akceptačních testů
+
+-   Zpřesnění odhadů pracnosti
+
+-   Zadání pro programátora
+
+## Chyby
+
+-   Diagram případů užití nemá znázorňovat tok událostí. (Od toho jsou
+    jiné typy diagramů.)
+
+-   Diagram případů užití nemá znázorňovat datové paměti.
+
+-   Případ užití bez účstníků nemá žádný význam.
+
+-   Případy užití nenaznačují komunikaci mezi aktéry.
+
+-   Počet funkčních požadavků nemá být stejný jako počet případů užití.
+
+# Modelování
+
+## Případy užití
+
+include
+
+:   \- Začlenění shodných částí scénářů
+
+extend
+
+:   \- Společná část nemusí být povinná
+
+## Diagram aktivit
+
+-   Ve skupině diagramů chování
+
+-   Swimlines - Zóny zodpovědnosti
+
+-   Objektový uzel - Zachycení stavu objektu
+
+```{=html}
+<!-- -->
+```
+-   Aktivita
+
+-   Odeslání události
+
+-   Přijetí události
+
+-   Časová událost
+
+```{=html}
+<!-- -->
+```
+-   Počáteční uzel
+
+-   Koncový uzel
+
+-   Rozhodnutí (větvění/spojení)
+
+-   Paralelní souběh (fork/join)
+
+-   Konec toku
+
+![ ](./images/akcni-uzly.png){width=".4\\linewidth"}
+
+![ ](./images/ridici-uzly.png){width=".4\\linewidth"}
+
+![ ](./images/diagram-aktivit.png){width=".75\\linewidth"}
+
+## Chyby
+
+-   Pro větvení slouží *Rozhodnutí* nebo *Paralelní souběh*.
+
+-   Nemíchat stav objektů s aktivitami.

@@ -1,0 +1,265 @@
+---
+author:
+- Daniel Hampl
+subject: ZMA
+---
+
+# Primtivní funkce
+
+Nechť $f$ je funkce definovaná na intervalu $(a,b)$, kde
+$-\infty\leq a < b\leq + \infty$. Funkci $F$ splňující podmínku
+$$F'(x) = f(x) \ \text{pro každé} \ x \in (a,b)$$ nazýváme **primitivní
+funkcí** k funkci $f$ na intervalu $(a,b)$.
+
+Nechť $F$ je primitivní funkcí k funkci $f$ na intervalu $(a,b)$. Pak
+$G$ je primitivní funkcí k funkci $f$ na intervalu $(a,b)$ právě tehdy,
+když existuje konstanta $c \in \mathbb{R}$ taková, že
+$$G(x) = F(x) + c, \quad \text{pro každé} \ x\in(a,b).$$
+
+# Neurčitý integrál
+
+Nechť k funkci $f$ existuje primitivní funkce na intervalu $(a,b)$.
+Množinu všech primitivních funkcí k funkci $f$ na $(a,b)$ nazýváme
+neurčitým integrálem a značíme jej $\int f$ nebo
+$\int f(x) \,\mathrm{d}x$.
+
+## Inverze
+
+$$\int g'(x) \,\mathrm{d}x = g(x) + c, \quad x\in(a,b)$$
+
+$$\left(\int f\right)'(x) = f(x), \quad x\in(a,b).$$
+
+## Operace
+
+### Sčtání a násobení konstantou
+
+$$\int (f+g) = \int f + \int g \quad \text{a} \quad \int (\alpha f) = \alpha \int f,$$
+
+### Per partes
+
+Nechť funkce $f$ je diferencovatelná na intervalu $(a,b)$ a $G$ je
+primitivní funkce k funkci $g$ na intervalu $(a,b)$ a konečně nechť
+existuje primitivní funkce k funkci $f'G$. Potom existuje primitivní
+funkce k funkci $fg$ a platí $$\int fg = f G - \int f' G.$$
+
+### Substituce
+
+**Věta o substituci I** Nechť pro funkce $f$ a $\varphi$ platí
+
+-   $f$ má primitivní funkci $F$ na intervalu $(a,b)$,
+
+-   $\varphi$ je na intervalu $(\alpha,\beta)$ diferencovatelná,
+
+-   $\varphi\big((\alpha,\beta)\big) \subset (a,b)$
+
+Pak funkce $f\big(\varphi(x)\big)\cdot\varphi'(x)$ má primitivní funkci
+na intervalu $(\alpha,\beta)$ a platí
+
+$$\int f\big(\varphi(x)\big)\cdot\varphi'(x) \,\mathrm{d}x = F\big( \varphi(x) \big).$$
+
+**Věta o substituci II** Nechť $f$ je definována na intervalu $(a,b)$ a
+nechť $\varphi$ je bijekce[^1] intervalu $(\alpha,\beta)$ na $(a,b)$ s
+nenulovou konečnou derivací. Pak platí
+
+$$\int f(\varphi(t)) \varphi'(t) \,\mathrm{d}t = G(t) + C \quad \Longrightarrow \quad \int f(x) \,\mathrm{d}x = G\big(\varphi^{-1}(x)\big) + C$$
+
+# Riemannův integrál
+
+## Infimum
+
+Buď $A$ neprázdná zdola omezená podmnožina množiny reálných čísel. Číslo
+$\alpha\in\mathbb{R}$ nazveme infimem množiny $A$, značíme $\inf A$,
+právě když
+
+1.  pro každé $x\in A$ platí $\alpha\leq x$ ($\alpha$ je dolní závora
+    $A$),
+
+2.  pokud $\beta\in \mathbb{R}$ také splňuje předchozí bod, pak
+    $\beta\leq\alpha$ ($\alpha$ je největší dolní závora $A$).
+
+Pokud množina $A$ není zdola omezená, pak klademe $\inf A:=-\infty$. Pro
+prázdnou množinu klademe $\inf \emptyset:=+\infty$.
+
+## Supremum
+
+Buď $A$ neprázdná zdola omezená podmnožina množiny reálných čísel. Číslo
+$\alpha\in\mathbb{R}$ nazveme supremem množiny $A$, značíme $\sup A$,
+právě když
+
+1.  pro každé $x\in A$ platí $\alpha\geq x$ ($\alpha$ je horní závora
+    $A$),
+
+2.  pokud $\beta\in \mathbb{R}$ také splňuje předchozí bod, pak
+    $\beta\geq\alpha$ ($\alpha$ je nejmenší honrní závora $A$).
+
+Pokud množina $A$ není shora omezená, pak klademe $\sup A:=+\infty$. Pro
+prázdnou množinu klademe $\sup \emptyset:=-\infty$.
+
+## Norma dělení
+
+Buď dán interval $\langle a,b \rangle$. Konečnou množinu
+$\sigma = \{x_0,x_1,\ldots,x_n\}$ takovou, že
+$a = x_0 < x_1 < \cdots < x_n = b$ nazýváme dělením intervalu
+$\langle a,b \rangle$. Bodům $x_k, k=1,2,\ldots,n-1$ říkáme dělící body
+intervalu $\langle a,b \rangle$. Intervalu $\langle x_{k-1},x_k \rangle$
+říkáme částečný interval intervalu $\langle a,b \rangle$ při dělení
+$\sigma$. Číslo
+
+$$\nu(\sigma) := \max \{ \Delta_k \mid k = 1,2,\ldots,n \}, \quad \text{kde} \quad \Delta_k := x_k - x_{k-1}, \ k = 1,2,\ldots,n,$$
+
+nazýváme **normou dělení** $\sigma$.
+
+## Součet funkce
+
+Buďte funkce $f$ definovaná a omezená na intervalu
+$J=\langle a,b \rangle$ a $\sigma=\{x_0,x_1,…,x_n\}$ dělení intervalu
+$J$. Součty
+
+$$S(\sigma,f) := \sum_{i=1}^n \Delta_i \sup_{\langle x_{i-1},x_i\rangle} f \quad \text{a} \quad s(\sigma,f) := \sum_{i=1}^n \Delta_i \inf_{\langle x_{i-1},x_i\rangle} f$$
+
+nazýváme **horním součtem funkce** a **dolním součtem funkce** $f$ při
+dělení $\sigma$.
+
+![image](./images/fig_dolni_soucet.png){width="\\textwidth"}
+
+![image](./images/fig_horni_soucet.png){width="\\textwidth"}
+
+## Horní a dolní integrál
+
+Pro funkci $f$ definovanou a omezenou na uzavřeném intervalu
+$J=\langle a,b \rangle$ definujeme čísla
+
+$$\overline{\int_a^b} f(x) \,\mathrm{d}x := \inf\{ S(\sigma) \mid \sigma \ \text{dělení} \ J \} \ \text{a} \ \underline{\int_a^b} f(x) \,\mathrm{d}x := \sup\{ s(\sigma) \mid \sigma \ \text{dělení} \ J \}.$$
+
+a nazýváme **horním integrálem**, resp. **dolním integrálem**, funkce
+$f$ na intervalu $J$.
+
+## Definice Riemanova integrálu
+
+Pokud pro funkci $f$ definovanou a omezenou na uzavřeném intervalu $J$
+platí
+
+$$\overline{\int_a^b} f(x)\,\mathrm{d}x = \underline{\int_a^b} f(x) \,\mathrm{d}x \in \mathbb{R},$$
+
+pak jejich společnou hodnotu nazýváme **Riemannovým integrálem** funkce
+$f$ na intervalu $J$ a toto číslo značíme symboly
+
+$$\int_a^b f, \quad \text{případně} \quad \int_a^b f(x)\,\mathrm{d}x.$$
+
+Posloupnost dělení $\sigma_n$ nazveme **normální**, pokud pro její normy
+platí $\lim\limits_{n\to\infty} \nu(\sigma_n) = 0.$
+
+## Postačujíící podmínka pro existenci RI
+
+Buď $f$ spojitá funkce na intervalu $\langle a,b \rangle$. Potom
+existuje její Riemannův integrál na intervalu $\langle a,b \rangle$.
+Pokud je navíc $(\sigma_n)$ normální posloupnost dělení intervalu
+$\langle a,b \rangle$ potom limity
+
+$$\lim_{n\to\infty} s(\sigma_n, f) \quad \text{a} \quad \lim_{n\to\infty} S(\sigma_n,f)$$
+
+existují, a jsou rovny Riemannově integrálu funkce f na intervalu
+$\langle a,b \rangle$.
+
+## Integrální součet
+
+Pro funkci f spojitou na uzavřeném intervalu $\langle a,b \rangle$ a
+dělení $\sigma={x_0,x_1,…,x_n}$, kde $x_0=a$ a $x_n=b$, tohoto intervalu
+definujeme integrální součet funkce $f$ při dělení $σ$ předpisem
+
+$$\mathcal{J}(\sigma,f) = \sum_{i=1}^n f(\alpha_i) \Delta_i,$$
+
+kde $\alpha_i$ patří do intervalu $\langle x_{i-1},x_i\rangle$,
+$i=1,2,…,n$.
+
+### Vztah s Riemannovým integrálem
+
+$$\int_a^b f(x) \,\mathrm{d}x = \lim_{n\to\infty} \mathcal{J}(\sigma_n,f),$$
+
+## Vlastnosti
+
+### Aditivita integrálu
+
+Nechť $f$ a $g$ jsou spojité funkce na intervalu $\langle a,b \rangle$.
+Potom pro Riemannův integrál funkce $f+g$ (která je také automaticky
+spojitá na $\langle a,b \rangle$) platí
+
+$$\int_a^b (f+g)(x)\,\mathrm{d}x = \int_a^b f(x)\,\mathrm{d}x + \int_a^b g(x)\,\mathrm{d}x.$$
+
+### Multiplikativita integrálu
+
+Nechť f je spojitá na intervalu $\langle a,b \rangle$ a
+$c\in \mathbb{R}$ je konstanta. Potom pro Riemannův integrál funkce $cf$
+platí
+
+$$\int_a^b (cf)(x)\,\mathrm{d}x = c \int_a^b f(x)\,\mathrm{d}x.$$
+
+### Aditivita integrálu v mezích
+
+Riemannův integrál funkce $f$ na intervalu $\langle a,b \rangle$
+existuje, právě když pro každé $c\in\langle a,b \rangle$ existují
+Riemannovy integrály funkce f na intervalech $\langle a,c \rangle$ a
+$\langle c,b \rangle$. V takovém případě navíc platí
+
+$$\int_a^b f(x)\,\d x  = \int_a^c f(x)\,\d x + \int_c^b f(x)\,\d x.$$
+
+### Nerovnosti mezi integrály
+
+Nechť jsou $f$ a $g$ spojité funkce na intervalu $\langle a,b \rangle$ a
+nechť platí nerovnost $f(x)\leq g(x)$ pro všechna
+$x\in\langle a,b \rangle$. Potom pro jejich Riemannovy integrály platí
+
+$$\int_a^b f(x)\,\mathrm{d}x \leq \int_a^b g(x)\,\mathrm{d}x.$$
+
+### Newtonova formule
+
+Nechť f je funkce spojitá na intervalu $\langle a,b \rangle$ s
+primitivní funkcí F. Pak platí rovnost
+$$\int_a^b f(x) \,\mathrm{d}x = F(b) - F(a) =: \Big[ F(x) \Big]_a^b.$$
+
+## Zobecněný RI
+
+Nechť f je funkce definovaná na intervalu $\langle a,b )$ pro nějaké
+$a\in\mathbb{R}$ a $b\in(a,+\infty\rangle$, která je Riemanovsky
+integrabilní na intervalu$\langle a,c \rangle$ pro každé $c\in(a,b)$.
+Pokud existuje konečná limita
+
+$$\lim_{c \to b_-} \int_a^c f(x)\, \d x,$$
+
+pak její hodnotu značíme
+
+$$\int_a^b f(x)\, \d x,$$
+
+nazýváme zobecněným Riemannovým integrálem funkce $f$ na intervalu
+$\langle a,b )$ a říkáme, že integrál $\int_a^b f(x)\, \d x$ konverguje.
+
+## Vlastnosti RI
+
+Nechť $f$ je funkce spojitá na uvažovaných intervalech.
+
+-   Je-li $f$ sudá funkce na $\langle -a,a \rangle$, pak
+    $\displaystyle\int_{-a}^a f(x) \mathrm{d}x = 2 \int_0^a f(x) \mathrm{d}x$
+
+-   Je-li $f$ lichá funkce na $\langle -a,a \rangle$, pak
+    $\displaystyle\int_{-a}^a f(x) \mathrm{d}x = 0$
+
+-   Je-li $f$ periodická na $\mathbb{R}$ s periodou $T$, pak pro každé
+    $a,b\in\mathbb{R}$ platí
+    $\displaystyle\int_a^{a+T} f(x)\mathrm{d}x = \int_b^{b+T} f(x) \mathrm{d}x$
+
+## Výpočet obsahů plošných útvarů
+
+Nechť $f$ a $g$ jsou funkce spojité na $\langle a,b \rangle$ takové, že
+$f(x)\geq g(x)$ pro každé $x\in\langle a,b \rangle$. Pak obsah plochy
+$P$ ohraničené přímkami $x=a$ a $x=b$ a grafy funkcí $f$ a $g$ je roven
+
+$$P = \int_a^b \big( f(x) - g(x) \big) \,\mathrm{d}x.$$
+
+![image](./images/fig_vypocet_plochy.png){width=".5\\textwidth"}
+
+# Tabulky
+
+![image](./images/integraly.png){width="\\textwidth"}
+
+[^1]: zobrazení $f$, které přiřazuje každému prvku $H_f$ právě jeden
+    prvek z $D_f$

@@ -1,0 +1,110 @@
+---
+subject: SI2
+---
+
+# Konfigurační řízení
+
+Jedna z nejdůležitejších podpůrných činností v rámci SW vývoje. Cílem je
+zajistit řád a pořádek v konfiguraci SW produktu.
+
+## Základní aktivity
+
+-   řízení změn
+
+-   verzování
+
+-   release managment
+
+## Cíle
+
+-   evidence všech částí SW produktu
+
+-   zajistit, že provádění změn SW produktu samotný produkt nepoškodí
+
+-   získat přehled o stavu konfigurace SW produktu
+
+## Kontrola verzí
+
+-   evidence SW položek
+
+-   práce na více verzích současně
+
+-   obnovení konkrétní verze
+
+-   GIT, SVN
+
+-   branch (vedlejší větev/větve), tag (read-only copy/záložka mezi
+    verzemi), trunk (hlavní větev) - v pojetí SVN
+
+-   konfigurační jednotka - libovolný soubor, který se verzuje
+
+## Řízení změn
+
+-   proces, který změnu zakomponuje do projektu se všemi náležitostmi
+    (včetně například testování)
+
+-   eviduje se typ změny a vazba na specifikaci
+
+-   Ticketovací systém - youtrack/redmine/github/bugzilla...
+
+# Správa prostředí
+
+Software poběží u zákazníka, ale musí se někde vyvíjet a testovat, tzn.
+existuje více prostředí, kde program poběží.
+
+## U dodavatele
+
+-   vývoj
+
+    -   lokální vývoj, programátorovi by se mělo programovat pohodlně
+
+    -   povinná sada testů před commitem - měly by být krátké a rychlé
+
+-   integrační
+
+    -   continuous integration - provedení smoke testů a daily build
+
+    -   po smoke testech (pokud projdou) se provedé rozsáhlé testování
+        automatizovanými testy
+
+-   testovací
+
+    -   funkční/nefunkční testy
+
+    -   manuální testy
+
+## U zákazníka
+
+-   akceptační - testuje prostředí u zákazníka
+
+-   produkční - testuje se prostředí, na kterém běží výsledná aplikace
+
+# Řízení dodávek
+
+Jak často se budou zákazníkovi poskytovat nové buildy záleží na zvoleném
+modelu SDCL modelu (agile, waterfall...). Většinou cílem je automatizace
+procesu dodávek.
+
+## Proces
+
+-   vyrobit dodávku
+
+-   nainstalovat dodávku
+
+-   otestovat dodávku
+
+-   připravit dodávku pro instalaci zákazníkem
+
+# Continuous integration
+
+-   souhrn různých vývojářských nástrojů a metod k urychlení vývoje SW
+
+-   integrace kodu do celkového systému na každodenní bázi (většinou
+    pomocí build serveru)
+
+-   při mnoha commitech se sloučí do skupin, pro menší zátež (někdy i
+    rychlejší deploy při mnoha testech)
+
+-   jako první se provedou smoke testy $\rightarrow$ pokud projdou
+    $\rightarrow$ ostatní testy $\rightarrow$ pokud projdou
+    $\rightarrow$ build a deploy

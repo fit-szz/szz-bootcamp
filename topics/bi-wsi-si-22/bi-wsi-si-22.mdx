@@ -1,0 +1,131 @@
+---
+subject: SI2
+---
+
+# Testování
+
+Proces/množina aktivit s cílem změřit kvalitu vytvořeného software.
+Ověření správnosti výstupu jednotlivých částí nebo celé aplikace.
+
+# Přezkoumání
+
+Ověřit korektnost produktu vůči specifikaci:
+
+-   projektu
+
+-   nabídce
+
+-   designu
+
+-   kódu
+
+## Validace a verifikace
+
+-   validace - dělo to co má
+
+-   verifikace - dělá to správně
+
+## Rozdělení testu podle V-modelu
+
+-   na levé straně činnost
+
+-   na pravé straně testy, které tu činnost pokrývají
+
+-   vývoj začíná návrhem, testování začíná od unit testů (testy
+    samotných funkcí)
+
+![V-model](./images/vModel.png){width="100%"}
+
+## Pozitivní vs negativní testy
+
+-   funguje, co fungovat má?
+
+-   nefunguje, co fungovat nemá?
+
+## Black box vs White box
+
+-   White box
+
+    -   vidíme implementaci
+
+    -   strukturální testy
+
+-   Black box
+
+    -   testuje se oproti rozhraní
+
+    -   nezajímá nás implementace
+
+    -   pohled ze strany uživatele
+
+# Detailnější rozdělení testů
+
+-   stresové testy
+
+-   specifické testy
+
+-   uživatelské testy
+
+-   regresní testy
+
+## Systémové testy
+
+ověřují aplikaci jako funkční celek, aplikovávají se funkční i nefunkční
+testy.
+
+-   stresové testy
+
+-   recovery testy
+
+-   bezpečnostní testy
+
+-   výkonostní testy
+
+## Regresní testy
+
+Testy částí systému, nad kterými v aktuálním releasu neproběhli žádné
+změny. Ověření, že nové změny nezkazili něco, co už fungovalo.
+
+## Atributy testu
+
+-   Power - pravděpodobnost nalezení problému, pokud existuje
+
+-   Representative - odpovídá tomy, co asi uživatel nejpravděpodobněji
+    udělá
+
+-   Repeatable - snadno a levně znovupoužitelné
+
+-   Cost - náklady, čas a pracnost
+
+-   Motivating - motivovanost pro opravu chyby
+
+## Akceptační vs kvalifikační test
+
+-   kvalifikační - oveření u dodavatele, ověření zda už může být produkt
+    předán klientovi
+
+-   akceptační - ověření u zákazníka, zákazník si na základě vlastních
+    scénářů otestuje systém (jestli odpovídá požadavkům)
+
+# Automatizace testů
+
+-   opakovatelnost a konzistence
+
+-   testy mají stejné výsledky nezávisle na počtu opakování
+
+-   odpadá nutnost opakovaného provádění toho stejného testu člověkem
+
+-   znovupouživatelnost (provádění stejných testů v různých prostředí s
+    různou konfigurací a úpravami dat)
+
+-   baseline test (automatizace umožňuje velkou sadu testů)
+
+Pro automatizace jsou obzvlášť vhodné regresní testy. Automatizace může
+probíhat na serveru, ale i na stroji vývojáře. Vhodné při použití
+continuous integration.
+
+## Smoke testing
+
+Jendá se spuštění sady testů, které testují, zda-li důležité funkce
+systému fungují. Používá se třeba při dělání buildů, aby se ujistilo, že
+nová verze buildu bude stabilní a je možné jí dále testovat.

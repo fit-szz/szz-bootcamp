@@ -1,0 +1,110 @@
+---
+subject: PA1
+---
+
+# Datové typy v programovacích jazycích.
+
+Číselné datové typy
+
+:   \- signed/unsigned; různé velikosti; little/big endian
+
+    -   char
+
+    -   integer
+
+    -   float
+
+    -   double
+
+String
+
+:   \- pole charů
+
+Boolean
+
+:   
+
+Class, struct
+
+:   
+
+NULL, void
+
+:   
+
+enum, typedef
+
+:   
+
+array
+
+:   
+
+Ukazatele, reference
+
+:   
+
+# Staticky a dynamicky alokované proměnné.
+
+staticky
+
+:   \- definované při kompilaci, alokované na zásobníku
+
+dynamicky
+
+:   \- alokované při běhu, programátor se musí o alokovanou paměť starat
+    (v případě C, malloc, free).
+
+## Spojové seznamy
+
+Dynamicky alokovaná struktura. Každý prvek má nějakou hodnotu a
+ukazatele na další prvky. Cyklický, jednosměrný, obousměrný.
+
+# Modulární programování
+
+Jednotlivé části se dají vyměňovat. Oddělení zodpovědnosti, zlepšení
+udržovatelnosti.
+
+## Procedury a funkce, vstupní a výstupní parametry.
+
+Procedury jsou vesměs funkce bez návratové hodnoty. Vstupní parametry
+mají svůj typ, název a mohou mít defaultní hodnotu. Hodnoty parametrů se
+při volání funkce kopírují.
+
+# Překladač
+
+-   kompilátor
+
+-   slouží k překladu vyššího jazyka do jazyka nižšího
+
+-   nejčastěji překládá zdrojový kód do strojového kódu
+
+-   vzniká strojový kód s neřešenými referencemi mezi moduly --
+    objektový soubor
+
+-   Skladá se ze dvou častí:
+
+    -   Front-end -- parsuje zdrojový kód do vnítřní reprezentace
+        kompilátoru. Tato část závisí na programovácím jazyce.
+
+    -   Back-end -- překladá vnítřní reprezentace do strojového kódu.
+        Tato část zavísí na cílové architektuře (Intel, AVR, atd.).
+
+## Linker
+
+-   řeší reference mezi objektovými soubory a knihovnami
+
+-   slouži k propojení zkompilovaných modulů
+
+-   slouží k sestavení samostatně přeložených modulů a knihoven do
+    funkčního celku
+
+-   jeho výstupem je spustitelný soubor
+
+## Debugger.
+
+-   nástroj pro ladění kódu a hledání chyb v programu
+
+-   používá se pro usnadnění pochopení, jak program funguje
+
+<http://www.fit.vutbr.cz/~martinek/clang/gcc.html.>
