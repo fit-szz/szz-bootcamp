@@ -1,3 +1,5 @@
+> :warning: Otázky zpracovávejte do větve `markdown` (do souborů .mdx), která je napojená na https://fit-szz.github.io/szz-bootcamp/.
+
 # SSZ
 
 ## Jak přidat otázku
