@@ -14,6 +14,9 @@ all: $(patsubst topics/%,build/%.pdf,$(wildcard topics/bi-*))
 # something in a subdirectory of a subject (an image for example), you'll have
 # to recompile (the solution is to not use subdirectories).
 build/%.pdf: topics/%/* $(default_deps)
+	# Latex build process is pretty fragile, so let's remove everything
+	# before we start the build.
+	rm -rf build/*$**
 	xelatex -shell-escape -output-directory=build topics/$*/$*.tex
 	xelatex -shell-escape -output-directory=build topics/$*/$*.tex
 
